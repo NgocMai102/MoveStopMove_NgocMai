@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Framework.StateMachine;
 using _Game.Camera;
 using _Game.Scripts.Character;
+using _Pattern.StateMachine.PlayerState;
 using UnityEngine;
 
 namespace _Game.Scripts.Character.Player
@@ -29,7 +31,7 @@ namespace _Game.Scripts.Character.Player
             currentState.UpdateState();
         }
 
-        void OnInit()
+        protected override void OnInit()
         {
             base.OnInit();
             InitJoystick();
@@ -37,6 +39,7 @@ namespace _Game.Scripts.Character.Player
             InitState();
 
             TF.position = Vector3.zero;
+            moveDirection = Vector3.zero;
         }
     
         private void InitState()
@@ -44,9 +47,9 @@ namespace _Game.Scripts.Character.Player
             if (currentState == null)
             {
                 currentState = new StateMachine<Player>();
-                currentState.SetCharacter(this);
+                currentState.SetOwner(this);
             }
-            //currentState.ChangeState(new IdleState());
+            currentState.ChangeState(new IdleState());
         }
     
         private void InitJoystick()
@@ -69,7 +72,7 @@ namespace _Game.Scripts.Character.Player
         private void GetInput()
         {
             if (joystick == null)
-                return;
+                return; 
             if (Math.Abs(joystick.Horizontal) > 0.1f || Math.Abs(joystick.Vertical) > 0.1f)
             {
                 moveDirection.Set(joystick.Horizontal, 0, joystick.Vertical);
@@ -80,6 +83,18 @@ namespace _Game.Scripts.Character.Player
                 moveDirection = Vector3.zero;
             }
         }
+        
+        public void Move()
+        {
+            characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+            RotateTo(TF.position + moveDirection);
+        }
+    
+        public void ChangeState(IState<Player> state)
+        {
+            currentState.ChangeState(state);
+        }
+        
     }
     
 }

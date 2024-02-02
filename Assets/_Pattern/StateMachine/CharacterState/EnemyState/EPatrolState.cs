@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using _Framework.StateMachine;
-// using Game.Character.Animation;
+using _Game.Scripts.Character.Enemy;
 // using _Game.Scripts.Character.Enemy;
+// using Game.Character.Animation;
 using UnityEngine;
+
 
 namespace _Pattern.StateMachine.EnemyState
 {
-    public class EDeadState : IState<Enemy>
+    public class EPatrolState : IState<Enemy>
     {
+        private bool attackIfEnemyInRange;
         public void OnEnter(Enemy enemy)
         {
             
@@ -17,9 +20,10 @@ namespace _Pattern.StateMachine.EnemyState
         public void OnExecute(Enemy enemy)
         {
             
+        
         }
 
-        public void OnExit(Enemy enemy)
+        public void OnExit(Enemy t)
         {
         
         }

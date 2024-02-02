@@ -7,7 +7,9 @@ using UnityEngine;
 public enum PoolType
 {
     None = 0,
-    Bullet = 1,
+    Enemy = 1,
+    Hammer = 2,
+    Knife = 3,
 }
 public class PoolControler : MonoBehaviour
 {
@@ -145,7 +147,3 @@ public enum ParticleType
 {
     
 }
-
-
-
-

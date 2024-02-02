@@ -1,18 +1,101 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Framework.StateMachine;
+using _Pattern.StateMachine.EnemyState;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+namespace _Game.Scripts.Character.Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Enemy : Character
     {
-        
-    }
+        [SerializeField] private UnityEngine.AI.NavMeshAgent navmeshAgent;
 
-    // Update is called once per frame
-    void Update()
-    {
+        [SerializeField] private GameObject circleIndicator;
         
+        private StateMachine<Enemy> currentState;
+        private Vector3 destination;
+        public bool IsDestination => Vector3.Distance(TF.position, destination + (TF.position.y - destination.y) * Vector3.up) < 0.1f;
+        
+        private void Start()
+        {
+            OnInit();
+        }
+
+        private void Update()
+        {
+            currentState.UpdateState();
+        }
+
+        #region Init
+        protected override void OnInit()
+        {
+            base.OnInit();
+            navmeshAgent.speed = moveSpeed;
+            InitState();
+            HideCircleIndicator();
+        }
+        
+        private void InitState()
+        {
+            if (currentState == null)
+            {
+                currentState = new StateMachine<Enemy>();
+            }
+            currentState.SetOwner(this);
+            currentState.ChangeState(new EIdleState());
+        }
+        #endregion
+
+        #region Movement
+        public void MoveTo(Vector3 destination)
+        {
+            this.destination = destination;
+            navmeshAgent.enabled = true;
+            navmeshAgent.SetDestination(destination);
+        }
+
+        public void StopMove()
+        {
+            navmeshAgent.enabled = false;
+        }
+        
+        public void ResetModelRotation()
+        {
+            model.localRotation = Quaternion.identity;
+        }
+
+        #endregion
+
+        #region Controller
+        
+        public void ChangeState(IState<Enemy> state)
+        {
+            currentState.ChangeState(state);
+        }
+
+        public override void OnHit()
+        {
+            base.OnHit();
+            
+        }
+
+        public override void OnDespawn()
+        {
+            base.OnDespawn();
+            SimplePool.Despawn(this);
+        }
+
+        #endregion
+        
+        
+
+        public void ShowCircleIndicator()
+        {
+            this.circleIndicator.SetActive(true);
+        }
+        public void HideCircleIndicator()
+        {
+            this.circleIndicator.SetActive(false);
+        }
     }
 }

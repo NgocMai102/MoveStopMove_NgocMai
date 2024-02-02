@@ -18,7 +18,7 @@ public class StateMachine<T> where T: Character
         this.state?.OnEnter(t);
     }
     
-    public void SetCharacter(T t)
+    public void SetOwner(T t)
     {
         this.t = t;
     }
