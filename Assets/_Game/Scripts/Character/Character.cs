@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using _Framework.Pool.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using _Game.Utils;
 
 namespace _Game.Scripts.Character
 {
@@ -11,17 +12,17 @@ namespace _Game.Scripts.Character
     {
         public Transform model;
         //public static event Action<Character> OnCharacterDead;
-        [Header("Properties")] 
-        //[SerializeField] protected Transform model;
+        [Header("Properties")]
         [SerializeField] private Animator anim;
         [SerializeField] private Transform rightHand;
         [SerializeField] private AttackRange attackRange;
+        //[SerializeField] private SphereCollider sphereCollider;
         
         [Header("Config")]
         [SerializeField] protected float moveSpeed;
-
         [SerializeField] protected Weapon.Weapon currentWeapon;
-        
+
+        private SphereCollider sphereCollider;
         private string currentAnimName;
         private Character otherCharacter;
         
@@ -29,6 +30,7 @@ namespace _Game.Scripts.Character
         private bool isAttackable;
         private bool isDead;
         private float attackRangeRadius;
+        private float sphereColliderRadius;
 
         #region Getter
         
@@ -36,7 +38,8 @@ namespace _Game.Scripts.Character
         public bool IsDead => isDead;
         public bool FoundCharacter => enemyInRange.Count > 0;
         public float AttackRangeRadius => attackRangeRadius;
-        
+        public float SphereColliderRadius => sphereColliderRadius;
+
         #endregion
 
         private void Start()
@@ -46,8 +49,7 @@ namespace _Game.Scripts.Character
 
         protected virtual void OnInit()
         {
-            attackRangeRadius = 1.5f;
-            
+            attackRangeRadius = 1f;
             isDead = false;
             isAttackable = true;
             enemyInRange = new List<Character>();
@@ -71,23 +73,15 @@ namespace _Game.Scripts.Character
             }
         }
         #endregion
-        
-        public void RotateTo(Vector3 target)
-        {
-            model.LookAt(target);
-        }
-        
-        public void ResetModelRotation()
-        {
-            model.localRotation = Quaternion.identity;
-        }
+
+        #region Attack
         
         public void Attack(Vector3 target)
         {
             currentWeapon.SpawnBullet(target);
             StartCoroutine(ResetAttack());
         }
-
+        
         private IEnumerator ResetAttack()
         {
             isAttackable = false;
@@ -99,6 +93,18 @@ namespace _Game.Scripts.Character
             currentWeapon.gameObject.SetActive(true);
         }
 
+        #endregion
+        
+        public void RotateTo(Vector3 target)
+        {
+            model.LookAt(target);
+        }
+        
+        public void ResetModelRotation()
+        {
+            model.localRotation = Quaternion.identity;
+        }
+        
         public Vector3 GetRandomEnemyPos()
         {
             int randomIndex = Random.Range(0, enemyInRange.Count);

@@ -52,6 +52,7 @@ namespace _Game.Scripts.Weapon.Bullet
             this.owner = owner;
             startPoint = TF.position;
             maxFlyDistance = owner.AttackRangeRadius;
+
             moveDirection = (targetPoint - startPoint).normalized;
             moveDirection.y = 0;
             

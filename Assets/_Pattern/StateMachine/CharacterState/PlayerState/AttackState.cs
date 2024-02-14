@@ -18,7 +18,7 @@ namespace _Pattern.StateMachine.PlayerState
         public void OnEnter(Player player)
         {
             timer = 0;
-            
+            targetPos = player.GetRandomEnemyPos();
         }
 
         public void OnExecute(Player player)
@@ -31,7 +31,7 @@ namespace _Pattern.StateMachine.PlayerState
             timer += Time.deltaTime;
             if (timer >= attackSpeed && player.IsAttackable)
             {
-                
+                player.Attack(targetPos);
             }
             else if (timer >= attackTime)
             {

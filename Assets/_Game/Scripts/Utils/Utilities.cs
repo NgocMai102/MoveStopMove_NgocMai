@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Game.Utils
 {
@@ -23,6 +25,18 @@ namespace _Game.Utils
         {
             var v = System.Enum.GetValues(typeof(T));
             return (T) v.GetValue(_random.Next(v.Length));
+        }
+        
+        public static Vector3 GetRandomPosOnNavMesh(Vector3 center, float maxDistance) {
+            // Get Random Point inside Sphere which position is center, radius is maxDistance
+            Vector3 randomPos = Random.insideUnitSphere * maxDistance + center;
+
+            NavMeshHit hit; // NavMesh Sampling Info Container
+
+            // from randomPos find a nearest point on NavMesh surface in range of maxDistance
+            NavMesh.SamplePosition(randomPos, out hit, maxDistance, NavMesh.AllAreas);
+
+            return hit.position;
         }
     }
 }
