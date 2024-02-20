@@ -15,25 +15,25 @@ namespace _Pattern.StateMachine.EnemyState
         private float timer;
         private Vector3 targetPos;
         
-        public void OnEnter(Enemy t)
+        public void OnEnter(Enemy e)
         {
             timer = 0;
-            targetPos = t.GetRandomEnemyPos();
+            targetPos = e.GetRandomEnemyPos();
             
-            t.RotateTo(targetPos);
-            t.ChangeAnim(AnimType.ATTACK);
+            e.RotateTo(targetPos);
+            e.ChangeAnim(AnimType.ATTACK);
         }
 
-        public void OnExecute(Enemy t)
+        public void OnExecute(Enemy e)
         {
             timer += Time.deltaTime;
-            if(timer >= AttackSpeed && t.IsAttackable)
+            if(timer >= AttackSpeed && e.IsAttackable)
             {
-                t.Attack(targetPos);
+                e.Attack(targetPos);
             }
             else if(timer >= AttackTime)
             {
-                t.ChangeState(new EIdleState());
+                e.ChangeState(new EIdleState());
             }
         }
 

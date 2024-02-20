@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace _Pattern.StateMachine.PlayerState
 {
-    public class DeadState : DeadState<Player>
+    public class PDeadState : DeadState<Player>
     {
         protected override void Despawn(Player player)
         {

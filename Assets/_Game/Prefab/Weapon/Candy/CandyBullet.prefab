@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7815183444988555052}
   - component: {fileID: 4184369395026303361}
+  - component: {fileID: 3762423125043069612}
   m_Layer: 0
   m_Name: CandyBullet
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6500007681416278136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,7 +47,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 2
-  moveSpeed: 5
+  moveSpeed: 10
+--- !u!135 &3762423125043069612
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500007681416278136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &3633522809189796726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,11 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e24f80713882344582bd529de8e9571, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5669999
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e24f80713882344582bd529de8e9571, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.602
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e24f80713882344582bd529de8e9571, type: 3}
       propertyPath: m_LocalRotation.w

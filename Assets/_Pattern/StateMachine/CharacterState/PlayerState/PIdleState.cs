@@ -1,32 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using _Framework.StateMachine;
-using _Game.Utils;
+// using Game.Character.Animation;
 using _Game.Scripts.Character.Player;
+using _Game.Utils;
 using UnityEngine;
 
 namespace _Pattern.StateMachine.PlayerState
 {
-    public class RunState : IState<Player>
+    public class PIdleState : IState<Player>
     {
         public void OnEnter(Player player)
         {
-            player.ChangeAnim(AnimType.RUN);
+            player.model.rotation = Quaternion.Euler(0, player.model.rotation.eulerAngles.y, 0);
+            player.ChangeAnim(AnimType.IDLE);
+            
         }
 
         public void OnExecute(Player player)
         {
-            if (!player.IsMoving)
+            if (player.IsMoving)
             {
-                player.RotateTo(player.TF.position);
-                player.ChangeState(new IdleState());
+                player.ChangeState(new PRunState());
             }
-            player.Move();
         }
 
-        public void OnExit(Player player)
+        public void OnExit(Player t)
         {
-            
+        
         }
     }
 }

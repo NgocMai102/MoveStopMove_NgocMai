@@ -49,7 +49,7 @@ namespace _Game.Scripts.Character.Player
                 currentState = new StateMachine<Player>();
                 currentState.SetOwner(this);
             }
-            currentState.ChangeState(new IdleState());
+            currentState.ChangeState(new PIdleState());
         }
     
         private void InitJoystick()

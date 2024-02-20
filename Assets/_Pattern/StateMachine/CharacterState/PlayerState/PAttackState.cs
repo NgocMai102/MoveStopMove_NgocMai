@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace _Pattern.StateMachine.PlayerState
 {
-    public class AttackState : IState<Player>
+    public class PAttackState : IState<Player>
     {
         private float attackTime = 1f;
         private float attackSpeed = 0.4f;
@@ -25,7 +25,7 @@ namespace _Pattern.StateMachine.PlayerState
         {
             if (player.IsMoving)
             {
-                player.ChangeState(new RunState());
+                player.ChangeState(new PRunState());
             }
 
             timer += Time.deltaTime;
@@ -35,7 +35,7 @@ namespace _Pattern.StateMachine.PlayerState
             }
             else if (timer >= attackTime)
             {
-                player.ChangeState(new IdleState());
+                player.ChangeState(new PIdleState());
             }
         }
 
