@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _Framework.StateMachine;
 using _Game.Scripts.Character;
+using _Game.Utils;
 using UnityEngine;
 
 namespace _Pattern.StateMachine.CharacterState
@@ -17,6 +18,8 @@ namespace _Pattern.StateMachine.CharacterState
         {
             timer = 0;
             isDespawn = false;
+            
+            t.ChangeAnim(AnimType.DEAD);
         }
 
         public void OnExecute(T t)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using _Framework.StateMachine;
+using _Game.Utils;
 using _Pattern.StateMachine.EnemyState;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ namespace _Game.Scripts.Character.Enemy
         }
 
         #region Init
-        protected override void OnInit()
+        public override void OnInit()
         {
             base.OnInit();
             navmeshAgent.speed = moveSpeed;
@@ -59,10 +60,10 @@ namespace _Game.Scripts.Character.Enemy
             navmeshAgent.enabled = false;
         }
         
-        public void ResetModelRotation()
-        {
-            model.localRotation = Quaternion.identity;
-        }
+        // public void ResetModelRotation()
+        // {
+        //     model.localRotation = Quaternion.identity;
+        // }
 
         #endregion
 
@@ -76,7 +77,7 @@ namespace _Game.Scripts.Character.Enemy
         public override void OnHit()
         {
             base.OnHit();
-            
+            ChangeState(new EDeadState());
         }
 
         public override void OnDespawn()

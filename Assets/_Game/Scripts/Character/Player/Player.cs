@@ -31,7 +31,7 @@ namespace _Game.Scripts.Character.Player
             currentState.UpdateState();
         }
 
-        protected override void OnInit()
+        public override void OnInit()
         {
             base.OnInit();
             InitJoystick();
@@ -94,7 +94,12 @@ namespace _Game.Scripts.Character.Player
         {
             currentState.ChangeState(state);
         }
-        
+
+        public override void OnHit()
+        {
+            base.OnHit();
+            ChangeState(new PDeadState());
+        }
     }
     
 }

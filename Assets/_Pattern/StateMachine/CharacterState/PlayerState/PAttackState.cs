@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _Framework.StateMachine;
 using _Game.Scripts.Character.Player;
-
+using _Game.Utils;
 using UnityEngine;
 
 namespace _Pattern.StateMachine.PlayerState
@@ -19,6 +19,9 @@ namespace _Pattern.StateMachine.PlayerState
         {
             timer = 0;
             targetPos = player.GetRandomEnemyPos();
+            
+            player.RotateTo(targetPos);
+            player.ChangeAnim(AnimType.ATTACK);
         }
 
         public void OnExecute(Player player)

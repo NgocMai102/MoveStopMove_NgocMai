@@ -23,6 +23,10 @@ namespace _Pattern.StateMachine.PlayerState
             {
                 player.ChangeState(new PRunState());
             }
+            if (player.FoundCharacter && player.IsAttackable)
+            {
+                player.ChangeState(new PAttackState());
+            }
         }
 
         public void OnExit(Player t)

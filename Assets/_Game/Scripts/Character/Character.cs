@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Framework.Event.Scripts;
 using _Framework.Pool.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using _Game.Utils;
+using Object = System.Object;
 
 namespace _Game.Scripts.Character
 {
@@ -14,7 +16,6 @@ namespace _Game.Scripts.Character
         //public static event Action<Character> OnCharacterDead;
         [Header("Properties")]
         [SerializeField] private Animator anim;
-        [SerializeField] private Transform rightHand;
         [SerializeField] private AttackRange attackRange;
         //[SerializeField] private SphereCollider sphereCollider;
         
@@ -25,6 +26,9 @@ namespace _Game.Scripts.Character
         private SphereCollider sphereCollider;
         private string currentAnimName;
         private Character otherCharacter;
+
+        private int _score;
+        private Action<Object> onCharacterDie;
         
         private List<Character> enemyInRange;
         private bool isAttackable;
@@ -47,17 +51,21 @@ namespace _Game.Scripts.Character
             OnInit();
         }
 
-        protected virtual void OnInit()
+        public virtual void OnInit()
         {
             attackRangeRadius = 1f;
             isDead = false;
             isAttackable = true;
+            _score = 0;
             enemyInRange = new List<Character>();
             
             ResetModelRotation();
             
             currentWeapon.OnInit(this);
             attackRange.OnInit(this);
+            
+            RegisterEvents();
+            
         }
         
         #region Animation
@@ -134,6 +142,28 @@ namespace _Game.Scripts.Character
         public virtual void OnHit()
         {
             isDead = true;
+            this.PostEvent(EventID.OnCharacterDead, this);
+        }
+
+        public void SetScore(int score)
+        {
+            if (_score < 0)
+            {
+                _score = 0;
+                return;
+            }
+            _score = score;
+        }
+
+        protected virtual void RegisterEvents()
+        {
+            onCharacterDie = (param) => OnCharacterExitRange((Character)param);
+            this.RegisterListener(EventID.OnCharacterDead, onCharacterDie);
+        }
+
+        protected virtual void RemoveEvents()
+        {
+            this.RemoveListener(EventID.OnCharacterDead, onCharacterDie);
         }
     }
 }

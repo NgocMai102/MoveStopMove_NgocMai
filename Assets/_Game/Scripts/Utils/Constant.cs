@@ -6,7 +6,7 @@ namespace _Game.Utils
 {
     public class LevelUtils
     {
-        public const int MAX_CHARACTER = 15;
+        public const int MAX_CHARACTER = 20;
     }
     public class AnimType
     {

@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using _Framework.Singleton;
 using _Game.Scripts.Character.Enemy;
 using _Game.Scripts.Character.Player;
 using _Game.Utils;
+using _UI.Scripts.UI;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace _Game.Scripts.Manager.Level
 {
@@ -22,6 +25,7 @@ namespace _Game.Scripts.Manager.Level
 
         public void OnLoadLevel(int level)
         {
+            
             if (currentLevel != null)
             {
                 CollectAllCharacter();
@@ -29,6 +33,7 @@ namespace _Game.Scripts.Manager.Level
             }
             
             currentLevel = Instantiate(levels[level]);
+            SetUpLevel();
         }
 
         private void SetUpLevel()
@@ -42,18 +47,9 @@ namespace _Game.Scripts.Manager.Level
                 if (totalEnemy > 0)
                 {
                     totalEnemy--;
-                    SpawnCharacter();
+                    SpawnEnemy();
                 }
             }
-            
-            // for(int i = 0; i < Constants.MaxBotOnMap; i++)
-            // {
-            //     if (totalEnemy > 0)
-            //     {
-            //         totalEnemy--;
-            //         SpawnCharacter();
-            //     }
-            // }
         }
 
         #region Character
@@ -61,10 +57,19 @@ namespace _Game.Scripts.Manager.Level
         [SerializeField] private Player player;
         private List<Character.Character> enemies = new List<Character.Character>();
 
-        private void SpawnCharacter()
+        private void SpawnEnemy()
         {
+            Character.Character enemy = SimplePool.Spawn<Character.Character>(PoolType.Enemy, RandomPoint(), Quaternion.identity);
+            enemy.OnInit();
+            
+            //TODO: Set socre for enemy
+            
+            enemies.Add(enemy);
+            
             
         }
+        
+        
 
         private void CollectAllCharacter()
         {
@@ -79,12 +84,40 @@ namespace _Game.Scripts.Manager.Level
             player.OnDespawn();
         }
 
+        public void EnemyDeath(Enemy enemy)
+        {
+            enemies.Remove(enemy);
+            
+            if(GameManager.IsState(GameState.Revive) || GameManager.IsState(GameState.Setting))
+            {
+                SpawnEnemy();
+            }
+            else
+            {
+                if (totalEnemy > 0)
+                {
+                    totalEnemy--;
+                    SpawnEnemy();
+                }
+
+                if (enemies.Count == 0)
+                {
+                    Victory();
+                }
+            }
+        }
+
         #endregion
         
         
         public Vector3 RandomPoint()
         {
             return Utilities.GetRandomPosOnNavMesh(Vector3.zero, maxDistanceMap);
+        }
+        
+        private void Victory()
+        {
+            
         }
         
     }

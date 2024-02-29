@@ -2,6 +2,7 @@
 {
     public enum EventID
     {
-        None = 0
+        None = 0,
+        OnCharacterDead = 1,
     }
 }
