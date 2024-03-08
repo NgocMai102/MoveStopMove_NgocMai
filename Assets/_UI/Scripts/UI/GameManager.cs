@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using _Framework.Singleton;
+using _Game.Scripts.Manager;
 using _Game.Scripts.Manager.Level;
 using _UI.Scripts;
 using _UI.Scripts.Gameplay;
@@ -12,10 +13,10 @@ namespace _UI.Scripts.UI
     {
         MainMenu = 0,
         Gameplay = 1,
-        GameOver = 3,
-        Revive = 4,
-        Setting = 5,
-        Victory = 6,
+        Finish = 2,
+        Revive = 3,
+        Setting = 4,
+        Victory = 5,
     }
     
     public class GameManager : Singleton<GameManager>
@@ -24,7 +25,7 @@ namespace _UI.Scripts.UI
         //[SerializeField] CSVData csv;
         
         private static GameState gameState;
-        public static void ChangeState(GameState state)
+        public void ChangeState(GameState state)
         {
             gameState = state;
             Instance.OnChangedState(state);
@@ -57,7 +58,7 @@ namespace _UI.Scripts.UI
 
         private void Start()
         {
-            ChangeState(GameState.MainMenu);
+            UIManager.Instance.OpenUI<UIMainMenu>();
         }
         
         private void OnChangedState(GameState state)
@@ -70,8 +71,8 @@ namespace _UI.Scripts.UI
                 case GameState.Gameplay:
                     OnGameplayState();
                     break;
-                case GameState.GameOver:
-                    OnGameOverState();
+                case GameState.Finish:
+                    OnFinishState();
                     break;
                 case GameState.Revive:
                     OnReviveState();
@@ -88,7 +89,7 @@ namespace _UI.Scripts.UI
         private void OnMainMenuState()
         {
             UIManager.Instance.CloseAll();
-            UIManager.Instance.OpenUI<MainMenu>();
+            UIManager.Instance.OpenUI<UIMainMenu>();
         }
 
         private void OnVictoryState()
@@ -105,11 +106,13 @@ namespace _UI.Scripts.UI
 
         private void OnReviveState()
         {
-            Debug.Log("Revive");
-            throw new System.NotImplementedException();
+            UIManager.Instance.CloseAll();
+            UIManager.Instance.OpenUI<Revive.UIRevive>();
+
+            Debug.Log("Lose");
         }
 
-        private void OnGameOverState()
+        private void OnFinishState()
         {
             Debug.Log("Game Over");
             throw new System.NotImplementedException();
@@ -118,9 +121,7 @@ namespace _UI.Scripts.UI
         private void OnGameplayState()
         {
             UIManager.Instance.CloseAll();
-            UIManager.Instance.OpenUI<Gameplay.Gameplay>();
-            
-            LevelManager.Instance.OnLoadLevel(0);
+            UIManager.Instance.OpenUI<Gameplay.UIGameplay>();
         }
 
         

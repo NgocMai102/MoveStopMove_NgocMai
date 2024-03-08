@@ -9,8 +9,8 @@ namespace _Pattern.StateMachine.EnemyState
 {
     public class EAttackState : IState<Enemy>
     {
-        private const float AttackTime = 1f;
-        private const float AttackSpeed = 0.4f;
+        private const float AttackTime = CharacterUtils.ATTACK_TIME;
+        private const float AttackSpeed = CharacterUtils.ATTACK_SPEED;
 
         private float timer;
         private Vector3 targetPos;

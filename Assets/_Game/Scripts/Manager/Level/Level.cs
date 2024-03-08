@@ -8,9 +8,11 @@ namespace _Game.Scripts.Manager.Level
     {
         [SerializeField] private float maxDistanceMap;
         [SerializeField] private int totalCharacter;
+        [SerializeField] private int totalCharacterFake;
         
         public float MaxDistanceMap => maxDistanceMap;
         public int TotalCharacter => totalCharacter;
+        public int TotalCharacterFake => totalCharacterFake;
     }
 }
 

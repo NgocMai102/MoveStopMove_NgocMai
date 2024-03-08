@@ -9,8 +9,8 @@ namespace _Pattern.StateMachine.PlayerState
 {
     public class PAttackState : IState<Player>
     {
-        private float attackTime = 1f;
-        private float attackSpeed = 0.4f;
+        private float attackTime = CharacterUtils.ATTACK_TIME;
+        private float attackSpeed = CharacterUtils.ATTACK_SPEED;
 
         private float timer;
         private Vector3 targetPos;

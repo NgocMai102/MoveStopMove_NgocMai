@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using _Framework.Singleton;
+using _Framework.StateMachine;
 using _Game.Scripts.Character.Enemy;
 using _Game.Scripts.Character.Player;
 using _Game.Utils;
+using _Pattern.StateMachine.EnemyState;
 using _UI.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 namespace _Game.Scripts.Manager.Level
 {
@@ -17,11 +20,25 @@ namespace _Game.Scripts.Manager.Level
         [SerializeField] private List<Level> levels;
         
         private Level currentLevel;
+        private int indexLevel;
+        
         private int totalEnemy;
         private int totalCharacter;
         private float maxDistanceMap;
 
         public int TotalCharacter => totalCharacter;
+
+        public void Awake()
+        {
+            
+        }
+
+        public void Start()
+        {
+            indexLevel = 0;
+            OnLoadLevel(indexLevel);
+            
+        }
 
         public void OnLoadLevel(int level)
         {
@@ -47,7 +64,7 @@ namespace _Game.Scripts.Manager.Level
                 if (totalEnemy > 0)
                 {
                     totalEnemy--;
-                    SpawnEnemy();
+                    SpawnEnemy(null);
                 }
             }
         }
@@ -55,22 +72,18 @@ namespace _Game.Scripts.Manager.Level
         #region Character
 
         [SerializeField] private Player player;
-        private List<Character.Character> enemies = new List<Character.Character>();
+        private List<Enemy> enemies = new List<Enemy>();
 
-        private void SpawnEnemy()
+        private void SpawnEnemy(IState<Enemy> state)
         {
-            Character.Character enemy = SimplePool.Spawn<Character.Character>(PoolType.Enemy, RandomPoint(), Quaternion.identity);
+            Enemy enemy = SimplePool.Spawn<Enemy>(PoolType.Enemy, RandomPoint(), Quaternion.identity);
             enemy.OnInit();
-            
-            //TODO: Set socre for enemy
-            
+            enemy.ChangeState(state);
             enemies.Add(enemy);
-            
+            enemy.SetScore(player.Score > 0 ? Random.Range(player.Score - 7, player.Score + 7) : 1);
             
         }
         
-        
-
         private void CollectAllCharacter()
         {
             for(int i = 0; i < enemies.Count; i++)
@@ -90,14 +103,14 @@ namespace _Game.Scripts.Manager.Level
             
             if(GameManager.IsState(GameState.Revive) || GameManager.IsState(GameState.Setting))
             {
-                SpawnEnemy();
+                SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
             }
             else
             {
                 if (totalEnemy > 0)
                 {
                     totalEnemy--;
-                    SpawnEnemy();
+                    SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
                 }
 
                 if (enemies.Count == 0)
@@ -108,7 +121,20 @@ namespace _Game.Scripts.Manager.Level
         }
 
         #endregion
-        
+
+        public void OnPlay()
+        {
+            for(int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].ChangeState(new EIdleState());
+            }
+        }
+
+        public void OnRevive()
+        {
+            player.TF.position = RandomPoint();
+            player.OnRevive();
+        }
         
         public Vector3 RandomPoint()
         {

@@ -30,6 +30,14 @@ namespace _Game.Scripts.Manager
             
             return Vector2.Distance(joystick.Direction, Vector2.zero) > 0.1f;
         }
+
+        public static class InputManager
+        {
+            public static float HorizontalAxis => EventInput.Instance.HorizontalAxis;
+            public static float VerticalAxis => EventInput.Instance.VerticalAxis;
+            public static bool HasInput() => EventInput.Instance.HasInput();
+            public static void FindJoyStick() => EventInput.Instance.FindJoyStick();
+        }
     }
 }
 

@@ -15,6 +15,7 @@ namespace _Game.Scripts.Character.Player
             {
                 enemy.ShowCircleIndicator();
                 owner.OnCharacterEnterRange(enemy);
+                
             }
         }
 

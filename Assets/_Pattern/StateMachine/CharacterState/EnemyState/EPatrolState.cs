@@ -29,6 +29,10 @@ namespace _Pattern.StateMachine.EnemyState
             {
                 enemy.ChangeState(new EIdleState());
             }
+            if (enemy.IsDead)
+            {
+                enemy.ChangeState(new EDeadState());
+            }
         
         }
 

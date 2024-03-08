@@ -38,6 +38,7 @@ namespace _Game.Scripts.Weapon.Bullet
                 if (character != owner)
                 {
                     character.OnHit();
+                    owner.AddScore();
                     OnDespawn();
                 }
             }
@@ -47,18 +48,19 @@ namespace _Game.Scripts.Weapon.Bullet
             }
         }
 
-        public void OnInit(Character.Character owner, Vector3 targetPoint)
+        public void OnInit(Character.Character owner, Vector3 targetPoint, float size)
         {
             this.owner = owner;
             startPoint = TF.position;
             maxFlyDistance = owner.AttackRangeRadius * CharacterUtils.DEFAULT_SPHERE_RADIUS;
-            moveDirection = (targetPoint - startPoint).normalized;
+            moveDirection = (targetPoint - TF.position).normalized;
             moveDirection.y = 0;
             
             TF.rotation = Quaternion.LookRotation(moveDirection);
+            TF.localScale = size * Vector3.one;
         }
 
-        private void OnDespawn()
+          private void OnDespawn()
         {
             SimplePool.Despawn(this);
         }

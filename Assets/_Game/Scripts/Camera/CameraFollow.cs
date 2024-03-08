@@ -1,24 +1,63 @@
 using _Framework.Pool.Scripts;
+using _Framework.Singleton;
+using _Game.Scripts.Character.Player;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 namespace _Game.Camera
 {
-    public class CameraFollow : GameUnit
+    public class CameraFollow : Singleton<CameraFollow>
     {
-        [SerializeField] private Transform target;
-        [SerializeField] private float smoothSpeed = 0.125f;
-        [SerializeField] private Vector3 offset;
         
-        private void LateUpdate()
+        public enum State
         {
-            Vector3 desiredPosition = target.position + offset;
-            Vector3 smoothedPosition = Vector3.Lerp(TF.position, desiredPosition, smoothSpeed);
-            TF.position = smoothedPosition;
+            MainMenu = 0,
+            Gameplay = 1,
+            Shop = 2
+        }
+        
+        [SerializeField] private Transform tf;
+        [SerializeField] private float smoothSpeed = 5f;
+        
+        
+        [Header("Offset")]
+        [SerializeField] private Vector3 offset;
+        [SerializeField] private Vector3 offsetMax;
+        [SerializeField] private Vector3 offsetMin;
+        
+        [SerializeField] private Transform[] offsets;
+
+   
+        private Transform target;
+        
+        private Vector3 targetOffset;
+        private Quaternion targetRotate;
+
+        public UnityEngine.Camera Camera;
+
+        private void Awake()
+        {
+            target = FindObjectOfType<Player>().transform;
+            Camera = UnityEngine.Camera.main;
         }
 
-        public void SetTarget(Transform tf)
+        private void LateUpdate()
         {
-            target = tf;
+            offset = Vector3.Lerp(offset, targetOffset, Time.deltaTime * smoothSpeed);
+            tf.rotation = Quaternion.Lerp(tf.rotation, targetRotate, Time.deltaTime * smoothSpeed);
+            tf.position = Vector3.Lerp(tf.position, target.position + targetOffset, Time.deltaTime * smoothSpeed);
+        }
+        
+        //Lerp
+        public void SetRateOffset(float rate)
+        {
+            targetOffset = Vector3.Lerp(offsetMin, offsetMax, rate);
+        }
+        
+        public void ChangeState(State state)
+        {
+            targetOffset = offsets[(int)state].localPosition;
+            targetRotate = offsets[(int)state].localRotation;
         }
     }
 }

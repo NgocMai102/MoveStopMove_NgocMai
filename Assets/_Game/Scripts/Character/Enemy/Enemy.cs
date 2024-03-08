@@ -15,8 +15,9 @@ namespace _Game.Scripts.Character.Enemy
         
         private StateMachine<Enemy> currentState;
         private Vector3 destination;
-        public bool IsDestination => Vector3.Distance(TF.position, destination + (TF.position.y - destination.y) * Vector3.up) < 0.1f;
         
+        public bool IsDestination => Vector3.Distance(TF.position, destination + (TF.position.y - destination.y) * Vector3.up) < 0.1f;
+
         private void Start()
         {
             OnInit();
@@ -43,7 +44,7 @@ namespace _Game.Scripts.Character.Enemy
                 currentState = new StateMachine<Enemy>();
             }
             currentState.SetOwner(this);
-            currentState.ChangeState(new EIdleState());
+            //currentState.ChangeState(new EIdleState());
         }
         #endregion
 
@@ -66,6 +67,8 @@ namespace _Game.Scripts.Character.Enemy
         // }
 
         #endregion
+        
+       
 
         #region Controller
         

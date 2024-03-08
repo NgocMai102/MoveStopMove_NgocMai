@@ -60,7 +60,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.35
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1, z: 0.25}
 --- !u!1001 &3633522809189796726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90,19 +90,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e24f80713882344582bd529de8e9571, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e24f80713882344582bd529de8e9571, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e24f80713882344582bd529de8e9571, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e24f80713882344582bd529de8e9571, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e24f80713882344582bd529de8e9571, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Framework.StateMachine;
 using _Game.Scripts.Character.Enemy;
 using _Game.Scripts.Manager.Level;
+using _Game.Utils;
 using _Pattern.StateMachine.CharacterState;
 using _Pattern.StateMachine.PlayerState;
 // using Game.Character.Animation;
@@ -11,18 +12,46 @@ using UnityEngine;
 
 namespace _Pattern.StateMachine.EnemyState
 {
-    public class EDeadState : DeadState<Enemy>
+    public class EDeadState : IState<Enemy>
     {
-        public void OnEnter(Enemy enemy)
+
+        private float despawnTimer = 1.5f;
+        private float timer;
+        private bool isDespawn;
+
+        public void OnEnter(Enemy t)
         {
-            base.OnEnter(enemy);
-            enemy.StopMove();
+            timer = 0;
+            isDespawn = false;
+            
+            t.ChangeAnim(AnimType.DEAD);
+            t.StopMove();
         }
 
-        protected override void Despawn(Enemy enemy)
+        public void OnExecute(Enemy t)
         {
-            base.Despawn(enemy);
-            //LevelManager.Instance.EnemyDeath(enemy);
+            if (isDespawn)
+            {
+                return;
+            }
+            
+            timer += Time.deltaTime;
+            
+            if(timer >= despawnTimer)
+            {
+                Despawn(t);
+            }
+        }
+        
+        protected virtual void Despawn(Enemy t)
+        {
+            isDespawn = true;
+            t.OnDespawn();
+        }
+
+        public void OnExit(Enemy t)
+        {
+            
         }
     }
 }

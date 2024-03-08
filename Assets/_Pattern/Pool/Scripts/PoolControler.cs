@@ -4,13 +4,6 @@ using _Framework.Pool.Scripts;
 using UnityEditor;
 using UnityEngine;
 
-public enum PoolType
-{
-    None = 0,
-    Enemy = 1,
-    Hammer = 2,
-    Knife = 3,
-}
 public class PoolControler : MonoBehaviour
 {
     [Header("---- POOL CONTROLER TO INIT POOL ----")]
@@ -145,5 +138,54 @@ public class ParticleAmount
 
 public enum ParticleType
 {
+    
+}
+
+public enum PoolType
+{
+    None = 0,
+    Enemy = 1,
+    
+    W_Hammer,
+    W_Candy_1,
+    W_Candy_2,
+    W_Candy_3,
+    W_Boomerang_1,
+    W_Boomerang_2,
+    W_Boomerang_3,
+
+    B_Hammer_1,
+    B_Hammer_2,
+    B_Hammer_3,
+    B_Candy_1,
+    B_Candy_2,
+    B_Candy_3,
+    B_Boomerang_1,
+    B_Boomerang_2,
+    B_Boomerang_3,
+
+    SKIN_Normal,
+    SKIN_Devil,
+    SKIN_Angle,
+    SKIN_Witch,
+    SKIN_Deadpool,
+    SKIN_Thor,
+
+    HAT_Arrow,
+    HAT_Cap,
+    HAT_BlondeHair,
+    HAT_Crown,
+    HAT_Ear,
+    HAT_Flower,
+    HAT_Horn,
+    HAT_Police,
+    HAT_Rau,
+
+    ACC_Book,
+    ACC_Captain,
+    ACC_Headphone,
+    ACC_Shield,
+
+    TargetIndicator,
     
 }

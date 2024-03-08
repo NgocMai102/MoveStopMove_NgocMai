@@ -26,23 +26,33 @@ namespace _Game.Scripts.Character
         private SphereCollider sphereCollider;
         private string currentAnimName;
         private Character otherCharacter;
-
-        private int _score;
+        
         private Action<Object> onCharacterDie;
         
-        private List<Character> enemyInRange;
+        [SerializeField] private List<Character> enemyInRange;
         private bool isAttackable;
-        private bool isDead;
+        
         private float attackRangeRadius;
         private float sphereColliderRadius;
+        private int score;
+        
+        protected bool isDead;
+        protected float size = 1;
 
         #region Getter
         
         public bool IsAttackable => isAttackable;
-        public bool IsDead => isDead;
+        public bool IsDead
+        {
+            get => isDead;
+        }
+
         public bool FoundCharacter => enemyInRange.Count > 0;
         public float AttackRangeRadius => attackRangeRadius;
         public float SphereColliderRadius => sphereColliderRadius;
+        
+        public int Score => score;
+        public float Size => size;
 
         #endregion
 
@@ -56,7 +66,7 @@ namespace _Game.Scripts.Character
             attackRangeRadius = 1f;
             isDead = false;
             isAttackable = true;
-            _score = 0;
+            score = 0;
             enemyInRange = new List<Character>();
             
             ResetModelRotation();
@@ -102,6 +112,28 @@ namespace _Game.Scripts.Character
         }
 
         #endregion
+
+        #region Score
+
+        public void AddScore(int amount = 1)
+        {
+            SetScore(score + amount);
+        }
+
+        public void SetScore(int score)
+        {
+            this.score = score > 0 ? score : 0;
+            SetSize(1 + this.score * 0.1f);
+        }
+
+        #endregion
+
+        public virtual void SetSize(float size)
+        {
+            size = Mathf.Clamp(size, CharacterUtils.MIN_SIZE, CharacterUtils.MAX_SIZE);
+            this.size = size;
+            TF.localScale = size * Vector3.one;
+        }
         
         public void RotateTo(Vector3 target)
         {
@@ -115,6 +147,10 @@ namespace _Game.Scripts.Character
         
         public Vector3 GetRandomEnemyPos()
         {
+            if (enemyInRange.Count == 0)
+            {
+                return Vector3.zero;
+            }
             int randomIndex = Random.Range(0, enemyInRange.Count);
             return enemyInRange[randomIndex].TF.position;
         }
@@ -124,6 +160,12 @@ namespace _Game.Scripts.Character
         {
             if (isDead)
             {
+                if (enemyInRange.Contains(other))
+                {
+                    enemyInRange.Remove(other);
+                    Debug.Log("has found");
+                }
+
                 return;
             }
             enemyInRange.Add(other);
@@ -132,6 +174,11 @@ namespace _Game.Scripts.Character
         public void OnCharacterExitRange(Character other)
         {
             enemyInRange.Remove(other);
+        }
+        
+        public void ClearEnemyInRange()
+        {
+            enemyInRange.Clear();
         }
 
         public virtual void OnDespawn()
@@ -142,18 +189,10 @@ namespace _Game.Scripts.Character
         public virtual void OnHit()
         {
             isDead = true;
+            Debug.Log(isDead);
             this.PostEvent(EventID.OnCharacterDead, this);
         }
-
-        public void SetScore(int score)
-        {
-            if (_score < 0)
-            {
-                _score = 0;
-                return;
-            }
-            _score = score;
-        }
+        
 
         protected virtual void RegisterEvents()
         {
