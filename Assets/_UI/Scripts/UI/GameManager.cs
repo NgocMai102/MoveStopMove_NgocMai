@@ -108,8 +108,7 @@ namespace _UI.Scripts.UI
         {
             UIManager.Instance.CloseAll();
             UIManager.Instance.OpenUI<Revive.UIRevive>();
-
-            Debug.Log("Lose");
+            
         }
 
         private void OnFinishState()

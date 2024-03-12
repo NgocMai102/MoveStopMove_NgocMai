@@ -27,6 +27,7 @@ namespace _Game.Scripts.Manager.Level
         private float maxDistanceMap;
 
         public int TotalCharacter => totalCharacter;
+        public int IndexLevel => indexLevel;
 
         public void Awake()
         {
@@ -121,6 +122,8 @@ namespace _Game.Scripts.Manager.Level
         }
 
         #endregion
+        
+        
 
         public void OnPlay()
         {

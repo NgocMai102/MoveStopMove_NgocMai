@@ -38,13 +38,13 @@ namespace _UI.Scripts.Revive
         {
             GameManager.Instance.ChangeState(GameState.Gameplay);
             CloseButton();
-            //LevelManager.Instance.OnRevive();
+            LevelManager.Instance.OnRevive();
         }
 
         public void CloseButton()
         {
             Close(0);
-            
+            //GameManager.Instance.ChangeState(GameState.MainMenu);
         }
         
         

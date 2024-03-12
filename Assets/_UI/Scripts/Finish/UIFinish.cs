@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using _UI.Scripts.UI;
+using TMPro;
 using UnityEngine;
 
-public class UIFinish : MonoBehaviour
+public class UIFinish : UICanvas
 {
-    // Start is called before the first frame update
-    void Start()
+    private int coin;
+    [SerializeField] private TextMeshProUGUI cointText;
+    [SerializeField] private RectTransform x3Point;
+    [SerializeField] private RectTransform continuePoint;
+    
+    public override void Open()
     {
-        
+        base.Open();
+        GameManager.Instance.ChangeState(GameState.Finish);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void x3PointButton()
     {
+        GameManager.Instance.ChangeState(GameState.MainMenu);
         
     }
 }

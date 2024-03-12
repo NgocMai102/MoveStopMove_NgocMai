@@ -14,11 +14,15 @@ namespace _Pattern.StateMachine.EnemyState
     public class EPatrolState : IState<Enemy>
     {
         private int chanceAttack = Random.Range(0, 100);
+        private Vector3 nextDestination;
         
         private bool attackIfEnemyInRange;
         public void OnEnter(Enemy enemy)
         {
-            enemy.MoveTo(LevelManager.Instance.RandomPoint());
+            nextDestination = LevelManager.Instance.RandomPoint();
+            attackIfEnemyInRange = Utilities.Chance(chanceAttack);
+            
+            enemy.MoveTo(nextDestination);
             enemy.ChangeAnim(AnimType.RUN);
             enemy.ResetModelRotation();
         }
@@ -29,7 +33,12 @@ namespace _Pattern.StateMachine.EnemyState
             {
                 enemy.ChangeState(new EIdleState());
             }
-            if (enemy.IsDead)
+            if (enemy.FoundCharacter && attackIfEnemyInRange)
+            {
+                enemy.ChangeState(new EIdleState());
+            }
+            
+            if (enemy.IsDead )
             {
                 enemy.ChangeState(new EDeadState());
             }

@@ -27,6 +27,7 @@ namespace _UI.Scripts.Gameplay
             SetAliveText(aliveCharacter);
 
             ShowTutorial();
+            Invoke("HideTutorial", 3.0f);
             EventInput.InputManager.FindJoyStick();
             
             RegisterEvents();

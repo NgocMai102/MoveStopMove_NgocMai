@@ -22,6 +22,7 @@ namespace _Game.Scripts.Character
         [Header("Config")]
         [SerializeField] protected float moveSpeed;
         [SerializeField] protected Weapon.Weapon currentWeapon;
+         
 
         private SphereCollider sphereCollider;
         private string currentAnimName;
@@ -36,7 +37,7 @@ namespace _Game.Scripts.Character
         private float sphereColliderRadius;
         private int score;
         
-        protected bool isDead;
+        [SerializeField] protected bool isDead;
         protected float size = 1;
 
         #region Getter
@@ -160,12 +161,7 @@ namespace _Game.Scripts.Character
         {
             if (isDead)
             {
-                if (enemyInRange.Contains(other))
-                {
-                    enemyInRange.Remove(other);
-                    Debug.Log("has found");
-                }
-
+                Debug.Log("Dead");
                 return;
             }
             enemyInRange.Add(other);
@@ -189,8 +185,9 @@ namespace _Game.Scripts.Character
         public virtual void OnHit()
         {
             isDead = true;
-            Debug.Log(isDead);
             this.PostEvent(EventID.OnCharacterDead, this);
+            
+            RemoveEvents();
         }
         
 
