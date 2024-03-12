@@ -17,7 +17,7 @@ namespace _UI.Scripts.Revive
         public override void Setup()
         {
             base.Setup();
-            
+            GameManager.Instance.ChangeState(GameState.Revive);
             countdown = 10;
         }
 
@@ -44,7 +44,6 @@ namespace _UI.Scripts.Revive
         public void CloseButton()
         {
             Close(0);
-            //GameManager.Instance.ChangeState(GameState.MainMenu);
         }
         
         

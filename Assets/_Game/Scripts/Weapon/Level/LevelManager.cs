@@ -8,6 +8,9 @@ using _Game.Scripts.Character.Enemy;
 using _Game.Scripts.Character.Player;
 using _Game.Utils;
 using _Pattern.StateMachine.EnemyState;
+using _UI.Scripts;
+using _UI.Scripts.Lose;
+using _UI.Scripts.Revive;
 using _UI.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -25,6 +28,8 @@ namespace _Game.Scripts.Manager.Level
         private int totalEnemy;
         private int totalCharacter;
         private float maxDistanceMap;
+        
+        private bool isRevive;
 
         public int TotalCharacter => totalCharacter;
         public int IndexLevel => indexLevel;
@@ -38,7 +43,6 @@ namespace _Game.Scripts.Manager.Level
         {
             indexLevel = 0;
             OnLoadLevel(indexLevel);
-            
         }
 
         public void OnLoadLevel(int level)
@@ -49,13 +53,18 @@ namespace _Game.Scripts.Manager.Level
                 CollectAllCharacter();
                 Destroy(currentLevel.gameObject);
             }
-            
+
             currentLevel = Instantiate(levels[level]);
+
             SetUpLevel();
         }
 
         private void SetUpLevel()
         {
+            player.OnInit();
+            isRevive = false;
+            //Indicator
+            
             totalCharacter = currentLevel.TotalCharacter;
             totalEnemy = totalCharacter - 1;
             maxDistanceMap = currentLevel.MaxDistanceMap;
@@ -68,6 +77,17 @@ namespace _Game.Scripts.Manager.Level
                     SpawnEnemy(null);
                 }
             }
+        }
+
+        private void OnReset()
+        {
+            player.OnDespawn();
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].OnDespawn();
+            }
+            enemies.Clear();
+            SimplePool.CollectAll();
         }
 
         #region Character
@@ -89,7 +109,7 @@ namespace _Game.Scripts.Manager.Level
         {
             for(int i = 0; i < enemies.Count; i++)
             {
-                Enemy enemy = enemies[i] as Enemy;
+                Enemy enemy = enemies[i];
                 if (enemy != null)
                 {
                     enemy.OnDespawn();
@@ -98,32 +118,64 @@ namespace _Game.Scripts.Manager.Level
             player.OnDespawn();
         }
 
-        public void EnemyDeath(Enemy enemy)
+        public void CharacterDead(Character.Character character)
         {
-            enemies.Remove(enemy);
-            
-            if(GameManager.IsState(GameState.Revive) || GameManager.IsState(GameState.Setting))
+            if (character is Player)
             {
-                SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
-            }
-            else
-            {
-                if (totalEnemy > 0)
+                UIManager.Instance.CloseAll();
+                //TODO: Anim revive of Score Txt in GamePlay State
+                if (!isRevive)
                 {
-                    totalEnemy--;
+                    isRevive = true;
+                    UIManager.Instance.OpenUI<UIRevive>();
+                }
+                else
+                {
+                    OnFail();
+                }
+            } else if (character is Enemy)
+            {
+                enemies.Remove(character as Enemy);
+            
+                if(GameManager.IsState(GameState.Revive) || GameManager.IsState(GameState.Setting))
+                {
                     SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
                 }
-
-                if (enemies.Count == 0)
+                else
                 {
-                    Victory();
+                    if (totalEnemy > 0)
+                    {
+                        totalEnemy--;
+                        SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
+                    }
+
+                    if (enemies.Count == 0)
+                    {
+                        Victory();
+                    }
                 }
             }
         }
 
         #endregion
         
-        
+        public Vector3 RandomPoint()
+        {
+            return Utilities.GetRandomPosOnNavMesh(Vector3.zero, maxDistanceMap);
+        }
+
+        public void NextLevel()
+        {
+            indexLevel++;
+        }
+
+        public void OnHome()
+        {
+            UIManager.Instance.CloseAll();
+            OnReset();
+            OnLoadLevel(indexLevel);
+            UIManager.Instance.OpenUI<UIMainMenu>();
+        }
 
         public void OnPlay()
         {
@@ -138,15 +190,16 @@ namespace _Game.Scripts.Manager.Level
             player.TF.position = RandomPoint();
             player.OnRevive();
         }
-        
-        public Vector3 RandomPoint()
+
+        public void OnFail()
         {
-            return Utilities.GetRandomPosOnNavMesh(Vector3.zero, maxDistanceMap);
+            UIManager.Instance.CloseAll();
+            UIManager.Instance.OpenUI<UILose>();
         }
-        
+
         private void Victory()
         {
-            
+            UIManager.Instance.OpenUI<UIVictory>();
         }
         
     }

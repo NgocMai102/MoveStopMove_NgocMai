@@ -43,10 +43,7 @@ namespace _Game.Scripts.Character
         #region Getter
         
         public bool IsAttackable => isAttackable;
-        public bool IsDead
-        {
-            get => isDead;
-        }
+        public bool IsDead => isDead;
 
         public bool FoundCharacter => enemyInRange.Count > 0;
         public float AttackRangeRadius => attackRangeRadius;
@@ -56,6 +53,11 @@ namespace _Game.Scripts.Character
         public float Size => size;
 
         #endregion
+
+        private void Awake()
+        {
+            RegisterEvents();
+        }
 
         private void Start()
         {
@@ -71,12 +73,9 @@ namespace _Game.Scripts.Character
             enemyInRange = new List<Character>();
             
             ResetModelRotation();
-            
+
             currentWeapon.OnInit(this);
             attackRange.OnInit(this);
-            
-            RegisterEvents();
-            
         }
         
         #region Animation
@@ -110,6 +109,31 @@ namespace _Game.Scripts.Character
 
             isAttackable = true;
             currentWeapon.gameObject.SetActive(true);
+        }
+        
+        public Vector3 GetRandomEnemyPos()
+        {
+            if (enemyInRange.Count == 0)
+            {
+                return Vector3.zero;
+            }
+            int randomIndex = Random.Range(0, enemyInRange.Count);
+            return enemyInRange[randomIndex].TF.position;
+        }
+      
+        
+        public void OnCharacterEnterRange(Character other)
+        {
+            if (other.isDead)
+            {
+                return;
+            }
+            enemyInRange.Add(other);
+        }
+        
+        public void OnCharacterExitRange(Character other)
+        {
+            enemyInRange.Remove(other);
         }
 
         #endregion
@@ -146,31 +170,6 @@ namespace _Game.Scripts.Character
             model.localRotation = Quaternion.identity;
         }
         
-        public Vector3 GetRandomEnemyPos()
-        {
-            if (enemyInRange.Count == 0)
-            {
-                return Vector3.zero;
-            }
-            int randomIndex = Random.Range(0, enemyInRange.Count);
-            return enemyInRange[randomIndex].TF.position;
-        }
-      
-        
-        public void OnCharacterEnterRange(Character other)
-        {
-            if (isDead)
-            {
-                Debug.Log("Dead");
-                return;
-            }
-            enemyInRange.Add(other);
-        }
-        
-        public void OnCharacterExitRange(Character other)
-        {
-            enemyInRange.Remove(other);
-        }
         
         public void ClearEnemyInRange()
         {
@@ -186,14 +185,13 @@ namespace _Game.Scripts.Character
         {
             isDead = true;
             this.PostEvent(EventID.OnCharacterDead, this);
-            
             RemoveEvents();
         }
         
 
         protected virtual void RegisterEvents()
         {
-            onCharacterDie = (param) => OnCharacterExitRange((Character)param);
+            onCharacterDie = (param) => OnCharacterExitRange((Character) param);
             this.RegisterListener(EventID.OnCharacterDead, onCharacterDie);
         }
 
@@ -201,6 +199,7 @@ namespace _Game.Scripts.Character
         {
             this.RemoveListener(EventID.OnCharacterDead, onCharacterDie);
         }
+        
     }
 }
 

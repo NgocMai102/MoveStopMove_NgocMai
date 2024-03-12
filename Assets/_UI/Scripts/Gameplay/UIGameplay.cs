@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using _Framework.Event.Scripts;
 using _Game.Scripts.Manager;
 using _Game.Scripts.Manager.Level;
+using _UI.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ namespace _UI.Scripts.Gameplay
         public override void Open()
         {
             base.Open();
+            GameManager.Instance.ChangeState(GameState.Gameplay);
 
             aliveCharacter = LevelManager.Instance.TotalCharacter;
             SetAliveText(aliveCharacter);
@@ -29,6 +31,8 @@ namespace _UI.Scripts.Gameplay
             ShowTutorial();
             Invoke("HideTutorial", 3.0f);
             EventInput.InputManager.FindJoyStick();
+            
+            //TODO: Add Indicator
             
             RegisterEvents();
         }
@@ -59,6 +63,8 @@ namespace _UI.Scripts.Gameplay
             aliveCharacter--;
             SetAliveText(aliveCharacter);
         }
+        
+        
     }
 }
 

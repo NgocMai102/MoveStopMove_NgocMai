@@ -13,7 +13,7 @@ namespace _UI.Scripts.UI
     {
         MainMenu = 0,
         Gameplay = 1,
-        Finish = 2,
+        Lose = 2,
         Revive = 3,
         Setting = 4,
         Victory = 5,
@@ -28,7 +28,7 @@ namespace _UI.Scripts.UI
         public void ChangeState(GameState state)
         {
             gameState = state;
-            Instance.OnChangedState(state);
+            
         }
         public static bool IsState(GameState state) => gameState == state;
 
@@ -60,70 +60,6 @@ namespace _UI.Scripts.UI
         {
             UIManager.Instance.OpenUI<UIMainMenu>();
         }
-        
-        private void OnChangedState(GameState state)
-        {
-            switch (state)
-            {
-                case GameState.MainMenu:
-                    OnMainMenuState();
-                    break;
-                case GameState.Gameplay:
-                    OnGameplayState();
-                    break;
-                case GameState.Finish:
-                    OnFinishState();
-                    break;
-                case GameState.Revive:
-                    OnReviveState();
-                    break;
-                case GameState.Setting:
-                    OnSettingState();
-                    break;
-                case GameState.Victory:
-                    OnVictoryState();
-                    break;
-            }
-        }
-        
-        private void OnMainMenuState()
-        {
-            UIManager.Instance.CloseAll();
-            UIManager.Instance.OpenUI<UIMainMenu>();
-        }
-
-        private void OnVictoryState()
-        {
-            Debug.Log("Victory");
-            throw new System.NotImplementedException();
-        }
-
-        private void OnSettingState()
-        {
-            Debug.Log("OnSetting");
-            throw new System.NotImplementedException();
-        }
-
-        private void OnReviveState()
-        {
-            UIManager.Instance.CloseAll();
-            UIManager.Instance.OpenUI<Revive.UIRevive>();
-            
-        }
-
-        private void OnFinishState()
-        {
-            Debug.Log("Game Over");
-            throw new System.NotImplementedException();
-        }
-
-        private void OnGameplayState()
-        {
-            UIManager.Instance.CloseAll();
-            UIManager.Instance.OpenUI<Gameplay.UIGameplay>();
-        }
-
-        
     }
 }
 

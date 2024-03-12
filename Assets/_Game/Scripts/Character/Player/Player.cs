@@ -92,6 +92,12 @@ namespace _Game.Scripts.Character.Player
         {
             base.OnHit();
             ChangeState(new PDeadState());
+            
+        }
+
+        private IEnumerator OnDeath()
+        {
+            yield return new WaitForSeconds(2f);
         }
         
         public override void SetSize(float size)
@@ -104,6 +110,7 @@ namespace _Game.Scripts.Character.Player
         {
             ChangeState(new PIdleState());
             isDead = false;
+            startMove = false;
             
             ClearEnemyInRange();
         }

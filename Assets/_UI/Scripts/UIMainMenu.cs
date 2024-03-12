@@ -11,17 +11,31 @@ namespace _UI.Scripts
         public override void Open()
         {
             base.Open();
+            
+            GameManager.Instance.ChangeState(GameState.MainMenu);
             CameraFollow.Instance.ChangeState(CameraFollow.State.MainMenu);
+            
+            //TODO: Add Coin Text
         }
         
         public void PlayButton()
         {
-            UIManager.Instance.CloseAll();
+           UIManager.Instance.CloseAll();
+           UIManager.Instance.OpenUI<UIGameplay>();
+           
+           LevelManager.Instance.OnPlay();
+           
+           CameraFollow.Instance.ChangeState(CameraFollow.State.Gameplay);
+        }
 
-            GameManager.Instance.ChangeState(GameState.Gameplay);
-            CameraFollow.Instance.ChangeState(CameraFollow.State.Gameplay);
+        public void ShopButton()
+        {
             
-            LevelManager.Instance.OnPlay();
+        }
+
+        public void WeaponButton()
+        {
+            
         }
     }
 }

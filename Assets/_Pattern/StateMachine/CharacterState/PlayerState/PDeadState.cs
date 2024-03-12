@@ -4,6 +4,7 @@ using _Framework.StateMachine;
 using _Game.Scripts.Character.Enemy;
 // using Game.Character.Animation;
 using _Game.Scripts.Character.Player;
+using _Game.Scripts.Manager.Level;
 using _Game.Utils;
 using _Pattern.StateMachine.CharacterState;
 using _UI.Scripts.UI;
@@ -46,7 +47,8 @@ namespace _Pattern.StateMachine.PlayerState
         {
             isDespawn = true;
             t.OnDespawn();
-            GameManager.Instance.ChangeState(GameState.Revive);
+            
+            LevelManager.Instance.OnFail();
         }
 
         public void OnExit(Player t)
