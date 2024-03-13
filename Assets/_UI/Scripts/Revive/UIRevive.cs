@@ -45,9 +45,6 @@ namespace _UI.Scripts.Revive
         {
             Close(0);
         }
-        
-        
-        
     }
 }
 

@@ -6,13 +6,14 @@ namespace _Game.Scripts.Manager.Level
 {
     public class Level : MonoBehaviour
     {
-        [SerializeField] private float maxDistanceMap;
-        [SerializeField] private int totalCharacter;
-        [SerializeField] private int totalCharacterFake;
+        [SerializeField] private Transform minPoint,maxPoint;
+        [SerializeField] private int totalEnemy;
+        [SerializeField] private int totalEnemyReal;
         
-        public float MaxDistanceMap => maxDistanceMap;
-        public int TotalCharacter => totalCharacter;
-        public int TotalCharacterFake => totalCharacterFake;
+        public Transform MinPoint => minPoint;
+        public Transform MaxPoint => maxPoint;
+        public int TotalEnemy => totalEnemy;    
+        public int TotalEnemyReal => totalEnemyReal;
     }
 }
 

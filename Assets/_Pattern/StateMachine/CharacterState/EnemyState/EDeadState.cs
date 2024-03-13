@@ -26,6 +26,8 @@ namespace _Pattern.StateMachine.EnemyState
             isDespawn = false;
 
             Debug.Log(t.Score);
+            
+            LevelManager.Instance.CharacterDead(t);
 
             t.ChangeAnim(AnimType.DEAD);
             t.StopMove();

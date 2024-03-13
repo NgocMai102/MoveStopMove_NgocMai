@@ -31,7 +31,7 @@ namespace _Game.Scripts.Manager.Level
         
         private bool isRevive;
 
-        public int TotalCharacter => totalCharacter;
+        public int TotalCharacter => totalEnemy + enemies.Count + 1;
         public int IndexLevel => indexLevel;
 
         public void Awake()
@@ -65,18 +65,11 @@ namespace _Game.Scripts.Manager.Level
             isRevive = false;
             //Indicator
             
-            totalCharacter = currentLevel.TotalCharacter;
-            totalEnemy = totalCharacter - 1;
-            maxDistanceMap = currentLevel.MaxDistanceMap;
-
-            for (int i = 0; i < LevelUtils.MAX_CHARACTER; i++)
+            for (int i = 0; i < currentLevel.TotalEnemyReal; i++)
             {
-                if (totalEnemy > 0)
-                {
-                    totalEnemy--;
-                    SpawnEnemy(null);
-                }
+                SpawnEnemy(null);
             }
+            totalEnemy = currentLevel.TotalEnemy - currentLevel.TotalEnemyReal - 1;
         }
 
         private void OnReset()
@@ -161,7 +154,7 @@ namespace _Game.Scripts.Manager.Level
         
         public Vector3 RandomPoint()
         {
-            return Utilities.GetRandomPosOnNavMesh(Vector3.zero, maxDistanceMap);
+            return Utilities.GetRandomPosOnDistance(currentLevel.MinPoint, currentLevel.MaxPoint);
         }
 
         public void NextLevel()

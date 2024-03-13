@@ -38,5 +38,15 @@ namespace _Game.Utils
 
             return hit.position;
         }
+
+        public static Vector3 GetRandomPosOnDistance(Transform minPoint, Transform maxPoint)
+        {
+            
+            Vector3 randPoint = Random.Range(minPoint.position.x, maxPoint.position.x) * Vector3.right + Random.Range(minPoint.position.z, maxPoint.position.z) * Vector3.forward;
+            
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randPoint, out hit, float.PositiveInfinity, 1);
+            return hit.position;
+        }
     }
 }
