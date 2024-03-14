@@ -32,9 +32,14 @@ namespace _UI.Scripts.Gameplay
             Invoke("HideTutorial", 3.0f);
             EventInput.InputManager.FindJoyStick();
             
-            //TODO: Add Indicator
-            
+            //LevelManager.Instance.SetTargetIndicatorAlpha(1);
             RegisterEvents();
+        }
+        
+        public override void CloseDirectly()
+        {
+            base.CloseDirectly();
+            //LevelManager.Instance.SetTargetIndicatorAlpha(0);
         }
 
         public void RegisterEvents()
@@ -63,8 +68,6 @@ namespace _UI.Scripts.Gameplay
             aliveCharacter--;
             SetAliveText(aliveCharacter);
         }
-        
-        
     }
 }
 

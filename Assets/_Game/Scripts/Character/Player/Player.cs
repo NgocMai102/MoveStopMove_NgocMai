@@ -9,19 +9,21 @@ using _Game.Scripts.Manager.Level;
 using _Game.Utils;
 using _Pattern.StateMachine.PlayerState;
 using _UI.Scripts.Gameplay;
+using _UI.Scripts.UI;
 using UnityEngine;
 
 namespace _Game.Scripts.Character.Player
 {
     public class Player : Character
     {
-        [Header("Player Properties")]
-        [SerializeField] private CharacterController characterController;
-        
+        [Header("Player Properties")] [SerializeField]
+        private CharacterController characterController;
+
         private Vector3 moveDirection;
         private bool startMove;
         public bool IsMoving => moveDirection != Vector3.zero;
-        
+        public bool CanUpdate => GameManager.Instance.IsState(GameState.Gameplay) || GameManager.Instance.IsState(GameState.Setting);
+
         private StateMachine<Player> currentState;
         
         private void Start()
@@ -38,10 +40,10 @@ namespace _Game.Scripts.Character.Player
         public override void OnInit()
         {
             base.OnInit();
-          
-           
             InitState();
 
+            Debug.Log(isDead);
+            
             startMove = false;
             
             TF.position = Vector3.zero;
@@ -57,19 +59,17 @@ namespace _Game.Scripts.Character.Player
             }
             currentState.ChangeState(new PIdleState());
         }
-    
-        
         
         private void GetInput()
         {
-            if (EventInput.InputManager.HasInput()) {
+            if (EventInput.InputManager.HasInput() && CanUpdate) {
                 moveDirection.Set(EventInput.InputManager.HorizontalAxis, 0, EventInput.InputManager.VerticalAxis);
                 moveDirection.Normalize();
-                if (startMove == false)
-                {
-                    startMove = true;
-                    UIManager.Instance.GetUI<UIGameplay>().HideTutorial();
-                }
+                // if (startMove == false)
+                // {
+                //     startMove = true;
+                //     UIManager.Instance.GetUI<UIGameplay>().HideTutorial();
+                // }
             }
             else
             {

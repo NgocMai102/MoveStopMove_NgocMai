@@ -30,7 +30,7 @@ namespace _UI.Scripts.UI
             gameState = state;
             
         }
-        public static bool IsState(GameState state) => gameState == state;
+        public bool IsState(GameState state) => gameState == state;
 
         private void Awake()
         {

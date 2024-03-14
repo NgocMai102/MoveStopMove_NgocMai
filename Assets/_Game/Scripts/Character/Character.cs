@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using _Framework.Event.Scripts;
 using _Framework.Pool.Scripts;
+using _Game.UI.Scripts.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using _Game.Utils;
@@ -22,7 +24,7 @@ namespace _Game.Scripts.Character
         [Header("Config")]
         [SerializeField] protected float moveSpeed;
         [SerializeField] protected Weapon.Weapon currentWeapon;
-         
+
 
         private SphereCollider sphereCollider;
         private string currentAnimName;
@@ -30,8 +32,11 @@ namespace _Game.Scripts.Character
         
         private Action<Object> onCharacterDie;
         
-        [SerializeField] private List<Character> enemyInRange;
+        private List<Character> enemyInRange;
         private bool isAttackable;
+
+        [SerializeField] private Transform indicatorPoint;
+        protected TargetIndicator indicator;
         
         private float attackRangeRadius;
         private float sphereColliderRadius;
@@ -39,6 +44,7 @@ namespace _Game.Scripts.Character
         
         [SerializeField] protected bool isDead;
         protected float size = 1;
+        
 
         #region Getter
         
@@ -76,6 +82,9 @@ namespace _Game.Scripts.Character
 
             currentWeapon.OnInit(this);
             attackRange.OnInit(this);
+            
+            indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+            indicator.SetTarget(indicatorPoint);
         }
         
         #region Animation
@@ -178,7 +187,7 @@ namespace _Game.Scripts.Character
 
         public virtual void OnDespawn()
         {
-            
+            SimplePool.Despawn(indicator);
         }
 
         public virtual void OnHit()

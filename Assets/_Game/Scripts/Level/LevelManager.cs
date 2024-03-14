@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
+using _Framework.Pool.Scripts;
 using _Framework.Singleton;
 using _Framework.StateMachine;
 using _Game.Scripts.Character.Enemy;
 using _Game.Scripts.Character.Player;
+using _Game.UI.Scripts.Gameplay;
 using _Game.Utils;
 using _Pattern.StateMachine.EnemyState;
 using _UI.Scripts;
+using _UI.Scripts.Gameplay;
 using _UI.Scripts.Lose;
 using _UI.Scripts.Revive;
 using _UI.Scripts.UI;
@@ -21,6 +24,9 @@ namespace _Game.Scripts.Manager.Level
     public class LevelManager : Singleton<LevelManager>
     {
         [SerializeField] private List<Level> levels;
+        [SerializeField] public Player player;
+        
+        private List<Enemy> enemies = new List<Enemy>();
         
         private Level currentLevel;
         private int indexLevel;
@@ -43,6 +49,7 @@ namespace _Game.Scripts.Manager.Level
         {
             indexLevel = 0;
             OnLoadLevel(indexLevel);
+            SetUpLevel();
         }
 
         public void OnLoadLevel(int level)
@@ -55,21 +62,20 @@ namespace _Game.Scripts.Manager.Level
             }
 
             currentLevel = Instantiate(levels[level]);
-
-            SetUpLevel();
         }
 
         private void SetUpLevel()
         {
             player.OnInit();
             isRevive = false;
-            //Indicator
-            
+
             for (int i = 0; i < currentLevel.TotalEnemyReal; i++)
             {
                 SpawnEnemy(null);
             }
             totalEnemy = currentLevel.TotalEnemy - currentLevel.TotalEnemyReal - 1;
+            
+            //SetTargetIdincatorAlpha(0);
         }
 
         private void OnReset()
@@ -84,9 +90,6 @@ namespace _Game.Scripts.Manager.Level
         }
 
         #region Character
-
-        [SerializeField] private Player player;
-        private List<Enemy> enemies = new List<Enemy>();
 
         private void SpawnEnemy(IState<Enemy> state)
         {
@@ -124,13 +127,13 @@ namespace _Game.Scripts.Manager.Level
                 }
                 else
                 {
-                    OnFail();
+                    OnLose();
                 }
             } else if (character is Enemy)
             {
                 enemies.Remove(character as Enemy);
             
-                if(GameManager.IsState(GameState.Revive) || GameManager.IsState(GameState.Setting))
+                if(GameManager.Instance.IsState(GameState.Revive) || GameManager.Instance.IsState(GameState.Setting))
                 {
                     SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
                 }
@@ -167,6 +170,7 @@ namespace _Game.Scripts.Manager.Level
             UIManager.Instance.CloseAll();
             OnReset();
             OnLoadLevel(indexLevel);
+            SetUpLevel();
             UIManager.Instance.OpenUI<UIMainMenu>();
         }
 
@@ -182,9 +186,10 @@ namespace _Game.Scripts.Manager.Level
         {
             player.TF.position = RandomPoint();
             player.OnRevive();
+            UIManager.Instance.OpenUI<UIGameplay>();
         }
 
-        public void OnFail()
+        public void OnLose()
         {
             UIManager.Instance.CloseAll();
             UIManager.Instance.OpenUI<UILose>();
@@ -193,6 +198,15 @@ namespace _Game.Scripts.Manager.Level
         private void Victory()
         {
             UIManager.Instance.OpenUI<UIVictory>();
+        }
+
+        public void SetTargetIndicatorAlpha(float alpha)
+        {
+            List<GameUnit> list = SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator);
+            for (int i = 0; i < list.Count; i++)
+            {
+                (list[i] as TargetIndicator).SetAlpha(alpha);
+            }
         }
         
     }

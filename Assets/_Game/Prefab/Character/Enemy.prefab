@@ -1617,6 +1617,37 @@ Transform:
   m_Father: {fileID: 4342493196330202920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6666951075726347962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6290785444499343221}
+  m_Layer: 0
+  m_Name: IndicatorPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6290785444499343221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666951075726347962}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6785464448852247630}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6709037237216989604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,6 +1746,7 @@ Transform:
   - {fileID: 4697085256010135018}
   - {fileID: 6785464449121059219}
   - {fileID: 7496712182945771091}
+  - {fileID: 6290785444499343221}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1736,6 +1768,9 @@ MonoBehaviour:
   attackRange: {fileID: 6785464449121059212}
   moveSpeed: 5
   currentWeapon: {fileID: 8553849331548131022}
+  enemyInRange: []
+  indicatorPoint: {fileID: 6290785444499343221}
+  isDead: 0
   navmeshAgent: {fileID: 6785464448852247631}
   circleIndicator: {fileID: 2989963090815899392}
 --- !u!195 &6785464448852247631
