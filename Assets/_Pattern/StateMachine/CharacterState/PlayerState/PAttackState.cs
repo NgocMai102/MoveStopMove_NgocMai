@@ -20,7 +20,7 @@ namespace _Pattern.StateMachine.PlayerState
             timer = 0;
             targetPos = player.GetRandomEnemyPos();
             
-            player.RotateTo(targetPos);
+            //player.LookA(targetPos);
             player.ChangeAnim(AnimType.ATTACK);
         }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,12 +53,15 @@ namespace _Game.Utils
     {
         None,
         Arrow = PoolType.HAT_Arrow,
+        Cowboy = PoolType.HAT_Cowboy,
         Crown = PoolType.HAT_Crown,
         Ear = PoolType.HAT_Ear,
-        Cap = PoolType.HAT_Cap,
-        Hair = PoolType.HAT_BlondeHair,
-        Police = PoolType.HAT_Police,
         Flower = PoolType.HAT_Flower,
+        Hair = PoolType.HAT_BlondeHair,
+        Hat = PoolType.HAT_Cap,
+        Police = PoolType.HAT_Police,
+        Luffy = PoolType.HAT_Straw,
+        Headphone = PoolType.HAT_Headphone,
         Horn = PoolType.HAT_Horn,
         Rau = PoolType.HAT_Rau,
     }
@@ -65,12 +69,21 @@ namespace _Game.Utils
     public enum PantType //PantsType
     {
         None,
-        Batman,
+        Batman = PoolType.PANT_Batman,
+        Chambi = PoolType.PANT_Chambi,
+        Comy = PoolType.PANT_Comy,
+        Dabao = PoolType.PANT_Dabao,
+        Onion = PoolType.PANT_Onion,
+        Pokemon = PoolType.PANT_Pokemon,
+        Rainbow = PoolType.PANT_Rainbow,
+        Skull = PoolType.PANT_Skull,
+        Vantim = PoolType.PANT_Vantim,
     }
     
     public enum AccessoryType
     {
         None,
+        
     }
 
     public enum SkinType

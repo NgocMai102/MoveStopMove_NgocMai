@@ -12,7 +12,7 @@ namespace _Pattern.StateMachine.PlayerState
     {
         public void OnEnter(Player player)
         {
-            player.model.rotation = Quaternion.Euler(0, player.model.rotation.eulerAngles.y, 0);
+            player.StopMove();
             player.ChangeAnim(AnimType.IDLE);
             
         }

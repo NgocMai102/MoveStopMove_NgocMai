@@ -10,14 +10,15 @@ using _Game.Utils;
 using _Pattern.StateMachine.PlayerState;
 using _UI.Scripts.Gameplay;
 using _UI.Scripts.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Game.Scripts.Character.Player
 {
     public class Player : Character
     {
-        [Header("Player Properties")] [SerializeField]
-        private CharacterController characterController;
+        [Header("Player Properties")] 
+        [SerializeField] private Rigidbody rb;
 
         private Vector3 moveDirection;
         private bool startMove;
@@ -65,11 +66,6 @@ namespace _Game.Scripts.Character.Player
             if (EventInput.InputManager.HasInput() && CanUpdate) {
                 moveDirection.Set(EventInput.InputManager.HorizontalAxis, 0, EventInput.InputManager.VerticalAxis);
                 moveDirection.Normalize();
-                // if (startMove == false)
-                // {
-                //     startMove = true;
-                //     UIManager.Instance.GetUI<UIGameplay>().HideTutorial();
-                // }
             }
             else
             {
@@ -79,8 +75,19 @@ namespace _Game.Scripts.Character.Player
         
         public void Move()
         {
-            characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
-            RotateTo(TF.position + moveDirection);
+            rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.deltaTime);
+            TF.position = rb.position;
+            if (IsMoving)
+            {
+                TF.forward = moveDirection;
+            }
+            
+        }
+
+        public override void StopMove()
+        {
+            base.StopMove();
+            rb.velocity = Vector3.zero;
         }
     
         public void ChangeState(IState<Player> state)

@@ -18,7 +18,6 @@ namespace _Pattern.StateMachine.PlayerState
         {
             if (!player.IsMoving)
             {
-                player.RotateTo(player.TF.position);
                 player.ChangeState(new PIdleState());
             }
             player.Move();

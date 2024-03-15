@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 53886631808583303}
   - component: {fileID: 53886631808583300}
-  - component: {fileID: 53886631808583301}
+  - component: {fileID: 2079778279}
+  - component: {fileID: 2079778280}
   m_Layer: 3
   m_Name: Player
   m_TagString: Character
@@ -55,12 +56,26 @@ MonoBehaviour:
   attackRange: {fileID: 3624359600868122224}
   moveSpeed: 5
   currentWeapon: {fileID: 4868657320999239887}
-  enemyInRange: []
-  indicatorPoint: {fileID: 343232539809295742}
   isDead: 0
-  characterController: {fileID: 53886631808583301}
---- !u!143 &53886631808583301
-CharacterController:
+  rb: {fileID: 2079778279}
+--- !u!54 &2079778279
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53886631808583302}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
+--- !u!136 &2079778280
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -69,14 +84,10 @@ CharacterController:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2.4
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.2, z: 0}
+  m_Height: 2.685976
+  m_Direction: 1
+  m_Center: {x: -0, y: 0.842988, z: -0}
 --- !u!1 &77678990777696092
 GameObject:
   m_ObjectHideFlags: 0
@@ -2344,7 +2355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8442546729832039784}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

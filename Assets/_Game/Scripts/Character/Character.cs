@@ -35,8 +35,8 @@ namespace _Game.Scripts.Character
         private List<Character> enemyInRange;
         private bool isAttackable;
 
-        [SerializeField] private Transform indicatorPoint;
-        protected TargetIndicator indicator;
+        //[SerializeField] private Transform indicatorPoint;
+       // protected TargetIndicator indicator;
         
         private float attackRangeRadius;
         private float sphereColliderRadius;
@@ -77,14 +77,14 @@ namespace _Game.Scripts.Character
             isAttackable = true;
             score = 0;
             enemyInRange = new List<Character>();
-            
+
             ResetModelRotation();
 
             currentWeapon.OnInit(this);
             attackRange.OnInit(this);
             
-            indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
-            indicator.SetTarget(indicatorPoint);
+           // indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+           // indicator.SetTarget(indicatorPoint);
         }
         
         #region Animation
@@ -171,12 +171,12 @@ namespace _Game.Scripts.Character
         
         public void RotateTo(Vector3 target)
         {
-            model.LookAt(target);
+           TF.LookAt(target + (TF.position.y - target.y) * Vector3.up);
         }
         
         public void ResetModelRotation()
         {
-            model.localRotation = Quaternion.identity;
+            TF.localRotation = Quaternion.Euler(0, 180, 0);
         }
         
         
@@ -187,7 +187,7 @@ namespace _Game.Scripts.Character
 
         public virtual void OnDespawn()
         {
-            SimplePool.Despawn(indicator);
+           // SimplePool.Despawn(indicator);
         }
 
         public virtual void OnHit()
@@ -195,6 +195,11 @@ namespace _Game.Scripts.Character
             isDead = true;
             this.PostEvent(EventID.OnCharacterDead, this);
             RemoveEvents();
+        }
+
+        public virtual void StopMove()
+        {
+            
         }
         
 

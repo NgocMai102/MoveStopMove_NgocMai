@@ -56,15 +56,12 @@ namespace _Game.Scripts.Character.Enemy
             navmeshAgent.SetDestination(destination);
         }
 
-        public void StopMove()
+        public override void StopMove()
         {
+            base.StopMove();
             navmeshAgent.enabled = false;
         }
         
-        // public void ResetModelRotation()
-        // {
-        //     model.localRotation = Quaternion.identity;
-        // }
 
         #endregion
         
