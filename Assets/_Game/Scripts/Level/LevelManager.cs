@@ -98,7 +98,6 @@ namespace _Game.Scripts.Manager.Level
             enemy.ChangeState(state);
             enemies.Add(enemy);
             enemy.SetScore(player.Score > 0 ? Random.Range(player.Score - 7, player.Score + 7) : 1);
-            
         }
         
         private void CollectAllCharacter()
@@ -114,42 +113,33 @@ namespace _Game.Scripts.Manager.Level
             player.OnDespawn();
         }
 
-        public void CharacterDead(Character.Character character)
+        public void PlayerDeath(Player player)
         {
-            if (character is Player)
+            UIManager.Instance.CloseAll();
+            if (!isRevive)
             {
-                UIManager.Instance.CloseAll();
-                //TODO: Anim revive of Score Txt in GamePlay State
-                if (!isRevive)
-                {
-                    isRevive = true;
-                    UIManager.Instance.OpenUI<UIRevive>();
-                }
-                else
-                {
-                    OnLose();
-                }
-            } else if (character is Enemy)
+                isRevive = true;
+                UIManager.Instance.OpenUI<UIRevive>();
+            }
+            else
             {
-                enemies.Remove(character as Enemy);
-            
-                if(GameManager.Instance.IsState(GameState.Revive) || GameManager.Instance.IsState(GameState.Setting))
-                {
-                    SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
-                }
-                else
-                {
-                    if (totalEnemy > 0)
-                    {
-                        totalEnemy--;
-                        SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
-                    }
+                OnLose();
+            }
+        }
 
-                    if (enemies.Count == 0)
-                    {
-                        Victory();
-                    }
-                }
+        public void EnemyDeath(Enemy enemy)
+        {
+            enemies.Remove(enemy);
+
+            if (totalEnemy > 0)
+            {
+                totalEnemy--;
+                SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
+            }
+
+            if (enemies.Count == 0)
+            {
+                Victory();
             }
         }
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7815183444988555052}
   - component: {fileID: 4184369395026303361}
   - component: {fileID: 3762423125043069612}
+  - component: {fileID: 2999622001812713025}
   m_Layer: 6
   m_Name: CandyBullet
   m_TagString: Untagged
@@ -57,10 +58,24 @@ SphereCollider:
   m_GameObject: {fileID: 6500007681416278136}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.35
-  m_Center: {x: 0, y: 1, z: 0.25}
+  m_Radius: 0.9459264
+  m_Center: {x: 0, y: 1, z: 0.4334287}
+--- !u!136 &2999622001812713025
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500007681416278136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &3633522809189796726
 PrefabInstance:
   m_ObjectHideFlags: 0

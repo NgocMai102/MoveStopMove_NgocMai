@@ -23,7 +23,7 @@ namespace _Game.Scripts.Character.Player
         private Vector3 moveDirection;
         private bool startMove;
         public bool IsMoving => moveDirection != Vector3.zero;
-        public bool CanUpdate => GameManager.Instance.IsState(GameState.Gameplay) || GameManager.Instance.IsState(GameState.Setting);
+        public bool CanUpdate => GameManager.Instance.IsState(GameState.Gameplay);
 
         private StateMachine<Player> currentState;
         
@@ -34,8 +34,13 @@ namespace _Game.Scripts.Character.Player
         
         private void Update()
         {
+            if (!CanUpdate)
+            {
+                return;
+            }
             GetInput();
             currentState.UpdateState();
+            Debug.Log(CanUpdate);
         }
 
         public override void OnInit()
@@ -43,8 +48,6 @@ namespace _Game.Scripts.Character.Player
             base.OnInit();
             InitState();
 
-            Debug.Log(isDead);
-            
             startMove = false;
             
             TF.position = Vector3.zero;
@@ -60,10 +63,19 @@ namespace _Game.Scripts.Character.Player
             }
             currentState.ChangeState(new PIdleState());
         }
+
+        private void OnStartMove()
+        {
+            if (startMove == false)
+            {
+                startMove = true;
+                
+            }
+        }
         
         private void GetInput()
         {
-            if (EventInput.InputManager.HasInput() && CanUpdate) {
+            if (EventInput.InputManager.HasInput()) {
                 moveDirection.Set(EventInput.InputManager.HorizontalAxis, 0, EventInput.InputManager.VerticalAxis);
                 moveDirection.Normalize();
             }
@@ -81,7 +93,6 @@ namespace _Game.Scripts.Character.Player
             {
                 TF.forward = moveDirection;
             }
-            
         }
 
         public override void StopMove()
@@ -99,14 +110,8 @@ namespace _Game.Scripts.Character.Player
         {
             base.OnHit();
             ChangeState(new PDeadState());
-            
         }
 
-        private IEnumerator OnDeath()
-        {
-            yield return new WaitForSeconds(2f);
-        }
-        
         public override void SetSize(float size)
         {
             base.SetSize(size);
@@ -118,7 +123,7 @@ namespace _Game.Scripts.Character.Player
             ChangeState(new PIdleState());
             isDead = false;
             startMove = false;
-            
+
             ClearEnemyInRange();
         }
     }

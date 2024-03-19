@@ -22,8 +22,8 @@ namespace _Pattern.StateMachine.EnemyState
             nextDestination = LevelManager.Instance.RandomPoint();
             attackIfEnemyInRange = Utilities.Chance(chanceAttack);
             
-            enemy.MoveTo(nextDestination);
             enemy.ChangeAnim(AnimType.RUN);
+            enemy.MoveTo(nextDestination);
             enemy.ResetModelRotation();
         }
 

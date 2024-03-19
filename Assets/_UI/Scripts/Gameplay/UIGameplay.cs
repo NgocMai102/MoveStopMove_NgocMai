@@ -15,7 +15,7 @@ namespace _UI.Scripts.Gameplay
         [SerializeField] private Text aliveText;
         [SerializeField] private GameObject tutorial;
         
-        private Action<object> onCharacterDead;
+        private Action<object> onCharacterDie;
 
         private int aliveCharacter;
         
@@ -29,8 +29,7 @@ namespace _UI.Scripts.Gameplay
             SetAliveText(aliveCharacter);
 
             ShowTutorial();
-            Invoke("HideTutorial", 3.0f);
-            EventInput.InputManager.FindJoyStick();
+            //EventInput.InputManager.FindJoyStick();
             
             //LevelManager.Instance.SetTargetIndicatorAlpha(1);
             RegisterEvents();
@@ -44,8 +43,8 @@ namespace _UI.Scripts.Gameplay
 
         public void RegisterEvents()
         {
-            onCharacterDead = _ => UpdateTotalCharacter();
-            this.RegisterListener(EventID.OnCharacterDead, onCharacterDead);
+            onCharacterDie = _ => UpdateTotalCharacter();
+            this.RegisterListener(EventID.OnCharacterDead, onCharacterDie);
         }
 
         public void SetAliveText(int alive)

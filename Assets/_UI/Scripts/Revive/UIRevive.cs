@@ -44,6 +44,7 @@ namespace _UI.Scripts.Revive
         public void CloseButton()
         {
             Close(0);
+            LevelManager.Instance.OnLose();
         }
     }
 }

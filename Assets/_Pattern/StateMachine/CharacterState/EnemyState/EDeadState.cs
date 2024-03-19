@@ -25,9 +25,7 @@ namespace _Pattern.StateMachine.EnemyState
             timer = 0;
             isDespawn = false;
 
-            Debug.Log(t.Score);
-            
-            LevelManager.Instance.CharacterDead(t);
+            LevelManager.Instance.EnemyDeath(t);
 
             t.ChangeAnim(AnimType.DEAD);
             t.StopMove();
@@ -45,6 +43,7 @@ namespace _Pattern.StateMachine.EnemyState
             if(timer >= despawnTimer)
             {
                 Despawn(t);
+                Debug.Log("Despawn");
             }
         }
         

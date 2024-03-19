@@ -11,14 +11,13 @@ namespace _Game.Scripts.Weapon.Bullet
 {
     public class Bullet : GameUnit
     {
-        [SerializeField] private float moveSpeed;
-
         private Character.Character owner;
 
         private Vector3 startPoint;
         private Vector3 moveDirection;
-
         private float maxFlyDistance;
+        
+        protected float moveSpeed;
 
         private void Update()
         {
@@ -52,22 +51,25 @@ namespace _Game.Scripts.Weapon.Bullet
         {
             this.owner = owner;
             startPoint = TF.position;
-            maxFlyDistance = owner.AttackRangeRadius * CharacterUtils.DEFAULT_SPHERE_RADIUS;
-            moveDirection = (targetPoint - TF.position).normalized;
-            moveDirection.y = 0;
-            
-            TF.rotation = Quaternion.LookRotation(moveDirection);
+            maxFlyDistance = owner.AttackRangeRadius * CharacterUtils.DEFAULT_SPHERE_RADIUS * size;
+            //moveDirection = (targetPoint - TF.position).normalized;
+            //moveDirection.y = 0;
+
+            TF.forward = new Vector3((targetPoint - TF.position).normalized.x, 0, (targetPoint - TF.position).normalized.z);
+
+            //TF.rotation = Quaternion.LookRotation(moveDirection);
             TF.localScale = size * Vector3.one;
+            moveSpeed = BulletSpeed.STRAIGHT * size;
         }
 
-          private void OnDespawn()
+        private void OnDespawn()
         {
             SimplePool.Despawn(this);
         }
 
         protected virtual void Move()
         {
-            TF.position += moveDirection * (moveSpeed * Time.deltaTime);
+            TF.position += TF.forward * (moveSpeed * Time.deltaTime);
         }
         
         protected virtual bool CanDespawn()

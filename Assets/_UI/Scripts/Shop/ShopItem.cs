@@ -8,7 +8,7 @@ namespace _Game.Scripts.UI.Shop
 {
     public class ShopItem : MonoBehaviour
     {
-        public enum State {Buy, Bought, Equiped, Select}
+        public enum State {Buy = 0, Bought = 1, Equiped = 2, Select = 3}
 
         [SerializeField] private Image icon;
         [SerializeField] private Image bgIcon;

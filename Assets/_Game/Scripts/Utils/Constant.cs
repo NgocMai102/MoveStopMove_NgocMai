@@ -24,7 +24,7 @@ namespace _Game.Utils
     {
         public const float ATTACK_TIME = 1f;
         public const float ATTACK_SPEED = 0.25f;
-        public const float DEFAULT_SPHERE_RADIUS = 4.9f;
+        public const float DEFAULT_SPHERE_RADIUS = 5f;
         public const float MIN_SIZE = 1f;
         public const float MAX_SIZE = 4f;
     }
@@ -35,6 +35,11 @@ namespace _Game.Utils
         public const string ENEMY = "Enemy";
         public const string CHARACTER = "Character";
         public const string WEAPON = "Weapons";
+    }
+
+    public class BulletSpeed
+    {
+        public const float STRAIGHT = 9f;
     }
     
     public enum WeaponType
@@ -48,6 +53,8 @@ namespace _Game.Utils
         W_Boomerang_2 = PoolType.W_Boomerang_2,
         W_Boomerang_3 = PoolType.W_Boomerang_3,
     }
+
+    
 
     public enum HairType
     {

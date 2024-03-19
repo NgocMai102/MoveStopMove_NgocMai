@@ -26,7 +26,7 @@ namespace _Pattern.StateMachine.PlayerState
             isDespawn = false;
             
             t.ChangeAnim(AnimType.DEAD);
-            LevelManager.Instance.CharacterDead(t);
+            LevelManager.Instance.PlayerDeath(t);
         }
 
         public void OnExecute(Player t)

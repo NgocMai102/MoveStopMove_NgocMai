@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Framework.Singleton;
+using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
 
 
@@ -12,14 +14,12 @@ namespace _Game.Scripts.Manager
         
         public float HorizontalAxis => joystick.Horizontal;
         public float VerticalAxis => joystick.Vertical;
-        
-        public void FindJoyStick()
+
+        public void Start()
         {
-            if(joystick == null)
-            {
-                joystick = FindObjectOfType<Joystick>();
-            }
+            
         }
+        
         
         public bool HasInput()
         {
@@ -36,7 +36,6 @@ namespace _Game.Scripts.Manager
             public static float HorizontalAxis => EventInput.Instance.HorizontalAxis;
             public static float VerticalAxis => EventInput.Instance.VerticalAxis;
             public static bool HasInput() => EventInput.Instance.HasInput();
-            public static void FindJoyStick() => EventInput.Instance.FindJoyStick();
         }
     }
 }

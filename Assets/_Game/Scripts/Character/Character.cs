@@ -8,6 +8,7 @@ using _Game.UI.Scripts.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using _Game.Utils;
+using _UI.Scripts.UI;
 using Object = System.Object;
 
 namespace _Game.Scripts.Character
@@ -28,11 +29,11 @@ namespace _Game.Scripts.Character
 
         private SphereCollider sphereCollider;
         private string currentAnimName;
-        private Character otherCharacter;
+        //private Character otherCharacter;
         
         private Action<Object> onCharacterDie;
         
-        private List<Character> enemyInRange;
+        [SerializeField] private List<Character> enemyInRange = new List<Character>();
         private bool isAttackable;
 
         //[SerializeField] private Transform indicatorPoint;
@@ -76,7 +77,7 @@ namespace _Game.Scripts.Character
             isDead = false;
             isAttackable = true;
             score = 0;
-            enemyInRange = new List<Character>();
+            enemyInRange.Clear();
 
             ResetModelRotation();
 
@@ -129,15 +130,19 @@ namespace _Game.Scripts.Character
             int randomIndex = Random.Range(0, enemyInRange.Count);
             return enemyInRange[randomIndex].TF.position;
         }
-      
+
+        public bool CheckOnAttackRange(Character other)
+        {
+            return Vector3.Distance(other.TF.position ,TF.position) <= attackRangeRadius;
+        }
         
         public void OnCharacterEnterRange(Character other)
         {
-            if (other.isDead)
+            if (!other.isDead && other != null && GameManager.Instance.IsState(GameState.Gameplay))
             {
-                return;
+                enemyInRange.Add(other);
             }
-            enemyInRange.Add(other);
+            
         }
         
         public void OnCharacterExitRange(Character other)
@@ -171,7 +176,9 @@ namespace _Game.Scripts.Character
         
         public void RotateTo(Vector3 target)
         {
-           TF.LookAt(target + (TF.position.y - target.y) * Vector3.up);
+            Vector3 tmpPos = target - model.position;
+            tmpPos.y = 0;
+            TF.forward = tmpPos.normalized;
         }
         
         public void ResetModelRotation()
@@ -194,7 +201,7 @@ namespace _Game.Scripts.Character
         {
             isDead = true;
             this.PostEvent(EventID.OnCharacterDead, this);
-            RemoveEvents();
+            //RemoveEvents();
         }
 
         public virtual void StopMove()
