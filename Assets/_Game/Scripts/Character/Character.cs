@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using _Framework.Event.Scripts;
 using _Framework.Pool.Scripts;
+using _Game.Camera;
 using _Game.UI.Scripts.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -44,7 +45,7 @@ namespace _Game.Scripts.Character
         private int score;
         
         [SerializeField] protected bool isDead;
-        protected float size = 1;
+        [SerializeField] protected float size;
         
 
         #region Getter
@@ -76,6 +77,10 @@ namespace _Game.Scripts.Character
             attackRangeRadius = 1f;
             isDead = false;
             isAttackable = true;
+            
+            size = 1;
+            SetSize(this.size);
+            
             score = 0;
             enemyInRange.Clear();
 

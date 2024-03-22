@@ -169,6 +169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLoaded: 0
   playerData:
+    isSound: 1
+    isVibrate: 1
+    isNoAds: 0
     gold: 0
     level: 0
     idSkin: 0
@@ -725,8 +728,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 16, z: -10}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 2.5, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -735,7 +738,7 @@ Transform:
   - {fileID: 1791020901}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,7 +753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tf: {fileID: 963194228}
   smoothSpeed: 10
-  offset: {x: 0, y: 18, z: -12}
+  offset: {x: 0, y: 2.5, z: -4.5}
   offsetMax: {x: 0, y: 45, z: -27}
   offsetMin: {x: 0, y: 18, z: -12}
   offsets:
@@ -1204,13 +1207,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2079778280, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
-      propertyPath: m_Height
-      value: 2
+    - target: {fileID: 2079778279, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2079778280, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
-      propertyPath: m_Center.y
-      value: 1.2
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 53886631808583302, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
       propertyPath: m_Name

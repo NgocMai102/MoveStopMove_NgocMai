@@ -1,5 +1,6 @@
 using _Game.Camera;
 using _Game.Scripts.Manager.Level;
+using _Game.UI.Scripts.Shop;
 using _UI.Scripts.Gameplay;
 using _UI.Scripts.UI;
 using UnityEngine;
@@ -26,11 +27,15 @@ namespace _UI.Scripts
            LevelManager.Instance.OnPlay();
            
            CameraFollow.Instance.ChangeState(CameraFollow.State.Gameplay);
+           CameraFollow.Instance.OnReset();
         }
 
         public void ShopButton()
         {
+            UIManager.Instance.CloseAll();
+            UIManager.Instance.OpenUI<UIShop>();
             
+            CameraFollow.Instance.ChangeState(CameraFollow.State.Shop);
         }
 
         public void WeaponButton()

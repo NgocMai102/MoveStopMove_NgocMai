@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Game.Scripts.Character;
 using _Game.Scripts.Manager.Level;
 using _UI.Scripts.UI;
 using TMPro;
@@ -37,7 +38,7 @@ namespace _UI.Scripts.Revive
         public void ReviveButton()
         {
             GameManager.Instance.ChangeState(GameState.Gameplay);
-            CloseButton();
+            Close(0);
             LevelManager.Instance.OnRevive();
         }
 

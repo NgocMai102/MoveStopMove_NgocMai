@@ -8,6 +8,7 @@ using _Game.Scripts.Manager;
 using _Game.Scripts.Manager.Level;
 using _Game.Utils;
 using _Pattern.StateMachine.PlayerState;
+using _UI.Scripts;
 using _UI.Scripts.Gameplay;
 using _UI.Scripts.UI;
 using Unity.VisualScripting;
@@ -24,6 +25,7 @@ namespace _Game.Scripts.Character.Player
         private bool startMove;
         public bool IsMoving => moveDirection != Vector3.zero;
         public bool CanUpdate => GameManager.Instance.IsState(GameState.Gameplay);
+        public bool IsStartMove => startMove;
 
         private StateMachine<Player> currentState;
         
@@ -40,7 +42,6 @@ namespace _Game.Scripts.Character.Player
             }
             GetInput();
             currentState.UpdateState();
-            Debug.Log(CanUpdate);
         }
 
         public override void OnInit()
@@ -69,13 +70,14 @@ namespace _Game.Scripts.Character.Player
             if (startMove == false)
             {
                 startMove = true;
-                
+                UIManager.Instance.GetUI<UIGameplay>().HideTutorial();
             }
         }
         
         private void GetInput()
         {
             if (EventInput.InputManager.HasInput()) {
+                OnStartMove();
                 moveDirection.Set(EventInput.InputManager.HorizontalAxis, 0, EventInput.InputManager.VerticalAxis);
                 moveDirection.Normalize();
             }
@@ -125,6 +127,11 @@ namespace _Game.Scripts.Character.Player
             startMove = false;
 
             ClearEnemyInRange();
+        }
+
+        public void Dance()
+        {
+            ChangeAnim(AnimType.DANCE);
         }
     }
     

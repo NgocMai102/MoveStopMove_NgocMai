@@ -18,7 +18,7 @@ namespace _UI.Scripts.Gameplay
         private Action<object> onCharacterDie;
 
         private int aliveCharacter;
-        
+
 
         public override void Open()
         {
@@ -29,8 +29,7 @@ namespace _UI.Scripts.Gameplay
             SetAliveText(aliveCharacter);
 
             ShowTutorial();
-            //EventInput.InputManager.FindJoyStick();
-            
+
             //LevelManager.Instance.SetTargetIndicatorAlpha(1);
             RegisterEvents();
         }

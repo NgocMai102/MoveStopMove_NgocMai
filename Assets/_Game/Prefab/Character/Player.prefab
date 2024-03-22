@@ -56,6 +56,7 @@ MonoBehaviour:
   attackRange: {fileID: 3624359600868122224}
   moveSpeed: 5
   currentWeapon: {fileID: 4868657320999239887}
+  enemyInRange: []
   isDead: 0
   rb: {fileID: 2079778279}
 --- !u!54 &2079778279
@@ -85,9 +86,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2.685976
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: -0, y: 0.842988, z: -0}
+  m_Center: {x: -0, y: 1.2, z: -0}
 --- !u!1 &77678990777696092
 GameObject:
   m_ObjectHideFlags: 0

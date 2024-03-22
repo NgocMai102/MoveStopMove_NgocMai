@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 3642678922335614299}
   - component: {fileID: 8078108253449434417}
   - component: {fileID: 8177552903393281363}
+  - component: {fileID: 2349707501594031948}
   m_Layer: 5
   m_Name: BgIcon
   m_TagString: Untagged
@@ -146,7 +147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 016a626475adf56439c90c699169fd52, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -156,6 +157,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2349707501594031948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3434109375389431255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4564138566556401917
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +421,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9183610195661009874}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -503,6 +519,7 @@ MonoBehaviour:
   - {r: 1, g: 0.97334313, b: 0, a: 0}
   - {r: 1, g: 0.06979739, b: 0, a: 0}
   - {r: 0.04429555, g: 1, b: 0, a: 0}
+  EquipedObject: {fileID: 0}
   id: 0
   state: 0
 --- !u!1 &9183610195795495799

@@ -5,6 +5,7 @@ using System.Dynamic;
 using _Framework.Pool.Scripts;
 using _Framework.Singleton;
 using _Framework.StateMachine;
+using _Game.Camera;
 using _Game.Scripts.Character.Enemy;
 using _Game.Scripts.Character.Player;
 using _Game.UI.Scripts.Gameplay;
@@ -187,6 +188,7 @@ namespace _Game.Scripts.Manager.Level
 
         private void Victory()
         {
+            player.Dance();
             UIManager.Instance.OpenUI<UIVictory>();
         }
 

@@ -1,6 +1,8 @@
 using _Framework.Pool.Scripts;
 using _Framework.Singleton;
 using _Game.Scripts.Character.Player;
+using _UI.Scripts.UI;
+using UnityEditor;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
@@ -32,6 +34,7 @@ namespace _Game.Camera
         
         private Vector3 targetOffset;
         private Quaternion targetRotate;
+        private State currentState;
 
         public UnityEngine.Camera Camera;
 
@@ -43,19 +46,29 @@ namespace _Game.Camera
 
         private void LateUpdate()
         {
+            
             offset = Vector3.Lerp(offset, targetOffset, Time.deltaTime * smoothSpeed);
             tf.rotation = Quaternion.Lerp(tf.rotation, targetRotate, Time.deltaTime * smoothSpeed);
             tf.position = Vector3.Lerp(tf.position, target.position + targetOffset, Time.deltaTime * smoothSpeed);
         }
-        
+
+        public void OnReset()
+        {
+            SetRateOffset(0);
+        }
+
         //Lerp
         public void SetRateOffset(float rate)
         {
-            targetOffset = Vector3.Lerp(offsetMin, offsetMax, rate);
+            if (currentState == State.Gameplay)
+            {
+                targetOffset = Vector3.Lerp(offsetMin, offsetMax, rate);
+            }
         }
         
         public void ChangeState(State state)
         {
+            currentState = state;
             targetOffset = offsets[(int)state].localPosition;
             targetRotate = offsets[(int)state].localRotation;
         }
