@@ -3,7 +3,9 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public static class ParticlePool
+namespace _Framework.Pool.Scripts
+{
+    public static class ParticlePool
 {
     const int DEFAULT_POOL_SIZE = 3;
 
@@ -210,4 +212,6 @@ public static class ParticlePool
         shortcuts.Add(particleType, particleSystem);
     }
 }
+}
+
 

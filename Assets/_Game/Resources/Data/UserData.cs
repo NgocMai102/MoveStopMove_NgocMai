@@ -67,10 +67,10 @@ public class UserData : ScriptableObject
     public bool tutorialed = false;
 
     public WeaponType playerWeapon;
-    public HairType playerHair;
+    public HatType playerHair;
     public PantType playerPant;
     public AccessoryType playerAccessory;
-    public SkinType playerSkin;
+    public SetType playerSkin;
 
     //Example
     // UserData.Ins.SetInt(UserData.Key_Level, ref UserData.Ins.level, 1);
@@ -176,10 +176,10 @@ public class UserData : ScriptableObject
         vibrate =  PlayerPrefs.GetInt(Key_Vibrate, 0) == 1;
 
         playerWeapon = GetEnumData(Key_Player_Weapon, WeaponType.Hammer);
-        playerHair = GetEnumData(Key_Player_Hair, HairType.Arrow);
+        playerHair = GetEnumData(Key_Player_Hair, HatType.Arrow);
         playerPant = GetEnumData(Key_Player_Pant, PantType.Batman);
         playerAccessory = GetEnumData(Key_Player_Accessory, AccessoryType.None);
-        playerSkin = GetEnumData(Key_Player_Skin, SkinType.Normal);
+        playerSkin = GetEnumData(Key_Player_Skin, SetType.Normal);
     }
 
     public void OnResetData()

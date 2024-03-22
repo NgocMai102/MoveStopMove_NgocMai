@@ -42,60 +42,66 @@ namespace _Game.Utils
     
     public enum WeaponType
     {
-        Hammer = PoolType.W_Hammer,
+        Hammer = 0,
         
-        W_Candy_1 = PoolType.W_Candy_1,
-        W_Candy_2 = PoolType.W_Candy_2,
-        W_Candy_3 = PoolType.W_Candy_3,
-        W_Boomerang_1 = PoolType.W_Boomerang_1,
-        W_Boomerang_2 = PoolType.W_Boomerang_2,
-        W_Boomerang_3 = PoolType.W_Boomerang_3,
+        W_Candy_1 = 1,
+        W_Candy_2 = 2,
+        W_Candy_3 = 3,
+        W_Boomerang_1 = 4,
+        W_Boomerang_2 = 5,
+        W_Boomerang_3 = 6,
+        Axe_0 = 7,
+        Axe_1 = 8,
+        Uzi = 9,
+        Z = 10,
+        Arrow = 11,
     }
 
     
 
-    public enum HairType
+    public enum HatType
     {
-        None,
-        Arrow = PoolType.HAT_Arrow,
-        Cowboy = PoolType.HAT_Cowboy,
-        Crown = PoolType.HAT_Crown,
-        Ear = PoolType.HAT_Ear,
-        Flower = PoolType.HAT_Flower,
-        Hair = PoolType.HAT_BlondeHair,
-        Hat = PoolType.HAT_Cap,
-        Police = PoolType.HAT_Police,
-        Luffy = PoolType.HAT_Straw,
-        Headphone = PoolType.HAT_Headphone,
-        Horn = PoolType.HAT_Horn,
-        Rau = PoolType.HAT_Rau,
+        None = 0,
+        Arrow = 1,
+        Cowboy = 2,
+        Crown = 3,
+        Flower = 4,
+        Hair = 6,
+        Hat = 7,
+        Police = 8,
+        Luffy = 9,
     }
 
-    public enum PantType //PantsType
+    public enum PantType 
     {
-        None,
-        Batman = PoolType.PANT_Batman,
-        Chambi = PoolType.PANT_Chambi,
-        Comy = PoolType.PANT_Comy,
-        Dabao = PoolType.PANT_Dabao,
-        Onion = PoolType.PANT_Onion,
-        Pokemon = PoolType.PANT_Pokemon,
-        Rainbow = PoolType.PANT_Rainbow,
-        Skull = PoolType.PANT_Skull,
-        Vantim = PoolType.PANT_Vantim,
+        None = 0,
+        Batman = 1,
+        Chambi = 2,
+        Comy = 3,
+        Dabao = 4,
+        Onion = 5,
+        Pokemon = 6,
+        Rainbow = 7,
+        Skull = 8,
+        Vantim = 9,
     }
     
     public enum AccessoryType
     {
-        None,
-        
+        None = 0,
+        Headphone = 1,
+        Horn = 2,
+        Rau = 3,
     }
 
-    public enum SkinType
+    public enum SetType
     {
-        None,
-        Normal = PoolType.SKIN_Normal,
-        
+        Normal = 0,
+        Devil = 1,
+        Angel = 2,
+        Witch = 3,
+        Deadpool = 4,
+        Thor = 5,
     }
 }
 
