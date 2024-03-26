@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Framework.Pool.Scripts;
+using _Game.Scripts.Manager.Data;
 using _Game.Scripts.Manager.Level;
 using _Game.Scripts.UI.Shop;
 using _Game.Utils;
@@ -10,24 +12,21 @@ using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 namespace _Game.UI.Scripts.Shop
 {
     public class UIShop : UICanvas
     {
-        public enum ShopType
-        {
-            Hat,
-            Paint,
-            Accesory,
-            Skin
-        }
+        //[SerializeField] private ShopType type;
+        [SerializeField] private GameObject[] buttons;
+
+
+        private List<Enum> equipedItems;
+        private MiniPool<ShopItem> shopItems;
         
-        [SerializeField] private ShopBar[] shopBars;
-        [SerializeField] private ShopItem prefab;
-        [SerializeField] private ShopType type;
-        
-        private MiniPool<ShopItem> shopItem;
+        protected ShopItem currentItem;
+        protected PlayerData PlayerData => DataManager.Instance.PlayerData;
         
         public override void CloseDirectly()
         {
@@ -35,35 +34,45 @@ namespace _Game.UI.Scripts.Shop
             UIManager.Instance.OpenUI<UIMainMenu>();
         }
 
-        public void Start()
+        private void SetItem(ShopItem item)
         {
-            
+            currentItem = item;
+            SetButtonState(item);
         }
-        
-        
-        private ShopItem currentItem;
-        private ShopBar currentBar;
 
-        public void ChangeShopBar(ShopType type)
+        private void SetButtonState(ShopItem item)
         {
-            switch (type)
+            int index = (int) item.CurrentState;
+            SetButton(index);
+            // switch (index)
+            // {
+            //     case ButtonState.Buy:
+            //         SetButton(ButtonState.Buy);
+            //         break;
+            //     
+            //     
+            // }
+        }
+
+        private void SetButton(int index)
+        {
+            //int index = (int)state;
+            for (int i = 1; i < buttons.Length; i++)
             {
-                
+                buttons[i].SetActive(false);
+            }
+            if (index < buttons.Length)
+            {
+                buttons[index].SetActive(true);
             }
         }
-        
-        
-        public void SetUpShop(List<ItemDataSO> items)
+
+
+        public void CloseBtn()
         {
-            shopItem.Collect();
-            for(int i = 0; i < items.Count; i++)
-            {
-                
-            }
+            CloseDirectly();
+            UIManager.Instance.OpenUI<UIMainMenu>();
         }
-        
-        
-        
     }
 }
 

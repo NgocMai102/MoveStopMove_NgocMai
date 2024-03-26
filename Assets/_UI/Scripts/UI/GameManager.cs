@@ -5,6 +5,7 @@ using _Game.Scripts.Manager;
 using _Game.Scripts.Manager.Level;
 using _UI.Scripts;
 using _UI.Scripts.Gameplay;
+using _UI.Scripts.Shop.SkinShop;
 using UnityEngine;
 
 namespace _UI.Scripts.UI
@@ -59,6 +60,7 @@ namespace _UI.Scripts.UI
         private void Start()
         {
             UIManager.Instance.OpenUI<UIMainMenu>();
+           
         }
     }
 }

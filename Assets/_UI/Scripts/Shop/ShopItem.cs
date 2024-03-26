@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using _Framework.Event.Scripts;
+using _Game.Scripts.Manager.Data;
+using _Game.Utils;
 using _UI.Scripts.Shop.Item;
+using _UI.Scripts.Shop.SkinShop;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,54 +10,40 @@ namespace _Game.Scripts.UI.Shop
 {
     public class ShopItem : MonoBehaviour
     {
-        public enum State {Buy = 0, Bought = 1}
-        
-        [SerializeField] private GameObject imgLock;
+        public enum State {Lock = ButtonState.Buy, Unlock = ButtonState.Equip}
 
-        [SerializeField] private GameObject equiped;
-        [SerializeField] private Outline outline;
-        [SerializeField] private GameObject EquipedObject;
-        
-        [SerializeField] private Button selectButton;
-
-        private EventID a;
-        
+        [SerializeField] protected Image imgIcon;
+        [SerializeField] private GameObject imgEquiped;
 
         public int id;
-        public State state;
-
-        public Enum type;
-        public Button SelectButton => selectButton;
-
-        public void Start()
+        public State CurrentState { get; private set; }
+        public Enum Type {get; private set;}
+        public Enum ID { get; private set; }
+        public int Cost { get; private set; }
+        
+        protected PlayerData PlayerData => DataManager.Instance.PlayerData;
+        
+        public void OnInit<T>(ItemType type, ItemData<T> itemData, State state) where T : Enum
         {
-            //bgIcon.color = colorBG[0];
+            Type = type;
+            ID = itemData.Id;
+            Cost = itemData.Cost;
+            imgIcon.sprite = itemData.Sprite;
+            CurrentState = state;
         }
-
-        public void SetData<T>(int id, ItemData<T> itemData) where T : Enum
+        
+        public void OnEquip()
         {
-            this.id = id;
-            //type = itemData.type;
-            //icon.sprite = itemData.icon;
-            //bgIcon.color = colorBG[(int)state];
+            SetState(State.Unlock);
+            
         }
         
         public void SetState(State state)
         {
-            this.state = state;
-            //outline.enabled = true;
-            //bgIcon.color = colorBG[(int)state];
+            CurrentState = state;
+            PlayerData.SetItemState((ItemType)Type, ID, (int) state);
         }
-        
-        
-        // public void SetEquiped(bool isEquiped)
-        // {
-        //     EquipedObject.SetActive(isEquiped);
-        //     equiped.SetActive(true);
-        // }
-        
-        
-        
+
     }
 }
 

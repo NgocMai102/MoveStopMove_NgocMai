@@ -9,14 +9,14 @@ using UnityEngine;
 
 public class ShopData : ScriptableObject
 {
-    public ShopItemDatas<HatType> hats;
-    public ShopItemDatas<PantType> pants;
-    public ShopItemDatas<AccessoryType> accessories;
+    public ShopItemData<HatType> hats;
+    public ShopItemData<PantType> pants;
+    public ShopItemData<AccessoryType> accessories;
     //public ShopItemDatas<SkinType> skins;
 }
 
 [System.Serializable]
-public class ShopItemDatas<T> where T : System.Enum
+public class ShopItemData<T> where T : System.Enum
 {
     // [SerializeField] List<ShopItemData<T>> ts;
     // public List<ShopItemData<T>> Ts => ts;

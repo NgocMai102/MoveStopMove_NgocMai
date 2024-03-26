@@ -1,98 +1,92 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using _Framework.Singleton;
 using UnityEditor;
+using UnityEngine;
+using _Framework.Singleton;
 
-namespace _Game.Scripts.Data
+namespace _Game.Scripts.Manager.Data
 {
     public class DataManager : Singleton<DataManager>
     {
-        private void Awake()
-        {
-            LoadData();
-//            DontDestroyOnLoad(gameObject);
-        }
+        private const string PlayerDataKey = "PlayerData";
 
-        public bool isLoaded = false;
-        public PlayerData playerData;
-
-        public const string PLAYER_DATA = "PLAYER_DATA";
-        // public List<int> list_IDHairNonVIP;
-        // public List<int> list_IDHairMan;
-        // public List<int> list_IDHairWoman;
-        // public List<int> list_IDBodyMan;
-        // public List<int> list_IDBodyWoman;
-        // public List<int> list_IDHairVIP;
+        [SerializeField] private bool isLoaded = false;
+        [SerializeField] private PlayerData playerData;
+        public PlayerData PlayerData => playerData;
 
         private void OnApplicationPause(bool pause)
         {
-            SaveData(); 
-            //FirebaseManager.Ins.OnSetUserProperty();
-        }
-
-        private void OnApplicationQuit()
-        {
-            SaveData(); 
+            SaveData();
             //FirebaseManager.Ins.OnSetUserProperty();
         }
         
 
+        private void OnApplicationQuit()
+        {
+            SaveData();
+            //FirebaseManager.Ins.OnSetUserProperty();
+        }
 
         public void LoadData()
         {
-            string d = PlayerPrefs.GetString(PLAYER_DATA, "");
-            if (d != "")
+            string data = PlayerPrefs.GetString(PlayerDataKey, "");
+            
+            if (data != "")
             {
-                playerData = JsonUtility.FromJson<PlayerData>(d);
+                playerData = JsonUtility.FromJson<PlayerData>(data);
             }
             else
             {
                 playerData = new PlayerData();
             }
-
-            //loadskin
-            //load pet
-
-            // sau khi hoàn thành tất cả các bước load data ở trên
+            
+            playerData.OnInit();
+            
             isLoaded = true;
-            //FirebaseManager.Ins.OnSetUserProperty();  
+            //FirebaseManager.Ins.OnSetUserProperty();
         }
 
         public void SaveData()
         {
-            if (!isLoaded) return;
+            if (!isLoaded)
+            {
+                return;
+            }
+            
+            playerData.ConvertDictionaryToListData();
             string json = JsonUtility.ToJson(playerData);
-            PlayerPrefs.SetString(PLAYER_DATA, json);
+            PlayerPrefs.SetString(PlayerDataKey, json);
         }
 
+#if UNITY_EDITOR
         public void ResetData()
         {
+            PlayerPrefs.DeleteAll();
+            playerData = new PlayerData();
+        }
+        
+        public void LoadDataTest()
+        {
+            playerData.LoadDataTest();
             
+            isLoaded = true;
+            SaveData();
         }
-
-        public int[] PantsStatus
+        
+        public void UploadDataOnInspector()
         {
-            set { playerData.pantsStatus = value; }
-            get => playerData.pantsStatus;
+            playerData.ConvertDictionaryToListData();
         }
-
-        public void SetPantsStatus(int i)
-        {
-            //playerData.pantsStatus[i] = 
-        }
+#endif
     }
-
+    
 #if UNITY_EDITOR
     [CustomEditor(typeof(DataManager))]
     public class DataManagerEditor : Editor
     {
-        private DataManager _dataManager;
+        private DataManager dataManager;
         
         private void OnEnable()
         {
-            _dataManager = (DataManager) target;
+            dataManager = (DataManager) target;
         }
         
         public override void OnInspectorGUI()
@@ -101,26 +95,22 @@ namespace _Game.Scripts.Data
             
             if (GUILayout.Button("Clear Data"))
             {
-                //_dataManager.ResetData();
-                //EditorUtility.SetDirty(_dataManager);
+                dataManager.ResetData();
+                EditorUtility.SetDirty(dataManager);
             }
             
             if (GUILayout.Button("Upload Data"))
             {
-                //_dataManager.UploadDataOnInspector();
-                //EditorUtility.SetDirty(_dataManager);
+                dataManager.UploadDataOnInspector();
+                EditorUtility.SetDirty(dataManager);
             }
             
             if (GUILayout.Button("Load Data Test"))
             {
-                //_dataManager.LoadDataTest();
-                //EditorUtility.SetDirty(_dataManager);
+                dataManager.LoadDataTest();
+                EditorUtility.SetDirty(dataManager);
             }
         }
     }
 #endif
 }
-
-
-
-

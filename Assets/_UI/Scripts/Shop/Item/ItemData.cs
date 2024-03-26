@@ -12,7 +12,7 @@ namespace _UI.Scripts.Shop.Item
         [SerializeField] private int cost;
         [SerializeField] private Sprite sprite;
 
-        public T ID => id;
+        public T Id => id;
         public int Cost => cost;
         public Sprite Sprite => sprite;
     }

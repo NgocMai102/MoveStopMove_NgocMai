@@ -103,6 +103,24 @@ namespace _Game.Utils
         Deadpool = 4,
         Thor = 5,
     }
+    
+    public enum ItemType
+    {
+        Hat = 0,
+        Pants = 1,
+        Accessory = 2,
+        Set = 3,
+    }
+
+    public enum ButtonState
+    {
+        None = 0,
+        Buy = 1,
+        Equip = 2,
+        Equipped = 3,
+    }
+    
+    
 }
 
 
