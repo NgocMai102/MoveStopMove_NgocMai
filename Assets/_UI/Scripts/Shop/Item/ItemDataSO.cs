@@ -9,13 +9,13 @@ namespace _UI.Scripts.Shop.Item
     public class ItemDataSO : ScriptableObject
     {
         [SerializeField] private List<ItemData<HatType>> hats;
-        [SerializeField] private List<ItemData<PantType>> pants;
+        [SerializeField] private List<ItemData<PantsType>> pants;
         [SerializeField] private List<ItemData<WeaponType>> weapons;
         [SerializeField] private List<ItemData<AccessoryType>> accessory;
         [SerializeField] private List<ItemData<SetType>> sets;
         
         public List<ItemData<HatType>> Hats => hats;
-        public List<ItemData<PantType>> Pants => pants;
+        public List<ItemData<PantsType>> Pants => pants;
         public List<ItemData<WeaponType>> Weapons => weapons;
         public List<ItemData<AccessoryType>> Accessory => accessory;
         public List<ItemData<SetType>> Sets => sets;

@@ -13,8 +13,8 @@ namespace _Game.Scripts.Manager.Data
             
         public const string PlayerWeapon = "playerWeapon";
         public const string PlayerHat = "playerHat";
-        public const string PlayerShield = "playerShield";
-        public const string PlayerPant = "playerPant";
+        public const string PlayerAccessory = "playerAccessory";
+        public const string PlayerPants = "playerPants";
         public const string PlayerSetSkin = "playerSetSkin";
     }
     
@@ -86,8 +86,8 @@ namespace _Game.Scripts.Manager.Data
             _data[KeyData.Level] = level;
             _data[KeyData.PlayerWeapon] = playerWeapon;
             _data[KeyData.PlayerHat] = playerHair;
-            _data[KeyData.PlayerShield] = playerShield;
-            _data[KeyData.PlayerPant] = playerPant;
+            _data[KeyData.PlayerAccessory] = playerShield;
+            _data[KeyData.PlayerPants] = playerPant;
             _data[KeyData.PlayerSetSkin] = playerSetSkin;
         }
 #endif

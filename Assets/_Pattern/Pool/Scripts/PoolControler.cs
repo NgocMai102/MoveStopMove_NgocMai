@@ -129,26 +129,25 @@ public class PoolAmount
 }
 
 
-[System.Serializable]
-public class ParticleAmount
-{
-    public Transform root;
-    public ParticleType particleType;
-    public ParticleSystem prefab;
-    public int amount;
-}
+    [System.Serializable]
+    public class ParticleAmount
+    {
+        public Transform root;
+        public ParticleType particleType;
+        public ParticleSystem prefab;
+        public int amount;
+    }
 
 
-public enum ParticleType
-{
+    public enum ParticleType
+    {
     
-}
+    }
 
-public enum PoolType
-{
-    None = 0,
-    Enemy = 1,
-    TargetIndicator = 2,
-    
-}
+    public enum PoolType
+    {
+        None = 0,
+        Enemy = 1,
+        TargetIndicator = 2,
+    }
 }

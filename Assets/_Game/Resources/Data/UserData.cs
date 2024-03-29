@@ -68,7 +68,7 @@ public class UserData : ScriptableObject
 
     public WeaponType playerWeapon;
     public HatType playerHair;
-    public PantType playerPant;
+    public PantsType playerPant;
     public AccessoryType playerAccessory;
     public SetType playerSkin;
 
@@ -177,7 +177,7 @@ public class UserData : ScriptableObject
 
         playerWeapon = GetEnumData(Key_Player_Weapon, WeaponType.Hammer);
         playerHair = GetEnumData(Key_Player_Hair, HatType.Arrow);
-        playerPant = GetEnumData(Key_Player_Pant, PantType.Batman);
+        playerPant = GetEnumData(Key_Player_Pant, PantsType.Batman);
         playerAccessory = GetEnumData(Key_Player_Accessory, AccessoryType.None);
         playerSkin = GetEnumData(Key_Player_Skin, SetType.Normal);
     }

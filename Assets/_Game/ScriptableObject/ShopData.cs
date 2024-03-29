@@ -10,7 +10,7 @@ using UnityEngine;
 public class ShopData : ScriptableObject
 {
     public ShopItemData<HatType> hats;
-    public ShopItemData<PantType> pants;
+    public ShopItemData<PantsType> pants;
     public ShopItemData<AccessoryType> accessories;
     //public ShopItemDatas<SkinType> skins;
 }

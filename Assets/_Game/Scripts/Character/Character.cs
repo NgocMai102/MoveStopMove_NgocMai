@@ -17,7 +17,6 @@ namespace _Game.Scripts.Character
     public class Character : GameUnit
     {
         public Transform model;
-        //public static event Action<Character> OnCharacterDead;
         [Header("Properties")]
         [SerializeField] private Animator anim;
         [SerializeField] private AttackRange attackRange;
@@ -30,8 +29,6 @@ namespace _Game.Scripts.Character
 
         private SphereCollider sphereCollider;
         private string currentAnimName;
-        //private Character otherCharacter;
-        
         private Action<Object> onCharacterDie;
         
         [SerializeField] private List<Character> enemyInRange = new List<Character>();
@@ -134,11 +131,6 @@ namespace _Game.Scripts.Character
             }
             int randomIndex = Random.Range(0, enemyInRange.Count);
             return enemyInRange[randomIndex].TF.position;
-        }
-
-        public bool CheckOnAttackRange(Character other)
-        {
-            return Vector3.Distance(other.TF.position ,TF.position) <= attackRangeRadius;
         }
         
         public void OnCharacterEnterRange(Character other)

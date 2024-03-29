@@ -43,18 +43,20 @@ namespace _Game.Utils
     public enum WeaponType
     {
         Hammer = 0,
+        Bommerang = 1,
+        Axe = 2,
         
-        W_Candy_1 = 1,
-        W_Candy_2 = 2,
-        W_Candy_3 = 3,
-        W_Boomerang_1 = 4,
-        W_Boomerang_2 = 5,
-        W_Boomerang_3 = 6,
-        Axe_0 = 7,
-        Axe_1 = 8,
-        Uzi = 9,
-        Z = 10,
-        Arrow = 11,
+        // W_Candy_1 = 1,
+        // W_Candy_2 = 2,
+        // W_Candy_3 = 3,
+        // W_Boomerang_1 = 4,
+        // W_Boomerang_2 = 5,
+        // W_Boomerang_3 = 6,
+        // Axe_0 = 7,
+        // Axe_1 = 8,
+        // Uzi = 9,
+        // Z = 10,
+        // Arrow = 11,
     }
 
     
@@ -66,13 +68,16 @@ namespace _Game.Utils
         Cowboy = 2,
         Crown = 3,
         Flower = 4,
-        Hair = 6,
-        Hat = 7,
-        Police = 8,
-        Luffy = 9,
+        Hair = 5,
+        Hat = 6,
+        Police = 7,
+        Luffy = 8,
+        Headphone = 9,
+        Horn = 10,
+        Rau = 11,
     }
 
-    public enum PantType 
+    public enum PantsType 
     {
         None = 0,
         Batman = 1,
@@ -89,9 +94,8 @@ namespace _Game.Utils
     public enum AccessoryType
     {
         None = 0,
-        Headphone = 1,
-        Horn = 2,
-        Rau = 3,
+        Captain_Shield = 1,
+        Captain_Batman = 2,
     }
 
     public enum SetType
@@ -114,13 +118,11 @@ namespace _Game.Utils
 
     public enum ButtonState
     {
-        None = 0,
-        Buy = 1,
-        Equip = 2,
-        Equipped = 3,
+        Lock = 0,
+        Unlock = 1,
+        Equipped = 2,
+        None = 3,
     }
-    
-    
 }
 
 

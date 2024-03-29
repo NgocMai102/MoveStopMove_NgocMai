@@ -15,25 +15,41 @@ namespace _Game.Scripts.UI.Shop
     public class SkinShopItem : ShopItem
     {
         [SerializeField] private Outline outline;
-        [SerializeField] private Image imgLock;
-        
-        
-        
+
+        [SerializeField] private UISkinShop shop;
         public void OnInit<T>(ItemType type, ItemData<T> itemData, State state) where T : Enum
         {
             base.OnInit<T>(type, itemData, state);
-            SetUIState();
+            SetUIState();  
+            SetState(state);
         }
 
-        private void SetSelectUI(bool check)
+        public void SetShop(UISkinShop shop)
         {
-            this.outline.enabled = check;
+            this.shop = shop;
+        }
+
+        internal void OnSelected()
+        {
+            shop.SelectItem(this);
+            //SetUIState();
+        }
+        
+        
+
+        public void SetSelectUI(bool check)
+        {
+            outline.enabled = check;
         }
 
         private void SetUIState()
         {
-            //imgEquiped.SetActive(CurrentState == State.Unlock);
-            imgLock.enabled = CurrentState == State.Lock;
+            imgLock.SetActive(CurrentState == State.Lock);
+        }
+
+        public void SetSelect()
+        {
+            //button.Select();
         }
     }
 }

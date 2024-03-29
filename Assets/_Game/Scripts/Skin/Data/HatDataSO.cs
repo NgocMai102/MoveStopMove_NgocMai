@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Game.Scripts.Skin.Data
 {
-    [CreateAssetMenu(fileName = "HairData", menuName = "ScriptableObjects/HatData")]
+    [CreateAssetMenu(fileName = "HatData", menuName = "ScriptableObjects/HatData")]
     public class HatDataSO : SkinDataSO<Hat>
     {
         
