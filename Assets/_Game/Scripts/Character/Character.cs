@@ -20,6 +20,8 @@ namespace _Game.Scripts.Character
         [Header("Properties")]
         [SerializeField] private Animator anim;
         [SerializeField] private AttackRange attackRange;
+
+        [SerializeField] private CharacterSkin characterSkin;
         //[SerializeField] private SphereCollider sphereCollider;
         
         [Header("Config")]
@@ -85,7 +87,7 @@ namespace _Game.Scripts.Character
 
             currentWeapon.OnInit(this);
             attackRange.OnInit(this);
-            
+            characterSkin.OnInit();
            // indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
            // indicator.SetTarget(indicatorPoint);
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Framework.Pool.Scripts;
+using _Game.Scripts.Manager.Level;
 using _Game.Scripts.UI.Shop;
 using _Game.UI.Scripts.Shop;
 using _Game.Utils;
@@ -153,6 +154,7 @@ namespace _UI.Scripts.Shop.SkinShop
         public void SelectItem(SkinShopItem item)
         {
             // an/hien outline
+            
             if (currentItem != null)
             {
                 currentItem.SetSelectUI(false);

@@ -10,6 +10,7 @@ using _Game.Utils;
 using _Pattern.StateMachine.PlayerState;
 using _UI.Scripts;
 using _UI.Scripts.Gameplay;
+using _UI.Scripts.Shop.SkinShop;
 using _UI.Scripts.UI;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace _Game.Scripts.Character.Player
     {
         [Header("Player Properties")] 
         [SerializeField] private Rigidbody rb;
+
+        [SerializeField] private PlayerSkin playerSkin;
 
         private Vector3 moveDirection;
         private bool startMove;
@@ -48,6 +51,7 @@ namespace _Game.Scripts.Character.Player
         {
             base.OnInit();
             InitState();
+            playerSkin.OnInit();
 
             startMove = false;
             

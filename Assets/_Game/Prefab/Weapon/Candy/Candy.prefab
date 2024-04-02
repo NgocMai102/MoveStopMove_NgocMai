@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2ad51dcfe579442b6d14769ce171f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 2
-  bulletType: 2
+  poolType: 0
+  bulletType: 0
 --- !u!1001 &2476925564226716234
 PrefabInstance:
   m_ObjectHideFlags: 0

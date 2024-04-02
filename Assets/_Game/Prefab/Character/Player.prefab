@@ -106,10 +106,10 @@ MonoBehaviour:
   head: {fileID: 8732774734555418569}
   rightHand: {fileID: 5976579289390814574}
   leftHand: {fileID: 4809976840551531805}
-  pants: {fileID: 0}
+  pants: {fileID: 154957976637446298}
   headSkin: {fileID: 11400000, guid: 40ce09689e950744d80d9009d438cd02, type: 2}
   leftHandSkin: {fileID: 11400000, guid: 9a288893dce71174da006fb61a80cfdf, type: 2}
-  rightHandSkin: {fileID: 0}
+  rightHandSkin: {fileID: 11400000, guid: 84a1964de79c9ea4badcd878c5b58eaf, type: 2}
   pantsSkin: {fileID: 11400000, guid: 91a35246f80b79d4995469b93189cf44, type: 2}
 --- !u!1 &77678990777696092
 GameObject:

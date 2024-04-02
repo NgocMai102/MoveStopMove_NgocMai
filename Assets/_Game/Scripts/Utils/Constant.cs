@@ -38,13 +38,15 @@ namespace _Game.Utils
     public class BulletSpeed
     {
         public const float STRAIGHT = 9f;
+        public const float ROTATION = 1000f;
     }
     
     public enum WeaponType
     {
-        Hammer = 0,
-        Bommerang = 1,
-        Axe = 2,
+        None = 0,
+        Hammer = 1,
+        Bommerang = 2,
+        Axe = 3,
         
         // W_Candy_1 = 1,
         // W_Candy_2 = 2,
@@ -114,6 +116,7 @@ namespace _Game.Utils
         Pants = 1,
         Accessory = 2,
         Set = 3,
+        Weapon = 4,
     }
 
     public enum ButtonState

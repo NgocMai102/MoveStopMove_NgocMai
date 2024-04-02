@@ -47,7 +47,7 @@ namespace _Game.UI.Scripts.Shop
         
         public void InitShopItem<T> (List<ItemData<T>> shopItems, ItemType itemType) where T : Enum
         {
-
+            
         }
         
         public override void CloseDirectly()

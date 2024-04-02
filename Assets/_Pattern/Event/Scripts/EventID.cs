@@ -5,7 +5,7 @@
         None = 0,
         OnCharacterDead = 1,
         OnSelectShopBar = 2,
-        OnSelectItem = 3,
+        OnSelectSkinItem = 3,
         
     }
 }

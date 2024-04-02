@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Game.Scripts.Manager.Data;
@@ -14,8 +15,7 @@ namespace _Game.Scripts.Character
         [SerializeField] private Transform head;
         [SerializeField] private Transform rightHand;
         [SerializeField] private Transform leftHand;
-        //[SerializeField] private Transform pants;
-        [SerializeField] private Material pants;
+        [SerializeField] private Renderer pants;
         
         [Header("SkinData")]
         [SerializeField] private SkinDataSO<Hat> headSkin;
@@ -28,7 +28,7 @@ namespace _Game.Scripts.Character
         protected Hat currentHat;
         protected Accessory currentAccessory;
         protected Weapon.Weapon currentWeapon;
-        protected Material currentPants;
+        protected Renderer currentPants;
 
         public virtual void OnInit()
         {
@@ -58,21 +58,23 @@ namespace _Game.Scripts.Character
                 currentAccessory = Instantiate(leftHandSkin.GetSkin((int)accessoryType), leftHand);
             }
         }
+        
+        protected void ChangeWeapon(WeaponType weaponType)
+        {
+            if (weaponType != WeaponType.None)
+            {
+                currentWeapon = Instantiate(rightHandSkin.GetSkin((int)weaponType), rightHand);
+            }
+        }
 
         protected void ChangePants(PantsType pantType)
         {
             if (pantType != PantsType.None)
             {
-                currentPants = pantsSkin.GetSkin((int)pantType);
-                //currentPants = Instantiate(pantsSkin.GetSkin((int)pantType), pants);
+                pants.material = pantsSkin.GetSkin((int)pantType); 
             }
         }
-
-        protected void ChangeWeapon(WeaponType weaponType)
-        {
-           
-        }
-
+        
         protected void DespawnHat()
         {
             if (currentHat)
@@ -81,27 +83,27 @@ namespace _Game.Scripts.Character
             }
         }
         
-        private void DespawnAccessory()
+        protected void DespawnAccessory()
         {
             if (currentAccessory)
             {
                 Destroy(currentAccessory.gameObject);
             }
         }
-        
-        private void DespawnPants()
-        {
-            if (currentPants)
-            {
-                
-            }
-        }
-        
-        private void DespawnWeapon()
+
+        protected void DespawnWeapon()
         {
             if (currentWeapon)
             {
                 Destroy(currentWeapon.gameObject);
+            }
+        }
+        
+        protected void DespawnPants()
+        {
+            if (currentPants)
+            {
+                pants.materials = Array.Empty<Material>();
             }
         }
         

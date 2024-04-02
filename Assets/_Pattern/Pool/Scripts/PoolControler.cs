@@ -149,5 +149,6 @@ public class PoolAmount
         None = 0,
         Enemy = 1,
         TargetIndicator = 2,
+        Bullet = 3,
     }
 }
