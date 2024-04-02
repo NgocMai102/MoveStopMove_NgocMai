@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: AccessoryData
   m_EditorClassIdentifier: 
   prefabs:
+  - {fileID: 0}
   - {fileID: 6612054352300953227, guid: 82e9d32aa6eb91447a82dea505255e4f, type: 3}
   - {fileID: 1794760441773854198, guid: 350cf2ac438d6704c97138c666845e19, type: 3}

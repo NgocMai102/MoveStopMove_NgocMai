@@ -21,7 +21,7 @@ namespace _Game.Scripts.UI.Shop
 
         public int id;
         public State CurrentState { get; private set; }
-        public Enum Type {get; private set;}
+        public ItemType Type {get; private set;}
         public Enum ID { get; private set; }
         public int Cost { get; private set; }
 

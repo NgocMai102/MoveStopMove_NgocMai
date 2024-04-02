@@ -11,6 +11,8 @@ namespace _UI.Scripts.Lose
     public class UILose : UICanvas
     {
         private int coin;
+        // [SerializeField] private TextMeshProUGUI rank;
+        // [SerializeField] private TextMeshProUGUI nameEnemy;
         [SerializeField] private TextMeshProUGUI cointText;
         [SerializeField] private RectTransform x3Point;
         [SerializeField] private RectTransform continuePoint;

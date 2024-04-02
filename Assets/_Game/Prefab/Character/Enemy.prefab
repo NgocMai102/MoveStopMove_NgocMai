@@ -1724,6 +1724,7 @@ GameObject:
   - component: {fileID: 6785464448852247631}
   - component: {fileID: 5984070916282477397}
   - component: {fileID: 4552150579062364087}
+  - component: {fileID: 357439851380434054}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Character
@@ -1770,8 +1771,10 @@ MonoBehaviour:
   currentWeapon: {fileID: 8553849331548131022}
   enemyInRange: []
   isDead: 0
+  size: 0
   navmeshAgent: {fileID: 6785464448852247631}
   circleIndicator: {fileID: 2989963090815899392}
+  enemySkin: {fileID: 357439851380434054}
 --- !u!195 &6785464448852247631
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1824,6 +1827,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &357439851380434054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6785464448852247629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cd8e2d35466c1408e876247d23076e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 2888472463549424065}
+  rightHand: {fileID: 6576884952011822558}
+  leftHand: {fileID: 2099979084344665459}
+  pants: {fileID: 6988994866211461570}
+  headSkin: {fileID: 11400000, guid: 40ce09689e950744d80d9009d438cd02, type: 2}
+  leftHandSkin: {fileID: 11400000, guid: 9a288893dce71174da006fb61a80cfdf, type: 2}
+  rightHandSkin: {fileID: 11400000, guid: 84a1964de79c9ea4badcd878c5b58eaf, type: 2}
+  pantsSkin: {fileID: 11400000, guid: 91a35246f80b79d4995469b93189cf44, type: 2}
 --- !u!1 &6785464449121059218
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,7 +52,7 @@ namespace _Game.Scripts.Character.Player
             base.OnInit();
             InitState();
             playerSkin.OnInit();
-
+            
             startMove = false;
             
             TF.position = Vector3.zero;

@@ -32,11 +32,8 @@ namespace _Game.Scripts.UI.Shop
         internal void OnSelected()
         {
             shop.SelectItem(this);
-            //SetUIState();
         }
         
-        
-
         public void SetSelectUI(bool check)
         {
             outline.enabled = check;

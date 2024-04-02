@@ -20,8 +20,7 @@ namespace _Game.Scripts.Character
         [Header("Properties")]
         [SerializeField] private Animator anim;
         [SerializeField] private AttackRange attackRange;
-
-        [SerializeField] private CharacterSkin characterSkin;
+        
         //[SerializeField] private SphereCollider sphereCollider;
         
         [Header("Config")]
@@ -78,7 +77,7 @@ namespace _Game.Scripts.Character
             isAttackable = true;
             
             size = 1;
-            SetSize(this.size);
+            SetSize(size);
             
             score = 0;
             enemyInRange.Clear();
@@ -87,8 +86,7 @@ namespace _Game.Scripts.Character
 
             currentWeapon.OnInit(this);
             attackRange.OnInit(this);
-            characterSkin.OnInit();
-           // indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+            // indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
            // indicator.SetTarget(indicatorPoint);
         }
         
@@ -141,7 +139,6 @@ namespace _Game.Scripts.Character
             {
                 enemyInRange.Add(other);
             }
-            
         }
         
         public void OnCharacterExitRange(Character other)
@@ -178,6 +175,7 @@ namespace _Game.Scripts.Character
             Vector3 tmpPos = target - model.position;
             tmpPos.y = 0;
             TF.forward = tmpPos.normalized;
+            //TF.LookAt(target + (TF.position.y - target.y) * Vector3.up);
         }
         
         public void ResetModelRotation()
@@ -200,7 +198,7 @@ namespace _Game.Scripts.Character
         {
             isDead = true;
             this.PostEvent(EventID.OnCharacterDead, this);
-            //RemoveEvents();
+            
         }
 
         public virtual void StopMove()

@@ -14,18 +14,23 @@ namespace _Game.Scripts.Character.Player
     public class PlayerSkin : CharacterSkin
     {
 
-        private PlayerData playerData => DataManager.Instance.PlayerData;
+        private PlayerData PlayerData => DataManager.Instance.PlayerData;
         private Action<object> onSelectSkinItem;
+        private Action<object> onCloseSkinShop;
 
         private void OnEnable()
         {
             onSelectSkinItem = (param) => TryCloth((ShopItem) param);
             this.RegisterListener(EventID.OnSelectSkinItem, onSelectSkinItem);
+            
+            onCloseSkinShop = _ => OnInit();
+            this.RegisterListener(EventID.OnCloseSkinShop, onCloseSkinShop);
         }
 
         private void OnDisable()
         {
             this.RemoveListener(EventID.OnSelectSkinItem, onSelectSkinItem);
+            this.RemoveListener(EventID.OnCloseSkinShop, onCloseSkinShop);
         }
 
         public void OnInit()
@@ -33,8 +38,8 @@ namespace _Game.Scripts.Character.Player
             base.OnInit();
             ChangeHat((HatType) PlayerData.GetIntData(KeyData.PlayerHat));
             ChangePants((PantsType) PlayerData.GetIntData(KeyData.PlayerPants));
-            ChangeAccessory((AccessoryType) PlayerData.GetIntData(KeyData.PlayerAccessory));
-            ChangeWeapon((WeaponType) PlayerData.GetIntData(KeyData.PlayerWeapon));
+            //ChangeAccessory((AccessoryType) PlayerData.GetIntData(KeyData.PlayerAccessory));
+            //ChangeWeapon((WeaponType) PlayerData.GetIntData(KeyData.PlayerWeapon));
         }
         
         private void TryCloth(ShopItem item) 
@@ -61,6 +66,11 @@ namespace _Game.Scripts.Character.Player
                     ChangeWeapon((WeaponType) item.ID);
                     break;
             }
+        }
+
+        public void OnCloseSkinShop()
+        {
+            
         }
         
     }

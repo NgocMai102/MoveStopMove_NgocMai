@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e619edf0f9615c4589a829b533d98bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 74
 --- !u!1001 &6043374740181774207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,6 +99,18 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: a5b92c71f247e634b93748ec28ce2cfe, type: 3}
       propertyPath: m_Name
       value: Ear
+      objectReference: {fileID: 0}
+    - target: {fileID: 5189150191396706608, guid: a5b92c71f247e634b93748ec28ce2cfe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5189150191396706608, guid: a5b92c71f247e634b93748ec28ce2cfe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5189150191396706608, guid: a5b92c71f247e634b93748ec28ce2cfe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.01449698
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5b92c71f247e634b93748ec28ce2cfe, type: 3}

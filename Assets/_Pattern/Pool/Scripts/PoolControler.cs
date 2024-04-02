@@ -128,8 +128,7 @@ public class PoolAmount
     }
 }
 
-
-    [System.Serializable]
+[System.Serializable]
     public class ParticleAmount
     {
         public Transform root;

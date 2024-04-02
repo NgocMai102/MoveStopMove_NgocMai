@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using _Framework.Event.Scripts;
 using _Framework.Pool.Scripts;
 using _Game.Scripts.Manager.Level;
 using _Game.Scripts.UI.Shop;
 using _Game.UI.Scripts.Shop;
 using _Game.Utils;
 using _UI.Scripts.Shop.Item;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _UI.Scripts.Shop.SkinShop
@@ -13,6 +15,8 @@ namespace _UI.Scripts.Shop.SkinShop
     
     public class UISkinShop : UIShop
     {
+        protected ShopBar currentBar;
+        
         [SerializeField] private Transform content;
         [SerializeField] private ShopBar[] shopBars;
         [SerializeField] private SkinShopItem skinShopItemPrefab;
@@ -24,17 +28,20 @@ namespace _UI.Scripts.Shop.SkinShop
         [SerializeField] private SkinShopItem equipedItem;
         private MiniPool<SkinShopItem> skinItemPool = new MiniPool<SkinShopItem>();
         
-        
-        protected ShopBar currentBar;
+        private Action<object> onCloseSkinShop;
 
         public void Awake()
         {
+            
+            
             skinItemPool.OnInit(skinShopItemPrefab, 0, content);
             for(int i = 0; i < shopBars.Length; i++)
             {
                 shopBars[i].SetShop(this);
             }
         }
+
+        
         
         public override void Open()
         {
@@ -48,7 +55,7 @@ namespace _UI.Scripts.Shop.SkinShop
         public void ReloadData()
         {
             SelectShopBar(currentBar);
-            GetEquipedData();
+            //GetEquipedData();
             //TODO: Update coin text
         }
 
@@ -59,12 +66,11 @@ namespace _UI.Scripts.Shop.SkinShop
             currentItem.SetLock(false);
             
             SetButtonState(currentItem);
-            Debug.Log(currentItem);
-            Debug.Log(currentItem.CurrentState);
-            
+            PlayerData.OnEquipItem(currentItemType, currentItem.ID);
+
             ReloadData();
             
-            currentItem.SetSelect();
+            //currentItem.SetSelect();
             
         }
 
@@ -75,6 +81,7 @@ namespace _UI.Scripts.Shop.SkinShop
                 OnResetEquipingItem();
             
                 SetButton((int) ButtonState.Equipped);
+                
             }
         }
 
@@ -130,7 +137,6 @@ namespace _UI.Scripts.Shop.SkinShop
                 item.SetShop(this);
                 CheckEquip(item);
             }
-            
         }
 
         public void CheckEquip(SkinShopItem item)
@@ -153,7 +159,7 @@ namespace _UI.Scripts.Shop.SkinShop
 
         public void SelectItem(SkinShopItem item)
         {
-            // an/hien outline
+            this.PostEvent(EventID.OnSelectSkinItem, item);
             
             if (currentItem != null)
             {
@@ -162,11 +168,12 @@ namespace _UI.Scripts.Shop.SkinShop
             currentItem = item;
             currentItem.SetSelectUI(true);
             SetButtonState(item);
+           
             
-            if(equipedTypes.Contains(item.Type))
-            {
-                SetButton((int) ButtonState.Equipped);
-            }
+            // if(equipedTypes.Contains(item.Type))
+            // {
+            //     SetButton((int) ButtonState.Equipped);
+            // }
         }
 
         public void OnResetEquipingItem()
@@ -180,18 +187,25 @@ namespace _UI.Scripts.Shop.SkinShop
             if (equipedItem != null)
             {
                 equipedItem.SetEquipped(true);
+                PlayerData.OnEquipItem(currentItemType, currentItem.ID);
             }
-//            equipedTypes[(int) currentItemType] = equipedItem.Type;
+            //equipedTypes[(int) currentItemType] = equipedItem.Type;
             //Debug.Log((int) currentItemType);
+            //Debug.Log(equipedTypes.Count);
+        }
+
+        public void CloseBtn()
+        {
+            base.CloseBtn();
+            this.PostEvent(EventID.OnCloseSkinShop);
         }
 
         public void GetEquipedData()
         {
             equipedTypes.Clear();
-            // equipedTypes.Add(ItemType.Hat);
-            // equipedTypes.Add(ItemType.Pants);
-            // equipedTypes.Add(ItemType.Accessory);
-            // equipedTypes.Add(ItemType.Set);
+            equipedTypes.Add(ItemType.Pants);
+            equipedTypes.Add(ItemType.Accessory);
+            equipedTypes.Add(ItemType.Set);
         }
 
     }

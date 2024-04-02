@@ -70,7 +70,7 @@ namespace _Game.Scripts.Manager.Level
             player.OnInit();
             isRevive = false;
 
-            for (int i = 0; i < currentLevel.TotalEnemyReal; i++)
+            for (int i = 0; i < currentLevel.TotalEnemy; i++)
             {
                 SpawnEnemy(null);
             }
