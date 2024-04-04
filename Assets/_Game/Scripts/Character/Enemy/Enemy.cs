@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using _Framework.StateMachine;
-using _Game.Utils;
 using _Pattern.StateMachine.EnemyState;
 using UnityEngine;
 
@@ -10,10 +7,8 @@ namespace _Game.Scripts.Character.Enemy
     public class Enemy : Character
     {
         [SerializeField] private UnityEngine.AI.NavMeshAgent navmeshAgent;
-
         [SerializeField] private GameObject circleIndicator;
-        [SerializeField] private EnemySkin enemySkin;
-        
+
         private StateMachine<Enemy> currentState;
         private Vector3 destination;
         
@@ -45,8 +40,6 @@ namespace _Game.Scripts.Character.Enemy
                 currentState = new StateMachine<Enemy>();
             }
             currentState.SetOwner(this);
-            enemySkin.OnInit();
-            //currentState.ChangeState(new EIdleState());
         }
         #endregion
 

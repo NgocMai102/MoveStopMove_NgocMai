@@ -2,12 +2,11 @@ using System;
 using System.Collections.Generic;
 using _Framework.Event.Scripts;
 using _Framework.Pool.Scripts;
-using _Game.Scripts.Manager.Level;
+using _Game.Scripts.Manager.Data;
 using _Game.Scripts.UI.Shop;
 using _Game.UI.Scripts.Shop;
 using _Game.Utils;
 using _UI.Scripts.Shop.Item;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _UI.Scripts.Shop.SkinShop
@@ -26,39 +25,32 @@ namespace _UI.Scripts.Shop.SkinShop
         private ItemType currentItemType;
         private SkinShopItem currentItem;
         [SerializeField] private SkinShopItem equipedItem;
+        
+        private List<int> equipedTypes = new List<int>();
         private MiniPool<SkinShopItem> skinItemPool = new MiniPool<SkinShopItem>();
         
         private Action<object> onCloseSkinShop;
 
         public void Awake()
         {
-            
-            
             skinItemPool.OnInit(skinShopItemPrefab, 0, content);
             for(int i = 0; i < shopBars.Length; i++)
             {
                 shopBars[i].SetShop(this);
             }
         }
-
-        
         
         public override void Open()
         {
             base.Open();
-            currentBar = shopBars[0];
-            
             ReloadData();
-            //CameraFollow.Instance.ChangeState(CameraFollow.State.Shop);
-        }
-
-        public void ReloadData()
-        {
+            
+            currentBar = shopBars[0];
             SelectShopBar(currentBar);
-            //GetEquipedData();
-            //TODO: Update coin text
+            
+            
         }
-
+        
         public void OnClickBuyButton()
         {
             //TODO: Check if player has enough coin
@@ -66,26 +58,22 @@ namespace _UI.Scripts.Shop.SkinShop
             currentItem.SetLock(false);
             
             SetButtonState(currentItem);
-            PlayerData.OnEquipItem(currentItemType, currentItem.ID);
-
+            
             ReloadData();
-            
-            //currentItem.SetSelect();
-            
         }
 
         public void OnClickEquipButton()
         { 
             if (currentItem != null) {
-                ReloadData();
                 OnResetEquipingItem();
-            
                 SetButton((int) ButtonState.Equipped);
-                
+
+                ReloadData();
+                currentItem.SetEquippedUI(true);
             }
         }
 
-        public void SelectShopBar(ShopBar shopBar)
+        internal void SelectShopBar(ShopBar shopBar)
         {
             if (shopBar != null)
             {
@@ -125,23 +113,24 @@ namespace _UI.Scripts.Shop.SkinShop
         public void InitShopItem<T> (List<ItemData<T>> shopItems, ItemType itemType) where T : Enum
         {
             base.InitShopItem(shopItems, itemType);
-            
             skinItemPool.Collect();
             
             for (int i = 0; i < shopItems.Count; i++)
             {
                 SkinShopItem.State state = (SkinShopItem.State) PlayerData.GetItemState(itemType, shopItems[i].Id);
                 SkinShopItem item = skinItemPool.Spawn();
-                item.OnInit(itemType, shopItems[i], state);
                 
+                item.OnInit(itemType, shopItems[i], state);
                 item.SetShop(this);
+                item.SetSelectUI(false);
+                
                 CheckEquip(item);
             }
         }
 
         public void CheckEquip(SkinShopItem item)
         {
-            if (equipedTypes.Contains(item.Type))
+            if (equipedTypes[(int) item.Type] == Convert.ToInt32(item.ID))
             {
                 equipedItem = item;
                 SetButtonState(item);
@@ -150,17 +139,12 @@ namespace _UI.Scripts.Shop.SkinShop
                     currentItem = equipedItem;
                 }
                 
-                SelectItem(currentItem);
-                equipedItem.SetEquipped(true);
-
-                currentItem.SetSelect();
+                equipedItem.SetEquippedUI(true);
             }
         }
 
         public void SelectItem(SkinShopItem item)
         {
-            this.PostEvent(EventID.OnSelectSkinItem, item);
-            
             if (currentItem != null)
             {
                 currentItem.SetSelectUI(false);
@@ -169,47 +153,64 @@ namespace _UI.Scripts.Shop.SkinShop
             currentItem.SetSelectUI(true);
             SetButtonState(item);
            
+            if (equipedTypes[(int) item.Type] == Convert.ToInt32(item.ID))
+            {
+                SetButton((int) ButtonState.Equipped);
+            }
             
-            // if(equipedTypes.Contains(item.Type))
-            // {
-            //     SetButton((int) ButtonState.Equipped);
-            // }
+            this.PostEvent(EventID.OnSelectSkinItem, item);
         }
 
         public void OnResetEquipingItem()
         {
-            if (equipedItem)
+            if (equipedItem != null)
             {
-                equipedItem.SetEquipped(false);
+                equipedItem.SetEquippedUI(false);
             }
 
             equipedItem = currentItem;
             if (equipedItem != null)
             {
-                equipedItem.SetEquipped(true);
+                equipedItem.SetEquippedUI(true);
                 PlayerData.OnEquipItem(currentItemType, currentItem.ID);
             }
-            //equipedTypes[(int) currentItemType] = equipedItem.Type;
-            //Debug.Log((int) currentItemType);
-            //Debug.Log(equipedTypes.Count);
         }
+
+        #region Data
+        public void ReloadData()
+        {
+            //SelectShopBar(currentBar);
+            
+            UpdateEquipedData();
+            GetEquipedData();
+            //TODO: Update coin text
+            
+        }
+        
+        public void GetEquipedData()
+        {
+            equipedTypes.Clear();
+            equipedTypes.Add(PlayerData.GetIntData(KeyData.PlayerHat));
+            equipedTypes.Add(PlayerData.GetIntData(KeyData.PlayerPants));
+            equipedTypes.Add(PlayerData.GetIntData(KeyData.PlayerAccessory));
+            equipedTypes.Add(PlayerData.GetIntData(KeyData.PlayerSetSkin));
+        }
+
+        public void UpdateEquipedData()
+        {
+            if (equipedItem == null)
+            {
+                return;
+            }
+            equipedTypes[(int) equipedItem.Type] = Convert.ToInt32(equipedItem.ID);
+        }
+        #endregion
 
         public void CloseBtn()
         {
             base.CloseBtn();
             this.PostEvent(EventID.OnCloseSkinShop);
         }
-
-        public void GetEquipedData()
-        {
-            equipedTypes.Clear();
-            equipedTypes.Add(ItemType.Pants);
-            equipedTypes.Add(ItemType.Accessory);
-            equipedTypes.Add(ItemType.Set);
-        }
-
     }
-    
-    
 }
 

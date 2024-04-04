@@ -6,7 +6,6 @@ using _Game.UI.Scripts.Shop;
 using _Game.Utils;
 using _UI.Scripts.Shop.Item;
 using _UI.Scripts.Shop.SkinShop;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +16,17 @@ namespace _Game.Scripts.UI.Shop
         [SerializeField] private Outline outline;
 
         [SerializeField] private UISkinShop shop;
+        
+        // public void OnEnable()
+        // {
+        //     base.OnEnable();
+        // }
+
+        public void OnDisable()
+        {
+            SetSelectUI(false);
+        }
+
         public void OnInit<T>(ItemType type, ItemData<T> itemData, State state) where T : Enum
         {
             base.OnInit<T>(type, itemData, state);
@@ -42,11 +52,6 @@ namespace _Game.Scripts.UI.Shop
         private void SetUIState()
         {
             imgLock.SetActive(CurrentState == State.Lock);
-        }
-
-        public void SetSelect()
-        {
-            //button.Select();
         }
     }
 }

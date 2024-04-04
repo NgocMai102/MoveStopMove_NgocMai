@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using _Framework.Pool.Scripts;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -148,6 +146,9 @@ public class PoolAmount
         None = 0,
         Enemy = 1,
         TargetIndicator = 2,
-        Bullet = 3,
+        
+        StraightBullet = 3,
+        RotateBullet = 4,
+        BoomerangBullet = 5,
     }
 }

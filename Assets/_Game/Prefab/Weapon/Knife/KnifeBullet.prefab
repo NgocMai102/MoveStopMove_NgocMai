@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9071053251269183988}
-  - component: {fileID: -207787797531621821}
   - component: {fileID: 5329201284615986359}
-  m_Layer: 0
+  - component: {fileID: 6972792490459283435}
+  m_Layer: 6
   m_Name: KnifeBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-207787797531621821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9071053251269183989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 162c7bbb010d0d34f96507d208c5853f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolType: 3
 --- !u!65 &5329201284615986359
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55,11 +42,24 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9071053251269183989}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.11969943, y: 0.55366373, z: 0.04078289}
-  m_Center: {x: 0.0010097474, y: -0.20261508, z: -0.0023125215}
+  m_Size: {x: 0.18014136, y: 0.5613885, z: 0.8996487}
+  m_Center: {x: -0.0023544617, y: -0.20647746, z: 0.033524007}
+--- !u!114 &6972792490459283435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9071053251269183989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439a08d7e211c0d48aca1df29628d399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolType: 3
 --- !u!1001 &9071053251817574824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,23 +85,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45a7f1f235013024999f3a3fe3510af3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45a7f1f235013024999f3a3fe3510af3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00000008146034
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45a7f1f235013024999f3a3fe3510af3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45a7f1f235013024999f3a3fe3510af3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45a7f1f235013024999f3a3fe3510af3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 45a7f1f235013024999f3a3fe3510af3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

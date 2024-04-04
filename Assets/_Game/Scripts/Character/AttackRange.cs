@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using _Framework.Pool.Scripts;
 using _Game.Utils;
 using UnityEngine;

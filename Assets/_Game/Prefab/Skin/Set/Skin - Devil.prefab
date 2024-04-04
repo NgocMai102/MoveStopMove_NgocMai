@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5663882509461397900}
+  - component: {fileID: -6434003217007186296}
   m_Layer: 0
   m_Name: Skin - Devil
   m_TagString: Untagged
@@ -32,6 +33,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6434003217007186296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663882509461397901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d7b03291896b4bb3b78f52f0de8fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5663882510459949903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39,6 +52,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5663882509461397900}
     m_Modifications:
+    - target: {fileID: 1516780512469302754, guid: 0d7350d76cba9fe4989aa23ab969e772, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 8852321937590121897, guid: e6f363834ca6cbe4d8f7406f075bc138, type: 3}
+    - target: {fileID: 3476512059933553937, guid: 0d7350d76cba9fe4989aa23ab969e772, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 5836874344318719176, guid: 93b8f7a013b9f3b42b21b4ee18723737, type: 3}
+    - target: {fileID: 7889500107997533532, guid: 0d7350d76cba9fe4989aa23ab969e772, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -2813467912831258332, guid: 179b83d00d7f3394bacb6b1ba3701b89, type: 3}
+    - target: {fileID: 7889500107997533532, guid: 0d7350d76cba9fe4989aa23ab969e772, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -6342995146079304548, guid: 631dc824c667e2141af72f923cc34829, type: 3}
+    - target: {fileID: 9084205527868188873, guid: 0d7350d76cba9fe4989aa23ab969e772, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 5836874344318719176, guid: 93b8f7a013b9f3b42b21b4ee18723737, type: 3}
     - target: {fileID: 9084205528610429075, guid: 0d7350d76cba9fe4989aa23ab969e772, type: 3}
       propertyPath: m_RootOrder
       value: 0

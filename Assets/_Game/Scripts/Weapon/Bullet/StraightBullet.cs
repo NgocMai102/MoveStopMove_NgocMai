@@ -1,16 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using _Game.Scripts.Weapon.Bullet;
 using UnityEngine;
 
 namespace _Game.Scripts.Weapon.Bullet
 {
     public class StraightBullet : Bullet
     {
-        public void OnInit(Character.Character owner, Vector3 targetPoint, float size)
+        public override void Move()
         {
-            base.OnInit(owner, targetPoint, size);
-            
+            TF.position += TF.forward * Time.deltaTime * moveSpeed;
+            if (CanDespawn())
+            {
+                OnDespawn();
+            }
+        }
+
+        public override void SetUp()
+        {
+            //Quaternion quaternion = Quaternion.LookRotation(moveDirection);
+            //TF.rotation = quaternion;
         }
     }
 }

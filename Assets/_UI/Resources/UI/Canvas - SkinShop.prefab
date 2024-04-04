@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 1235891465117294758}
   - component: {fileID: 3963902228902650061}
   m_Layer: 5
-  m_Name: Pant
+  m_Name: Pants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1366,6 +1366,7 @@ MonoBehaviour:
   - {fileID: 680007691469127199}
   skinShopItemPrefab: {fileID: 4015999344593485947, guid: 27b64e9cf3945cd40949d70baeea58b9, type: 3}
   itemDataSO: {fileID: 11400000, guid: 7a0a717d8c0d4f74b881d4e5827d906e, type: 2}
+  equipedItem: {fileID: 0}
 --- !u!1 &1235891465555565471
 GameObject:
   m_ObjectHideFlags: 0

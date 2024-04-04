@@ -43,7 +43,7 @@ namespace _Pattern.StateMachine.EnemyState
             if(timer >= despawnTimer)
             {
                 Despawn(t);
-                Debug.Log("Despawn");
+              
             }
         }
         

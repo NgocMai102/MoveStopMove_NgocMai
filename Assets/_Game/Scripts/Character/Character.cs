@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using _Framework.Event.Scripts;
 using _Framework.Pool.Scripts;
-using _Game.Camera;
-using _Game.UI.Scripts.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using _Game.Utils;
@@ -20,6 +17,7 @@ namespace _Game.Scripts.Character
         [Header("Properties")]
         [SerializeField] private Animator anim;
         [SerializeField] private AttackRange attackRange;
+        [SerializeField] private CharacterSkin characterSkin;
         
         //[SerializeField] private SphereCollider sphereCollider;
         
@@ -27,24 +25,22 @@ namespace _Game.Scripts.Character
         [SerializeField] protected float moveSpeed;
         [SerializeField] protected Weapon.Weapon currentWeapon;
 
-
         private SphereCollider sphereCollider;
         private string currentAnimName;
         private Action<Object> onCharacterDie;
         
-        [SerializeField] private List<Character> enemyInRange = new List<Character>();
+        private List<Character> enemyInRange = new List<Character>();
         private bool isAttackable;
-
         //[SerializeField] private Transform indicatorPoint;
        // protected TargetIndicator indicator;
         
         private float attackRangeRadius;
-        private float sphereColliderRadius;
         private int score;
         
-        [SerializeField] protected bool isDead;
-        [SerializeField] protected float size;
-        
+        protected bool isDead;
+        protected float size;
+
+        public Vector3 ThrowPoint => characterSkin.RightHand.position;
 
         #region Getter
         
@@ -53,8 +49,7 @@ namespace _Game.Scripts.Character
 
         public bool FoundCharacter => enemyInRange.Count > 0;
         public float AttackRangeRadius => attackRangeRadius;
-        public float SphereColliderRadius => sphereColliderRadius;
-        
+
         public int Score => score;
         public float Size => size;
 
@@ -86,6 +81,7 @@ namespace _Game.Scripts.Character
 
             currentWeapon.OnInit(this);
             attackRange.OnInit(this);
+            characterSkin.OnInit();
             // indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
            // indicator.SetTarget(indicatorPoint);
         }
@@ -175,7 +171,7 @@ namespace _Game.Scripts.Character
             Vector3 tmpPos = target - model.position;
             tmpPos.y = 0;
             TF.forward = tmpPos.normalized;
-            //TF.LookAt(target + (TF.position.y - target.y) * Vector3.up);
+            
         }
         
         public void ResetModelRotation()

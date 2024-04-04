@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using _Game.Scripts.Manager.Data;
 using _Game.Scripts.Skin.Base;
 using _Game.Scripts.Skin.Data;
@@ -9,33 +7,36 @@ using UnityEngine;
 
 namespace _Game.Scripts.Character
 {
-    public class CharacterSkin : MonoBehaviour
+    public abstract class CharacterSkin : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private Transform head;
         [SerializeField] private Transform rightHand;
         [SerializeField] private Transform leftHand;
         [SerializeField] private Renderer pants;
+        [SerializeField] private Transform set;
         
         [Header("SkinData")]
         [SerializeField] private SkinDataSO<Hat> headSkin;
         [SerializeField] private SkinDataSO<Accessory> leftHandSkin;
         [SerializeField] private SkinDataSO<Weapon.Weapon> rightHandSkin;
         [SerializeField] private SkinDataSO<Material> pantsSkin;
+        [SerializeField] private SkinDataSO<SetSkin> setSkin;
         
-        protected PlayerData PlayerData => DataManager.Instance.PlayerData;
 
         protected Hat currentHat;
         protected Accessory currentAccessory;
         protected Weapon.Weapon currentWeapon;
         protected Renderer currentPants;
 
+        public Transform RightHand => rightHand;
+
         public virtual void OnInit()
         {
             TakeOffClothes();
         }
 
-        private void TakeOffClothes()
+        protected void TakeOffClothes()
         {
             DespawnHat();
             DespawnPants(); 

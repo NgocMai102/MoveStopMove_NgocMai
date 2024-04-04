@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace _Game.Utils
 {
@@ -37,6 +33,7 @@ namespace _Game.Utils
 
     public class BulletSpeed
     {
+        public const float BOOMERANG = 5f;
         public const float STRAIGHT = 9f;
         public const float ROTATION = 1000f;
     }
@@ -47,18 +44,6 @@ namespace _Game.Utils
         Hammer = 1,
         Bommerang = 2,
         Axe = 3,
-        
-        // W_Candy_1 = 1,
-        // W_Candy_2 = 2,
-        // W_Candy_3 = 3,
-        // W_Boomerang_1 = 4,
-        // W_Boomerang_2 = 5,
-        // W_Boomerang_3 = 6,
-        // Axe_0 = 7,
-        // Axe_1 = 8,
-        // Uzi = 9,
-        // Z = 10,
-        // Arrow = 11,
     }
 
     
@@ -97,7 +82,7 @@ namespace _Game.Utils
     {
         None = 0,
         Captain_Shield = 1,
-        Captain_Batman = 2,
+        Batman_Shield = 2,
     }
 
     public enum SetType

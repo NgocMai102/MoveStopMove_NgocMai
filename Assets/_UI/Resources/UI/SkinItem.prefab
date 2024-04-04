@@ -484,7 +484,6 @@ MonoBehaviour:
   imgIcon: {fileID: 9183610195795495797}
   imgEquiped: {fileID: 4564138566556401917}
   imgLock: {fileID: 9183610194304490362}
-  button: {fileID: 9183610195661009886}
   id: 0
   outline: {fileID: 2349707501594031948}
   shop: {fileID: 2006942831677915856, guid: d6c0270751e9f824aab4153c781edae7, type: 3}

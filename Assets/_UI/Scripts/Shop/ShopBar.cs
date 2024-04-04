@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Game.Utils;
@@ -15,7 +16,12 @@ namespace _Game.UI.Scripts.Shop
         
         public ItemType Type => type;
         private UISkinShop shop;
-        
+
+        public void OnEnable()
+        {
+            SetActive(false);
+        }
+
         public void SetActive(bool active)
         {
             bg.enabled = !active;

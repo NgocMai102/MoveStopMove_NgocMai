@@ -1,19 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using _Framework.Pool.Scripts;
 using _Game.Scripts.Manager.Data;
-using _Game.Scripts.Manager.Level;
 using _Game.Scripts.UI.Shop;
 using _Game.Utils;
 using _UI.Scripts;
 using _UI.Scripts.Shop.Item;
-using Palmmedia.ReportGenerator.Core.Reporting.Builders;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UIElements;
-
 
 namespace _Game.UI.Scripts.Shop
 {
@@ -22,10 +15,9 @@ namespace _Game.UI.Scripts.Shop
         [SerializeField] private GameObject[] buttons;
         
         private MiniPool<ShopItem> shopItems;
-
-        public List<Enum> equipedTypes = new List<Enum>();
         protected PlayerData PlayerData => DataManager.Instance.PlayerData;
         
+
         protected void SetButtonState(ShopItem item)
         {
             int index = (int) item.CurrentState;

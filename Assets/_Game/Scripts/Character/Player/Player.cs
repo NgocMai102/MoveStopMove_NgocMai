@@ -21,9 +21,7 @@ namespace _Game.Scripts.Character.Player
     {
         [Header("Player Properties")] 
         [SerializeField] private Rigidbody rb;
-
-        [SerializeField] private PlayerSkin playerSkin;
-
+        
         private Vector3 moveDirection;
         private bool startMove;
         public bool IsMoving => moveDirection != Vector3.zero;
@@ -51,8 +49,7 @@ namespace _Game.Scripts.Character.Player
         {
             base.OnInit();
             InitState();
-            playerSkin.OnInit();
-            
+
             startMove = false;
             
             TF.position = Vector3.zero;

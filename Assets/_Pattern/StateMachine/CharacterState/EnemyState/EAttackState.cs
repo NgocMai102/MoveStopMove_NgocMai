@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using _Framework.StateMachine;
 using _Game.Scripts.Character.Enemy;
 using _Game.Utils;

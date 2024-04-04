@@ -856,6 +856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 53886631808583302, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 53886631808583303, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -900,11 +904,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 53886632668549252, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2879208992170218936, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7668946915868229456, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8442546729832039784, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -1047,6 +1059,37 @@ Transform:
   - {fileID: 1025233297}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1146634215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1146634216}
+  m_Layer: 0
+  m_Name: BoomerangBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1146634216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146634215}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1952959146}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1390460686
 GameObject:
@@ -1271,11 +1314,19 @@ MonoBehaviour:
     amount: 0
     collect: 0
   - root: {fileID: 1010289671}
-    prefab: {fileID: 4184369395026303361, guid: a4cf154c9f787104980090315b23f985, type: 3}
+    prefab: {fileID: 2377372795301973306, guid: 97515c43ae648ed43b868f5b23154771, type: 3}
     amount: 0
     collect: 0
   - root: {fileID: 2144639398}
     prefab: {fileID: 2862773804895604448, guid: 147fa002742a64f48afd5b8d17c58bc1, type: 3}
+    amount: 0
+    collect: 0
+  - root: {fileID: 386760700}
+    prefab: {fileID: 6972792490459283435, guid: fa2611fec9dd49641beaae6d23d08c35, type: 3}
+    amount: 0
+    collect: 0
+  - root: {fileID: 1146634216}
+    prefab: {fileID: 6909785343732682912, guid: 9e504da175ffa7e4084ea68d2cd2a1c8, type: 3}
     amount: 0
     collect: 0
   Particle: []
@@ -1294,6 +1345,7 @@ Transform:
   - {fileID: 455599510}
   - {fileID: 1010289671}
   - {fileID: 386760700}
+  - {fileID: 1146634216}
   m_Father: {fileID: 1142656633}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

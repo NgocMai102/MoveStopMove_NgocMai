@@ -1,9 +1,5 @@
-using _Framework.Pool.Scripts;
 using _Framework.Singleton;
 using _Game.Scripts.Character.Player;
-using _UI.Scripts.UI;
-using UnityEditor;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 namespace _Game.Camera
