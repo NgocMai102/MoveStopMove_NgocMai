@@ -16,7 +16,7 @@ namespace _Game.Utils
         // lay ket qua theo ty le xac suat
         public static bool Chance(int rand, int max = 100)
         {
-            return UnityEngine.Random.Range(0, max) < rand;
+            return Random.Range(0, max) < rand;
         }
         
         // random 1 gia tri enum trong 1 kieu enum

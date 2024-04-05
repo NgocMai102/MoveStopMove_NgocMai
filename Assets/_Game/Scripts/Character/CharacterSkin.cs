@@ -29,11 +29,14 @@ namespace _Game.Scripts.Character
         protected Weapon.Weapon currentWeapon;
         protected Renderer currentPants;
 
+        protected Character owner;
+
         public Transform RightHand => rightHand;
 
-        public virtual void OnInit()
+        public virtual void OnInit(Character character)
         {
             TakeOffClothes();
+            owner = character;
         }
 
         protected void TakeOffClothes()
@@ -62,10 +65,8 @@ namespace _Game.Scripts.Character
         
         protected void ChangeWeapon(WeaponType weaponType)
         {
-            if (weaponType != WeaponType.None)
-            {
-                currentWeapon = Instantiate(rightHandSkin.GetSkin((int)weaponType), rightHand);
-            }
+            currentWeapon = Instantiate(rightHandSkin.GetSkin((int)weaponType), rightHand);
+            owner.SetWeapon(currentWeapon);
         }
 
         protected void ChangePants(PantsType pantType)

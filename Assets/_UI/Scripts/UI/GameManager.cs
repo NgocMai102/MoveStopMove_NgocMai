@@ -1,11 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using _Framework.Singleton;
-using _Game.Scripts.Manager;
-using _Game.Scripts.Manager.Level;
-using _UI.Scripts;
-using _UI.Scripts.Gameplay;
-using _UI.Scripts.Shop.SkinShop;
+﻿using _Framework.Singleton;
 using UnityEngine;
 
 namespace _UI.Scripts.UI

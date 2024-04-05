@@ -2869,7 +2869,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2006942831677915856}
         m_TargetAssemblyTypeName: _Game.UI.Scripts.Shop.UIShop, Assembly-CSharp
-        m_MethodName: CloseBtn
+        m_MethodName: CloseDirectly
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

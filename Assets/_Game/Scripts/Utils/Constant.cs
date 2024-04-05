@@ -40,10 +40,9 @@ namespace _Game.Utils
     
     public enum WeaponType
     {
-        None = 0,
-        Hammer = 1,
-        Bommerang = 2,
-        Knife = 3,
+        Hammer = 0,
+        Bommerang = 1,
+        Knife = 2,
     }
 
     

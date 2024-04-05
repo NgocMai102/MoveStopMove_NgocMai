@@ -16,6 +16,7 @@ using _UI.Scripts.Gameplay;
 using _UI.Scripts.Lose;
 using _UI.Scripts.Revive;
 using _UI.Scripts.UI;
+using _UI.Scripts.Victory;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
@@ -55,13 +56,11 @@ namespace _Game.Scripts.Manager.Level
 
         public void OnLoadLevel(int level)
         {
-            
             if (currentLevel != null)
             {
                 CollectAllCharacter();
                 Destroy(currentLevel.gameObject);
             }
-
             currentLevel = Instantiate(levels[level]);
         }
 

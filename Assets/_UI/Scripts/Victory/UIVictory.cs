@@ -1,15 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using _Game.Scripts.Manager.Level;
 using _UI.Scripts.UI;
-using UnityEngine;
 
-public class UIVictory : UICanvas
+namespace _UI.Scripts.Victory
 {
-    public override void Open()
+    public class UIVictory : UICanvas
     {
-        base.Open();
-        GameManager.Instance.ChangeState(GameState.Victory);
-    }
+        public override void Open()
+        {
+            base.Open();
+            GameManager.Instance.ChangeState(GameState.Victory);
+        }
 
+        public void x3PointButton()
+        {
+            LevelManager.Instance.OnHome();
+        
+        }
     
+        public void ContinueButton()
+        {
+            LevelManager.Instance.OnHome();
+        }
+    }
 }
+

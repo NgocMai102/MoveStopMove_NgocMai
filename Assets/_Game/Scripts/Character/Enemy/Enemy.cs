@@ -56,8 +56,6 @@ namespace _Game.Scripts.Character.Enemy
             base.StopMove();
             navmeshAgent.enabled = false;
         }
-        
-
         #endregion
         
        

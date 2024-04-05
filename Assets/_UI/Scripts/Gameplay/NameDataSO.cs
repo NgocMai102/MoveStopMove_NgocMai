@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NameDataSO : MonoBehaviour
+namespace _UI.Scripts.Gameplay
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [CreateAssetMenu(fileName = "NameDataSO", menuName = "NameDataSO")]
 
-    // Update is called once per frame
-    void Update()
+    public class NameDataSO : ScriptableObject
     {
-        
+        [SerializeField] List<string> names = new List<string>();
+
+        public string GetRandomName()
+        {
+            return names[Random.Range(0, names.Count)];
+        }
     }
 }
+

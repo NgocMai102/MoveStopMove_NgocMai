@@ -19,8 +19,7 @@ namespace _UI.Scripts.Shop.SkinShop
         [SerializeField] private Transform content;
         [SerializeField] private ShopBar[] shopBars;
         [SerializeField] private SkinShopItem skinShopItemPrefab;
-
-        [SerializeField] private ItemDataSO itemDataSO;
+        
         
         private ItemType currentItemType;
         private SkinShopItem currentItem;
@@ -47,15 +46,13 @@ namespace _UI.Scripts.Shop.SkinShop
             
             currentBar = shopBars[0];
             SelectShopBar(currentBar);
-            
-            
         }
         
         public void OnClickBuyButton()
         {
             //TODO: Check if player has enough coin
             currentItem.SetState(ShopItem.State.Unlock);
-            currentItem.SetLock(false);
+            currentItem.SetUIState();
             
             SetButtonState(currentItem);
             
@@ -112,7 +109,6 @@ namespace _UI.Scripts.Shop.SkinShop
 
         public void InitShopItem<T> (List<ItemData<T>> shopItems, ItemType itemType) where T : Enum
         {
-            base.InitShopItem(shopItems, itemType);
             skinItemPool.Collect();
             
             for (int i = 0; i < shopItems.Count; i++)
@@ -158,7 +154,7 @@ namespace _UI.Scripts.Shop.SkinShop
                 SetButton((int) ButtonState.Equipped);
             }
             
-            this.PostEvent(EventID.OnSelectSkinItem, item);
+            this.PostEvent(EventID.OnSelectItem, item);
         }
 
         public void OnResetEquipingItem()
@@ -179,8 +175,6 @@ namespace _UI.Scripts.Shop.SkinShop
         #region Data
         public void ReloadData()
         {
-            //SelectShopBar(currentBar);
-            
             UpdateEquipedData();
             GetEquipedData();
             //TODO: Update coin text
@@ -205,12 +199,7 @@ namespace _UI.Scripts.Shop.SkinShop
             equipedTypes[(int) equipedItem.Type] = Convert.ToInt32(equipedItem.ID);
         }
         #endregion
-
-        public void CloseBtn()
-        {
-            base.CloseBtn();
-            this.PostEvent(EventID.OnCloseSkinShop);
-        }
+        
     }
 }
 

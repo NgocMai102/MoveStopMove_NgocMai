@@ -11,12 +11,7 @@ namespace _Game.Scripts.Weapon
 
         private Character.Character owner;
 
-        public void OnInit(Character.Character owner)
-        {
-            this.owner = owner;
-        }
-
-        public void SpawnBullet(Vector3 target)
+        public void SpawnBullet(Vector3 target, Character.Character owner)
         {
             Bullet.Bullet newBullet = SimplePool.Spawn<Bullet.Bullet>(bulletType, TF.position, Quaternion.identity);
             newBullet.OnInit(owner, target, owner.Size);

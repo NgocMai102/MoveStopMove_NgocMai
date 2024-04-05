@@ -3,8 +3,6 @@ using _Framework.Event.Scripts;
 using _Game.Scripts.Manager.Data;
 using _Game.Scripts.UI.Shop;
 using _Game.Utils;
-using UnityEngine;
-
 
 namespace _Game.Scripts.Character.Player
 {
@@ -12,27 +10,25 @@ namespace _Game.Scripts.Character.Player
     {
 
         private PlayerData PlayerData => DataManager.Instance.PlayerData;
-        private Action<object> onSelectSkinItem;
-        private Action<object> onCloseSkinShop;
+        private Action<object> onSelectItem;
+        private Action<object> onCloseShop;
 
         private void OnEnable()
         {
-            onSelectSkinItem = (param) => TryCloth((ShopItem) param);
-            this.RegisterListener(EventID.OnSelectSkinItem, onSelectSkinItem);
+            onSelectItem = (param) => TryCloth((ShopItem) param);
+            this.RegisterListener(EventID.OnSelectItem, onSelectItem);
             
-            onCloseSkinShop = _ => OnInit();
-            this.RegisterListener(EventID.OnCloseSkinShop, onCloseSkinShop);
+            //onCloseShop = _ => OnInit((Character) character);
+            this.RegisterListener(EventID.OnCloseShop, onCloseShop);
         }
-
         
-
-        public void OnInit()
+        public void OnInit(Character character)
         {
-            base.OnInit();
+            base.OnInit(character);
             ChangeHat((HatType) PlayerData.GetIntData(KeyData.PlayerHat));
             ChangePants((PantsType) PlayerData.GetIntData(KeyData.PlayerPants));
             ChangeAccessory((AccessoryType) PlayerData.GetIntData(KeyData.PlayerAccessory));
-            //ChangeWeapon((WeaponType) PlayerData.GetIntData(KeyData.PlayerWeapon));
+            ChangeWeapon((WeaponType) PlayerData.GetIntData(KeyData.PlayerWeapon));
         }
         
         private void TryCloth(ShopItem item) 

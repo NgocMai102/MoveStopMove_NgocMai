@@ -67,23 +67,29 @@ namespace _Game.Scripts.Character
 
         public virtual void OnInit()
         {
-            attackRangeRadius = 1f;
-            isDead = false;
-            isAttackable = true;
-            
-            size = 1;
-            SetSize(size);
-            
-            score = 0;
-            enemyInRange.Clear();
-
+            InitProperties();
             ResetModelRotation();
-
-            currentWeapon.OnInit(this);
+            
             attackRange.OnInit(this);
-            characterSkin.OnInit();
+            characterSkin.OnInit(this);
             // indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
            // indicator.SetTarget(indicatorPoint);
+        }
+
+        public void InitProperties()
+        {
+            attackRangeRadius = 1f;
+            size = 1;
+            SetSize(size);
+
+            isDead = false;
+            isAttackable = true;
+            enemyInRange.Clear();
+        }
+        
+        public void SetWeapon(Weapon.Weapon weapon)
+        {
+            currentWeapon = weapon;
         }
         
         #region Animation
@@ -104,7 +110,7 @@ namespace _Game.Scripts.Character
         
         public void Attack(Vector3 target)
         {
-            currentWeapon.SpawnBullet(target);
+            currentWeapon.SpawnBullet(target, this);
             StartCoroutine(ResetAttack());
         }
         
@@ -194,7 +200,6 @@ namespace _Game.Scripts.Character
         {
             isDead = true;
             this.PostEvent(EventID.OnCharacterDead, this);
-            
         }
 
         public virtual void StopMove()

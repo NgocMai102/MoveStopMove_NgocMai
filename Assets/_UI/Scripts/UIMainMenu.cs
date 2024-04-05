@@ -1,11 +1,9 @@
 using _Game.Camera;
 using _Game.Scripts.Manager.Level;
-using _Game.UI.Scripts.Shop;
 using _UI.Scripts.Gameplay;
 using _UI.Scripts.Shop.SkinShop;
 using _UI.Scripts.Shop.WeaponShop;
 using _UI.Scripts.UI;
-using UnityEngine;
 
 namespace _UI.Scripts
 {
