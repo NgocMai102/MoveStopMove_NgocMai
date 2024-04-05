@@ -43,7 +43,7 @@ namespace _Game.Utils
         None = 0,
         Hammer = 1,
         Bommerang = 2,
-        Axe = 3,
+        Knife = 3,
     }
 
     

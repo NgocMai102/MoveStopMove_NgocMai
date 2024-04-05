@@ -7,10 +7,9 @@ namespace _Game.Scripts.Weapon.Bullet
     {
         public override void Move()
         {
-            TF.position += TF.forward * (moveSpeed * Time.deltaTime);
+            TF.position += moveDirection * (moveSpeed * Time.deltaTime);
             
-            //TODO: Chinh feeling cua Bullet
-            TF.Rotate(Vector3.up * BulletSpeed.ROTATION * Time.deltaTime);
+            TF.Rotate(-Vector3.up * BulletSpeed.ROTATION * Time.deltaTime);
             if (CanDespawn())
             {
                 OnDespawn();

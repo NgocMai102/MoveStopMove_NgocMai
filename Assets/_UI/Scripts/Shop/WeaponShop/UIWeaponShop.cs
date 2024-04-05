@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Game.UI.Scripts.Shop;
 using UnityEngine;
 
-public class UIWeaponShop : MonoBehaviour
+namespace _UI.Scripts.Shop.WeaponShop
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    public class UIWeaponShop : UIShop
     {
         
     }
 }
+

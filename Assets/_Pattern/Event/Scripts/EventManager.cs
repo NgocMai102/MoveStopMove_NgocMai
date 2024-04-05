@@ -70,6 +70,10 @@ namespace _Framework.Event.Scripts
 		}
 
 		#endregion
+		private void OnDestroy()
+		{
+			ClearAllListener();
+		}
 	}
 
 

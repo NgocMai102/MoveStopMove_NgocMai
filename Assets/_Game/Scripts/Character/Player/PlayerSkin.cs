@@ -3,6 +3,7 @@ using _Framework.Event.Scripts;
 using _Game.Scripts.Manager.Data;
 using _Game.Scripts.UI.Shop;
 using _Game.Utils;
+using UnityEngine;
 
 
 namespace _Game.Scripts.Character.Player
@@ -23,11 +24,7 @@ namespace _Game.Scripts.Character.Player
             this.RegisterListener(EventID.OnCloseSkinShop, onCloseSkinShop);
         }
 
-        private void OnDisable()
-        {
-            this.RemoveListener(EventID.OnSelectSkinItem, onSelectSkinItem);
-            this.RemoveListener(EventID.OnCloseSkinShop, onCloseSkinShop);
-        }
+        
 
         public void OnInit()
         {

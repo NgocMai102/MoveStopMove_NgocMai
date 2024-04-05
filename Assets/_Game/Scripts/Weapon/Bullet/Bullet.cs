@@ -27,7 +27,8 @@ namespace _Game.Scripts.Weapon.Bullet
             targetPoint = target;
             
             maxFlyDistance = owner.AttackRangeRadius * CharacterUtils.DEFAULT_SPHERE_RADIUS * size;
-            moveDirection = (targetPoint - TF.position).normalized;
+            moveDirection = new Vector3((targetPoint - TF.position).normalized.x, 0, (targetPoint - TF.position).normalized.z);
+            
 
             TF.forward = new Vector3(moveDirection.x, 0, moveDirection.z);
             TF.localScale = size * Vector3.one;
