@@ -19,13 +19,13 @@ namespace _Game.Scripts.Character.Player
             onSelectItem = (param) => TryCloth((ShopItem) param);
             this.RegisterListener(EventID.OnSelectItem, onSelectItem);
             
-            onCloseShop = (param) => OnInit((Character) param);
+            onCloseShop = _ => WearClothes();
             this.RegisterListener(EventID.OnCloseShop, onCloseShop);
         }
-        
-        public override void OnInit(Character character)
+
+        public override void WearClothes()
         {
-            base.OnInit(character);
+            base.WearClothes();
             ChangeHat((HatType) PlayerData.GetIntData(KeyData.PlayerHat));
             ChangePants((PantsType) PlayerData.GetIntData(KeyData.PlayerPants));
             ChangeAccessory((AccessoryType) PlayerData.GetIntData(KeyData.PlayerAccessory));

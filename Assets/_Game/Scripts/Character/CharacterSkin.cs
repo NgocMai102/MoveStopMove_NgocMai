@@ -33,8 +33,12 @@ namespace _Game.Scripts.Character
 
         public virtual void OnInit(Character character)
         {
-            TakeOffClothes();
             owner = character;
+        }
+
+        public virtual void WearClothes()
+        {
+            TakeOffClothes();
         }
 
         protected void TakeOffClothes()
