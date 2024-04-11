@@ -1,6 +1,4 @@
 using _Game.Utils;
-using UnityEngine;
-
 
 namespace _Game.Scripts.Character.Enemy
 {

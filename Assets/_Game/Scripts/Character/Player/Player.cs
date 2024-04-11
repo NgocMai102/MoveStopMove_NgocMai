@@ -5,7 +5,9 @@ using _Framework.StateMachine;
 using _Game.Camera;
 using _Game.Scripts.Character;
 using _Game.Scripts.Manager;
+using _Game.Scripts.Manager.Data;
 using _Game.Scripts.Manager.Level;
+using _Game.Scripts.Skin.Data;
 using _Game.Utils;
 using _Pattern.StateMachine.PlayerState;
 using _UI.Scripts;
@@ -21,18 +23,26 @@ namespace _Game.Scripts.Character.Player
     {
         [Header("Player Properties")] 
         [SerializeField] private Rigidbody rb;
+        [SerializeField] private SetSkinDataSO skinData;
         
         private Vector3 moveDirection;
         private bool startMove;
-        public bool IsMoving => moveDirection != Vector3.zero;
-        public bool CanUpdate => GameManager.Instance.IsState(GameState.Gameplay);
-        public bool IsStartMove => startMove;
-
+        private SetType currentSkinType;
         private StateMachine<Player> currentState;
         
+        public bool IsMoving => moveDirection != Vector3.zero;
+        public bool CanUpdate => GameManager.Instance.IsState(GameState.Gameplay);
+
+        
+
         private void Start()
         {
             OnInit();
+        }
+
+        private void OnEnable()
+        {
+            
         }
         
         private void Update()
@@ -66,6 +76,7 @@ namespace _Game.Scripts.Character.Player
             currentState.ChangeState(new PIdleState());
         }
 
+        #region MovementManager
         private void OnStartMove()
         {
             if (startMove == false)
@@ -103,7 +114,8 @@ namespace _Game.Scripts.Character.Player
             base.StopMove();
             rb.velocity = Vector3.zero;
         }
-    
+        #endregion
+
         public void ChangeState(IState<Player> state)
         {
             currentState.ChangeState(state);
@@ -134,6 +146,35 @@ namespace _Game.Scripts.Character.Player
         {
             ChangeAnim(AnimType.DANCE);
         }
+
+        #region Skin
+        
+        private void SetFullSkin()
+        {
+            //int currentSetSkinId = PlayerData.GetItemEquipped(ItemType.SetSkin);
+            //SetSkin((SetType) currentSetSkinId);
+        }
+
+        private void SetSkin(SetType setType)
+        {
+            if (characterSkin != null)
+            {
+                if (currentSkinType != setType)
+                {
+                    Destroy(characterSkin.gameObject);
+                    characterSkin = Instantiate(skinData.GetSkin((int)setType), TF);
+                }
+            }
+            else
+            {
+                characterSkin = Instantiate(skinData.GetSkin((int)setType), TF);
+            }
+            currentSkinType = setType;
+            characterSkin.OnInit(this);
+        }
+        
+
+        #endregion
     }
     
 }

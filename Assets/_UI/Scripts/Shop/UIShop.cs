@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
 using _Framework.Event.Scripts;
 using _Framework.Pool.Scripts;
 using _Game.Scripts.Manager.Data;
 using _Game.Scripts.UI.Shop;
-using _Game.Utils;
 using _UI.Scripts;
 using _UI.Scripts.Shop.Item;
 using UnityEngine;

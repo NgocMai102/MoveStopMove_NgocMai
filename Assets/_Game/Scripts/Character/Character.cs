@@ -17,7 +17,7 @@ namespace _Game.Scripts.Character
         [Header("Properties")]
         [SerializeField] private Animator anim;
         [SerializeField] private AttackRange attackRange;
-        [SerializeField] private CharacterSkin characterSkin;
+        [SerializeField] protected CharacterSkin characterSkin;
         
         //[SerializeField] private SphereCollider sphereCollider;
         

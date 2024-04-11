@@ -1,8 +1,8 @@
 using System;
-using _Game.Scripts.Manager.Data;
 using _Game.Scripts.Skin.Base;
 using _Game.Scripts.Skin.Data;
 using _Game.Utils;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 namespace _Game.Scripts.Character
@@ -14,15 +14,13 @@ namespace _Game.Scripts.Character
         [SerializeField] private Transform rightHand;
         [SerializeField] private Transform leftHand;
         [SerializeField] private Renderer pants;
-        [SerializeField] private Transform set;
-        
+
         [Header("SkinData")]
         [SerializeField] private SkinDataSO<Hat> headSkin;
         [SerializeField] private SkinDataSO<Accessory> leftHandSkin;
         [SerializeField] private SkinDataSO<Weapon.Weapon> rightHandSkin;
         [SerializeField] private SkinDataSO<Material> pantsSkin;
-        [SerializeField] private SkinDataSO<SetSkin> setSkin;
-        
+
 
         protected Hat currentHat;
         protected Accessory currentAccessory;

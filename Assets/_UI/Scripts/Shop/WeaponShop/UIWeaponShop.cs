@@ -1,22 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using _Framework.Event.Scripts;
-using _Framework.Pool.Scripts;
-using _Game.Scripts.Skin.Data;
+using _Game.Scripts.Manager.Data;
+using _Game.Scripts.UI.Shop;
 using _Game.Scripts.UI.Shop.WeaponShop;
 using _Game.UI.Scripts.Shop;
 using _Game.Utils;
-using _UI.Scripts.Shop.Item;
 using UnityEngine;
 
 namespace _UI.Scripts.Shop.WeaponShop
 {
     public class UIWeaponShop : UIShop
     {
-        [SerializeField] private WeaponShopItem weaponShopItemPrefab;
+        [SerializeField] private WeaponShopItem weaponShopItem;
+
+        [SerializeField] private int currentWeaponId;
         
-        
-        private int currentWeaponId;
+        private WeaponShopItem currentItem;
+        private int equipedWeaponId;
 
         public override void Open()
         {
@@ -28,9 +28,16 @@ namespace _UI.Scripts.Shop.WeaponShop
         public void InitWeaponItem(int id)
         {
             WeaponShopItem.State state = (WeaponShopItem.State) PlayerData.GetItemState(ItemType.Weapon, itemDataSO.Weapons[id].Id);
-            weaponShopItemPrefab.OnInit(ItemType.Weapon, itemDataSO.Weapons[id], state);
+            weaponShopItem.OnInit(ItemType.Weapon, itemDataSO.Weapons[id], state);
+            currentItem = weaponShopItem;
+            SetButtonState(weaponShopItem);
             
-            OnSelectItem();
+            OnSelectWeapon();
+        }
+
+        public void SelectWeapon(WeaponType type)
+        {
+            
         }
 
         public void OnNextButton()
@@ -52,11 +59,49 @@ namespace _UI.Scripts.Shop.WeaponShop
             }
             InitWeaponItem(currentWeaponId);
         }
-
-        public void OnSelectItem()
+        
+        public void OnClickBuyButton()
         {
-            PlayerData.OnEquipItem(ItemType.Weapon, itemDataSO.Weapons[currentWeaponId].Id);
-            this.PostEvent(EventID.OnSelectItem, itemDataSO.Weapons[currentWeaponId].Id);
+            //TODO: Check if player has enough coin
+            currentItem.SetState(ShopItem.State.Unlock);
+
+            SetButtonState(weaponShopItem);
+            ReloadData();
+        }
+
+        public void OnClickEquipButton()
+        { 
+            if (currentItem != null) {
+                PlayerData.OnEquipItem(weaponShopItem.Type, weaponShopItem.ID);
+                SetButton((int) ButtonState.Equipped);
+
+                ReloadData();
+            }
+        }
+
+        public void ReloadData()
+        {
+            UpdateEquipedItem();
+        }
+        
+        public void OnResetEquipedWeapon()
+        {
+            
+        }
+
+        public void UpdateEquipedItem()
+        {
+            if (equipedWeaponId == null)
+            {
+                return;
+            }
+            equipedWeaponId = PlayerData.GetIntData(KeyData.PlayerWeapon);
+        }
+
+        public void OnSelectWeapon()
+        {
+            //PlayerData.OnEquipItem(ItemType.Weapon, itemDataSO.Weapons[currentWeaponId].Id);
+            this.PostEvent(EventID.OnSelectItem, weaponShopItem);
         }
         
     }

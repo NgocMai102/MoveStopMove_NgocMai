@@ -172,7 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 7807047539765277941}
-  id: 0
 --- !u!1 &5031950000892260979
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -82, y: 10}
+  m_AnchoredPosition: {x: -116, y: 10}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5031950000892260972
@@ -342,7 +341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 82, y: 10}
+  m_AnchoredPosition: {x: 112, y: 10}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5031950001534873498
@@ -584,7 +583,8 @@ MonoBehaviour:
   - {fileID: 5588331648457139814}
   - {fileID: 5031950002697147281}
   - {fileID: 5588331649829524329}
-  weaponShopItemPrefab: {fileID: 5866372184079456060}
+  weaponShopItem: {fileID: 5866372184079456060}
+  currentWeaponId: 0
 --- !u!1 &5031950002126735112
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +786,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5031950002697147283}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5538395765991959697}
+        m_TargetAssemblyTypeName: _UI.Scripts.Shop.WeaponShop.UIWeaponShop, Assembly-CSharp
+        m_MethodName: OnClickEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5031950002785457765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1134,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5588331648457139810}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5538395765991959697}
+        m_TargetAssemblyTypeName: _UI.Scripts.Shop.WeaponShop.UIWeaponShop, Assembly-CSharp
+        m_MethodName: OnClickBuyButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5588331649261959718
 GameObject:
   m_ObjectHideFlags: 0

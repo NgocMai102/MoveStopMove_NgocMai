@@ -29,7 +29,7 @@ namespace _Game.Scripts.UI.Shop
         {
             base.OnInit<T>(type, itemData, state);
             SetUIState();  
-            SetState(state);
+            //SetState(state);
         }
 
         public void SetShop(UISkinShop shop)

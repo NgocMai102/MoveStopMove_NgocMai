@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2113045928830786521}
-  - component: {fileID: -1870003646803550872}
+  - component: {fileID: 6472256818359424838}
   m_Layer: 0
   m_Name: Skin - Angel
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1870003646803550872
+--- !u!114 &6472256818359424838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,9 +43,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2113045928830786520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88d7b03291896b4bb3b78f52f0de8fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fc19b0e03957d74993bec98c97c154c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head: {fileID: 7426300293558286568}
+  rightHand: {fileID: 0}
+  leftHand: {fileID: 0}
+  pants: {fileID: 0}
+  set: {fileID: 0}
+  headSkin: {fileID: 11400000, guid: 40ce09689e950744d80d9009d438cd02, type: 2}
+  leftHandSkin: {fileID: 11400000, guid: 9a288893dce71174da006fb61a80cfdf, type: 2}
+  rightHandSkin: {fileID: 11400000, guid: 84a1964de79c9ea4badcd878c5b58eaf, type: 2}
+  pantsSkin: {fileID: 11400000, guid: 91a35246f80b79d4995469b93189cf44, type: 2}
+  setSkin: {fileID: 0}
 --- !u!1 &3403528621074084546
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,5 +259,10 @@ PrefabInstance:
 --- !u!4 &7426300292362371370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8817072627043686426, guid: bb6c2cc0e8e991e4689dee1675052a45, type: 3}
+  m_PrefabInstance: {fileID: 2113045929876642096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7426300293558286568 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8817072626352153048, guid: bb6c2cc0e8e991e4689dee1675052a45, type: 3}
   m_PrefabInstance: {fileID: 2113045929876642096}
   m_PrefabAsset: {fileID: 0}

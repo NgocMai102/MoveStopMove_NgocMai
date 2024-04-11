@@ -17,9 +17,7 @@ namespace _Game.Scripts.UI.Shop
         //public enum State {Lock = 0, Unlock = 1}
 
         [SerializeField] protected Image imgIcon;
-
-
-        public int id;
+        
         public State CurrentState { get; private set; }
         public ItemType Type { get; private set; }
         public Enum ID { get; private set; }
@@ -36,6 +34,8 @@ namespace _Game.Scripts.UI.Shop
             Cost = itemData.Cost;
             imgIcon.sprite = itemData.Sprite;
             CurrentState = state;
+            
+            SetState(state);
         }
         
         public void SetState(State state)

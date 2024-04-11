@@ -127,6 +127,12 @@ namespace _Game.Scripts.Manager.Data
             int id = Convert.ToInt32(itemId);
             SetIntData(whoEquip + itemType, id);
         }
+        
+        public void GetItemEquiped(ItemType itemType, string whoEquip = KeyData.Player)
+        {
+            string key = whoEquip + itemType;
+            GetIntData(key);
+        }
 
         public void ConvertDictionaryToListData()
         {

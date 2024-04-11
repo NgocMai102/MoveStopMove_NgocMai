@@ -3,6 +3,7 @@ using _Framework.Event.Scripts;
 using _Game.Scripts.Manager.Data;
 using _Game.Scripts.UI.Shop;
 using _Game.Utils;
+using UnityEngine;
 
 namespace _Game.Scripts.Character.Player
 {
@@ -18,11 +19,11 @@ namespace _Game.Scripts.Character.Player
             onSelectItem = (param) => TryCloth((ShopItem) param);
             this.RegisterListener(EventID.OnSelectItem, onSelectItem);
             
-            //onCloseShop = _ => OnInit((Character) character);
+            onCloseShop = (param) => OnInit((Character) param);
             this.RegisterListener(EventID.OnCloseShop, onCloseShop);
         }
         
-        public void OnInit(Character character)
+        public override void OnInit(Character character)
         {
             base.OnInit(character);
             ChangeHat((HatType) PlayerData.GetIntData(KeyData.PlayerHat));

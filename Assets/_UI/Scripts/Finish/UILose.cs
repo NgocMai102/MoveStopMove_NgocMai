@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using _Game.Scripts.Manager.Level;
 using _UI.Scripts.UI;
 using TMPro;
