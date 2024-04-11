@@ -1,24 +1,17 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Dynamic;
 using _Framework.Pool.Scripts;
 using _Framework.Singleton;
 using _Framework.StateMachine;
-using _Game.Camera;
 using _Game.Scripts.Character.Enemy;
 using _Game.Scripts.Character.Player;
-using _Game.UI.Scripts.Gameplay;
 using _Game.Utils;
 using _Pattern.StateMachine.EnemyState;
 using _UI.Scripts;
 using _UI.Scripts.Gameplay;
 using _UI.Scripts.Lose;
 using _UI.Scripts.Revive;
-using _UI.Scripts.UI;
 using _UI.Scripts.Victory;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 namespace _Game.Scripts.Manager.Level
@@ -42,11 +35,6 @@ namespace _Game.Scripts.Manager.Level
         public int TotalCharacter => totalEnemy + enemies.Count + 1;
         public int IndexLevel => indexLevel;
 
-        public void Awake()
-        {
-            
-        }
-
         public void Start()
         {
             indexLevel = 0;
@@ -69,13 +57,14 @@ namespace _Game.Scripts.Manager.Level
             player.OnInit();
             isRevive = false;
 
-            for (int i = 0; i < currentLevel.TotalEnemy; i++)
+            for (int i = 0; i < currentLevel.TotalEnemyVisible; i++)
             {
                 SpawnEnemy(null);
             }
-            totalEnemy = currentLevel.TotalEnemy - currentLevel.TotalEnemyReal - 1;
-            
-            //SetTargetIdincatorAlpha(0);
+
+            totalEnemy = currentLevel.TotalEnemyReal - currentLevel.TotalEnemyVisible - 1;
+
+            SetTargetIndicatorAlpha(0);
         }
 
         private void OnReset()
@@ -181,23 +170,25 @@ namespace _Game.Scripts.Manager.Level
 
         public void OnLose()
         {
+            player.OnLose();
             UIManager.Instance.CloseAll();
             UIManager.Instance.OpenUI<UILose>();
         }
 
         private void Victory()
         {
-            player.Dance();
+            player.OnVictory();
             UIManager.Instance.OpenUI<UIVictory>();
+            //Next Level
         }
 
         public void SetTargetIndicatorAlpha(float alpha)
         {
-            List<GameUnit> list = SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator);
-            for (int i = 0; i < list.Count; i++)
-            {
-                (list[i] as TargetIndicator).SetAlpha(alpha);
-            }
+            // List<GameUnit> list = SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator);
+            // for (int i = 0; i < list.Count; i++)
+            // {
+            //     (list[i] as TargetIndicator).SetAlpha(alpha);
+            // }
         }
         
     }

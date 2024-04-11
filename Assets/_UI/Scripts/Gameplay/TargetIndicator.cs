@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using _Framework.Pool.Scripts;
 using _Game.Camera;
 using _Game.Scripts.Manager.Level;
 using _UI.Scripts.UI;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 

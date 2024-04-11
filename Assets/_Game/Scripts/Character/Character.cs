@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using _Framework.Event.Scripts;
 using _Framework.Pool.Scripts;
+using _Game.UI.Scripts.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using _Game.Utils;
+using _UI.Scripts.Gameplay;
 using _UI.Scripts.UI;
 using Object = System.Object;
 
@@ -24,6 +26,8 @@ namespace _Game.Scripts.Character
         [Header("Config")]
         [SerializeField] protected float moveSpeed;
         [SerializeField] protected Weapon.Weapon currentWeapon;
+        [SerializeField] protected NameDataSO nameData;
+        [SerializeField] private Transform indicatorPoint;
 
         private SphereCollider sphereCollider;
         private string currentAnimName;
@@ -31,18 +35,19 @@ namespace _Game.Scripts.Character
         
         private List<Character> enemyInRange = new List<Character>();
         private bool isAttackable;
-        //[SerializeField] private Transform indicatorPoint;
-       // protected TargetIndicator indicator;
-        
         private float attackRangeRadius;
-        private int score;
+        
+        protected TargetIndicator indicator;
+        protected String name;
+        protected String murder;
+        protected int score;
         
         protected bool isDead;
         protected float size;
-
-        public Vector3 ThrowPoint => characterSkin.RightHand.position;
-
+        
         #region Getter
+        public Weapon.Weapon CurrentWeapon => currentWeapon;
+        public Vector3 ThrowPoint => characterSkin.RightHand.position;
         
         public bool IsAttackable => isAttackable;
         public bool IsDead => isDead;
@@ -50,6 +55,7 @@ namespace _Game.Scripts.Character
         public bool FoundCharacter => enemyInRange.Count > 0;
         public float AttackRangeRadius => attackRangeRadius;
 
+        public String Name => name;
         public int Score => score;
         public float Size => size;
 
@@ -68,12 +74,24 @@ namespace _Game.Scripts.Character
         public virtual void OnInit()
         {
             InitProperties();
+            InitName();
+            InitTargetIndicator();
             ResetModelRotation();
-            
+
             attackRange.OnInit(this);
             characterSkin.OnInit(this);
-            // indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
-           // indicator.SetTarget(indicatorPoint);
+            score = 0;
+        }
+        
+        public void InitTargetIndicator()
+        {
+            indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+            indicator.SetTarget(indicatorPoint);
+        }
+
+        public void InitName()
+        {
+            name = nameData.GetRandomName();
         }
 
         public void InitProperties()
@@ -193,7 +211,7 @@ namespace _Game.Scripts.Character
 
         public virtual void OnDespawn()
         {
-           // SimplePool.Despawn(indicator);
+           SimplePool.Despawn(indicator);
         }
 
         public virtual void OnHit()

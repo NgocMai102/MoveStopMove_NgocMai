@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using _Framework.Event.Scripts;
-using _Game.Scripts.Manager;
 using _Game.Scripts.Manager.Level;
 using _UI.Scripts.UI;
 using UnityEngine;
@@ -30,20 +27,26 @@ namespace _UI.Scripts.Gameplay
 
             ShowTutorial();
 
-            //LevelManager.Instance.SetTargetIndicatorAlpha(1);
+            LevelManager.Instance.SetTargetIndicatorAlpha(1);
             RegisterEvents();
         }
         
         public override void CloseDirectly()
         {
             base.CloseDirectly();
-            //LevelManager.Instance.SetTargetIndicatorAlpha(0);
+            RemoveEvents();
+            LevelManager.Instance.SetTargetIndicatorAlpha(0);
         }
 
         public void RegisterEvents()
         {
             onCharacterDie = _ => UpdateTotalCharacter();
             this.RegisterListener(EventID.OnCharacterDead, onCharacterDie);
+        }
+
+        public void RemoveEvents()
+        {
+            this.RemoveListener(EventID.OnCharacterDead, onCharacterDie);
         }
 
         public void SetAliveText(int alive)

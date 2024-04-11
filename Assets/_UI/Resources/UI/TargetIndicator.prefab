@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a586db3ff1b6afe49923f6d136ba5c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 37
+  poolType: 2
   rect: {fileID: 3208387700040817617}
   arrow: {fileID: 5909443733029696600}
   imageTxt: {fileID: 8247263324702575509}

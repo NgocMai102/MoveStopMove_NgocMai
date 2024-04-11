@@ -1,5 +1,144 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7297869653145186360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6746923981170477452}
+  - component: {fileID: 7227954415341806911}
+  m_Layer: 0
+  m_Name: Pants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6746923981170477452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7297869653145186360}
+  m_LocalRotation: {x: 0.00000008149074, y: -0.0000000011834795, z: -1.4233609e-10, w: 1}
+  m_LocalPosition: {x: 49.772068, y: -429.05707, z: 43.336914}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7703782480970056713}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &7227954415341806911
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7297869653145186360}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -3620572297651811420, guid: fb3c1572c7048de46a8592d3a55471ce, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 7666266049737368757, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
+  m_Bones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: -0.022025019, y: -0.2036489, z: 0.06559239}
+    m_Extent: {x: 0.37928572, y: 0.32483855, z: 0.38066572}
+  m_DirtyAABB: 0
 --- !u!1 &7703782480970056714
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7703782480970056713}
-  - component: {fileID: -7086514375018052450}
+  - component: {fileID: 6343962964691228915}
   m_Layer: 0
   m_Name: Skin - Witch
   m_TagString: Untagged
@@ -30,10 +169,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2595207314299104300}
+  - {fileID: 6746923981170477452}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7086514375018052450
+--- !u!114 &6343962964691228915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +182,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7703782480970056714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88d7b03291896b4bb3b78f52f0de8fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fc19b0e03957d74993bec98c97c154c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head: {fileID: 2595207314004569323}
+  rightHand: {fileID: 2595207313278559364}
+  leftHand: {fileID: 2595207313593793421}
+  pants: {fileID: 7227954415341806911}
+  headSkin: {fileID: 11400000, guid: 40ce09689e950744d80d9009d438cd02, type: 2}
+  leftHandSkin: {fileID: 11400000, guid: 9a288893dce71174da006fb61a80cfdf, type: 2}
+  rightHandSkin: {fileID: 11400000, guid: 84a1964de79c9ea4badcd878c5b58eaf, type: 2}
+  pantsSkin: {fileID: 11400000, guid: 91a35246f80b79d4995469b93189cf44, type: 2}
 --- !u!1001 &7703782481086317901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,6 +254,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37701e9b3ceb78c41971b375b0044dbd, type: 3}
+--- !u!4 &2595207313278559364 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5687292152681456073, guid: 37701e9b3ceb78c41971b375b0044dbd, type: 3}
+  m_PrefabInstance: {fileID: 7703782481086317901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2595207313593793421 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5687292152863260352, guid: 37701e9b3ceb78c41971b375b0044dbd, type: 3}
+  m_PrefabInstance: {fileID: 7703782481086317901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2595207314004569323 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5687292154347252134, guid: 37701e9b3ceb78c41971b375b0044dbd, type: 3}
+  m_PrefabInstance: {fileID: 7703782481086317901}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2595207314299104300 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5687292153568176481, guid: 37701e9b3ceb78c41971b375b0044dbd, type: 3}

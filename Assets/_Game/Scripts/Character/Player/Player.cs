@@ -1,20 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using _Framework.StateMachine;
 using _Game.Camera;
-using _Game.Scripts.Character;
 using _Game.Scripts.Manager;
-using _Game.Scripts.Manager.Data;
-using _Game.Scripts.Manager.Level;
 using _Game.Scripts.Skin.Data;
 using _Game.Utils;
 using _Pattern.StateMachine.PlayerState;
-using _UI.Scripts;
 using _UI.Scripts.Gameplay;
-using _UI.Scripts.Shop.SkinShop;
 using _UI.Scripts.UI;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Game.Scripts.Character.Player
@@ -32,18 +23,12 @@ namespace _Game.Scripts.Character.Player
         
         public bool IsMoving => moveDirection != Vector3.zero;
         public bool CanUpdate => GameManager.Instance.IsState(GameState.Gameplay);
-
         
-
         private void Start()
         {
             OnInit();
         }
-
-        private void OnEnable()
-        {
-            
-        }
+        
         
         private void Update()
         {
@@ -140,6 +125,17 @@ namespace _Game.Scripts.Character.Player
             startMove = false;
 
             ClearEnemyInRange();
+        }
+
+        public void OnVictory()
+        {
+            Dance();
+            score = 0;
+        }
+
+        public void OnLose()
+        {
+            score = 0;
         }
 
         public void Dance()

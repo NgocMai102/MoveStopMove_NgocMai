@@ -1,13 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using _Framework.StateMachine;
-using _Game.Scripts.Character.Enemy;
-// using Game.Character.Animation;
 using _Game.Scripts.Character.Player;
 using _Game.Scripts.Manager.Level;
 using _Game.Utils;
-using _Pattern.StateMachine.CharacterState;
-using _UI.Scripts.UI;
 using UnityEngine;
 
 

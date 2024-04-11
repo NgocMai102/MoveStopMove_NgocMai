@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace _Game.Scripts.Manager.Level
@@ -7,12 +5,14 @@ namespace _Game.Scripts.Manager.Level
     public class Level : MonoBehaviour
     {
         [SerializeField] private Transform minPoint,maxPoint;
-        [SerializeField] private int totalEnemy;
+        //so luong hien tren man hinh
+        [SerializeField] private int totalEnemyVisible;
+        //so luong that su
         [SerializeField] private int totalEnemyReal;
         
         public Transform MinPoint => minPoint;
         public Transform MaxPoint => maxPoint;
-        public int TotalEnemy => totalEnemy;    
+        public int TotalEnemyVisible => totalEnemyVisible;    
         public int TotalEnemyReal => totalEnemyReal;
     }
 }

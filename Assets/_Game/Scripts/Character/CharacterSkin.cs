@@ -29,11 +29,15 @@ namespace _Game.Scripts.Character
 
         protected Character owner;
 
+        public Weapon.Weapon CurrentWeapon => currentWeapon;
         public Transform RightHand => rightHand;
 
         public virtual void OnInit(Character character)
         {
+            TakeOffClothes();
             owner = character;
+            currentWeapon = owner.CurrentWeapon;
+            WearClothes();
         }
 
         public virtual void WearClothes()
