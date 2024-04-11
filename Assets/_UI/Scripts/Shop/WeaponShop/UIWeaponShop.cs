@@ -12,16 +12,19 @@ namespace _UI.Scripts.Shop.WeaponShop
     public class UIWeaponShop : UIShop
     {
         [SerializeField] private WeaponShopItem weaponShopItem;
-
         [SerializeField] private int currentWeaponId;
         
-        private WeaponShopItem currentItem;
         private int equipedWeaponId;
+        
+        private WeaponType currentWeaponType, equipedWeaponType;
+        
 
         public override void Open()
         {
             base.Open();
             currentWeaponId = 0;
+            equipedWeaponType = (WeaponType) PlayerData.GetIntData(KeyData.PlayerWeapon);
+
             InitWeaponItem(currentWeaponId);
         }
 
@@ -29,17 +32,11 @@ namespace _UI.Scripts.Shop.WeaponShop
         {
             WeaponShopItem.State state = (WeaponShopItem.State) PlayerData.GetItemState(ItemType.Weapon, itemDataSO.Weapons[id].Id);
             weaponShopItem.OnInit(ItemType.Weapon, itemDataSO.Weapons[id], state);
-            currentItem = weaponShopItem;
             SetButtonState(weaponShopItem);
             
             OnSelectWeapon();
         }
-
-        public void SelectWeapon(WeaponType type)
-        {
-            
-        }
-
+        
         public void OnNextButton()
         {
             currentWeaponId++;
@@ -63,44 +60,22 @@ namespace _UI.Scripts.Shop.WeaponShop
         public void OnClickBuyButton()
         {
             //TODO: Check if player has enough coin
-            currentItem.SetState(ShopItem.State.Unlock);
+            weaponShopItem.SetState(ShopItem.State.Unlock);
 
             SetButtonState(weaponShopItem);
-            ReloadData();
         }
 
         public void OnClickEquipButton()
-        { 
-            if (currentItem != null) {
-                PlayerData.OnEquipItem(weaponShopItem.Type, weaponShopItem.ID);
-                SetButton((int) ButtonState.Equipped);
-
-                ReloadData();
-            }
-        }
-
-        public void ReloadData()
         {
-            UpdateEquipedItem();
-        }
-        
-        public void OnResetEquipedWeapon()
-        {
+            PlayerData.OnEquipItem(weaponShopItem.Type, weaponShopItem.ID);
+            SetButton((int) ButtonState.Equipped);
             
         }
 
-        public void UpdateEquipedItem()
-        {
-            if (equipedWeaponId == null)
-            {
-                return;
-            }
-            equipedWeaponId = PlayerData.GetIntData(KeyData.PlayerWeapon);
-        }
+      
 
         public void OnSelectWeapon()
         {
-            //PlayerData.OnEquipItem(ItemType.Weapon, itemDataSO.Weapons[currentWeaponId].Id);
             this.PostEvent(EventID.OnSelectItem, weaponShopItem);
         }
         
