@@ -71,13 +71,13 @@ namespace _Game.Scripts.Character
 
         public virtual void OnInit()
         {
-            InitTargetIndicator();
-            InitProperties();
-            ResetModelRotation();
-
             attackRange.OnInit(this);
             characterSkin.OnInit(this);
             score = 0;
+            
+            InitTargetIndicator();
+            InitProperties();
+            ResetModelRotation();
         }
         
         public void InitTargetIndicator()
@@ -85,10 +85,9 @@ namespace _Game.Scripts.Character
             if (!indicator)
             {
                 indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
-//                Debug.Log(SimplePool.GetAllUnitIsActive(PoolType.Enemy));
-//                Debug.Log("indicator");
             }
             indicator.SetTarget(indicatorPoint);
+            indicator.SetScore(score);
         }
         
         public void InitProperties()
@@ -209,7 +208,8 @@ namespace _Game.Scripts.Character
 
         public virtual void OnDespawn()
         {
-           SimplePool.Despawn(indicator);
+           //SimplePool.Despawn(indicator);
+           indicator.SetAlpha(0);
         }
 
         public virtual void OnHit()

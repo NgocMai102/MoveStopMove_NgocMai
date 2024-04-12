@@ -23,8 +23,8 @@ namespace _UI.Scripts.Shop.WeaponShop
         {
             base.Open();
             currentWeaponId = 0;
+            
             equipedWeaponType = (WeaponType) PlayerData.GetIntData(KeyData.PlayerWeapon);
-
             InitWeaponItem(currentWeaponId);
         }
 

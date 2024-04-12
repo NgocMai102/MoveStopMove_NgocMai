@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using _Framework.Pool.Scripts;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 
-namespace _Framework.Pool.Scripts
-{
-    public class PoolControler : MonoBehaviour
+public class PoolControler : MonoBehaviour
 {
     [Header("---- POOL CONTROLER TO INIT POOL ----")]
-    //[Header("Put object pool to list Pool or Resources/Pool")]
-    //[Header("Preload: Init Poll")]
-    //[Header("Spawn: Take object from pool")]
-    //[Header("Despawn: return object to pool")]
-    //[Header("Collect: return objects type to pool")]
-    //[Header("CollectAll: return all objects to pool")]
+    [Header("Put object pool to list Pool or Resources/Pool")]
+    [Header("Preload: Init Poll")]
+    [Header("Spawn: Take object from pool")]
+    [Header("Despawn: return object to pool")]
+    [Header("Collect: return objects type to pool")]
+    [Header("CollectAll: return all objects to pool")]
 
     [Space]
     [Header("Pool")]
@@ -126,29 +126,32 @@ public class PoolAmount
     }
 }
 
+
 [System.Serializable]
-    public class ParticleAmount
-    {
-        public Transform root;
-        public ParticleType particleType;
-        public ParticleSystem prefab;
-        public int amount;
-    }
-
-
-    public enum ParticleType
-    {
-    
-    }
-
-    public enum PoolType
-    {
-        None = 0,
-        Enemy = 1,
-        TargetIndicator = 2,
-        
-        StraightBullet = 3,
-        RotateBullet = 4,
-        BoomerangBullet = 5,
-    }
+public class ParticleAmount
+{
+    public Transform root;
+    public ParticleType particleType;
+    public ParticleSystem prefab;
+    public int amount;
 }
+
+
+public enum ParticleType
+{
+    BeamUpBlue = 0,
+    BloodExplosion = 1,
+}
+
+public enum PoolType
+{
+    None = 0,
+    Enemy = 1,
+    TargetIndicator = 2,
+        
+    StraightBullet = 3,
+    RotateBullet = 4,
+    BoomerangBullet = 5,
+}
+
+

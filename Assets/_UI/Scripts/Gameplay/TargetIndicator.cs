@@ -65,7 +65,6 @@ namespace _Game.UI.Scripts.Gameplay
 
     private void OnInit()
     {
-        //SetScore(0);
         SetColor(new Color(Random.value, Random.value, Random.value, 1));
         SetAlpha(GameManager.Instance.IsState(GameState.Gameplay) ? 1 : 0);
     }
@@ -91,6 +90,7 @@ namespace _Game.UI.Scripts.Gameplay
     {
         imgIcon.color = color;
         nameTxt.color = color;
+        arrow.color = color;
     }
 
     public void SetAlpha(float alpha)
