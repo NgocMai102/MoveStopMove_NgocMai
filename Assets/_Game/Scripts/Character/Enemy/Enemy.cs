@@ -31,8 +31,11 @@ namespace _Game.Scripts.Character.Enemy
             navmeshAgent.speed = moveSpeed;
             InitState();
             HideCircleIndicator();
+
+            name = nameData.GetRandomName();
+            indicator.SetName(name);
         }
-        
+
         private void InitState()
         {
             if (currentState == null)
@@ -85,11 +88,11 @@ namespace _Game.Scripts.Character.Enemy
 
         public void ShowCircleIndicator()
         {
-            this.circleIndicator.SetActive(true);
+            circleIndicator.SetActive(true);
         }
         public void HideCircleIndicator()
         {
-            this.circleIndicator.SetActive(false);
+            circleIndicator.SetActive(false);
         }
     }
 }

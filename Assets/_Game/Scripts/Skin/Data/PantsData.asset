@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PantsData
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 659d0128f58a6ba4894bcd21977a127c, type: 2}
   - {fileID: 2100000, guid: 9c9d239ac585d4e4cb62fde5cc8a811a, type: 2}
   - {fileID: 2100000, guid: a0d8ffcb66938b448bf52382bfe14caf, type: 2}
   - {fileID: 2100000, guid: da857808eaa551d4cbe236be2e034416, type: 2}

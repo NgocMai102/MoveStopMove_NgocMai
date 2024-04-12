@@ -20,9 +20,7 @@ namespace _Game.Scripts.Character
         [SerializeField] private Animator anim;
         [SerializeField] private AttackRange attackRange;
         [SerializeField] protected CharacterSkin characterSkin;
-        
-        //[SerializeField] private SphereCollider sphereCollider;
-        
+
         [Header("Config")]
         [SerializeField] protected float moveSpeed;
         [SerializeField] protected Weapon.Weapon currentWeapon;
@@ -73,9 +71,8 @@ namespace _Game.Scripts.Character
 
         public virtual void OnInit()
         {
-            InitProperties();
-            InitName();
             InitTargetIndicator();
+            InitProperties();
             ResetModelRotation();
 
             attackRange.OnInit(this);
@@ -85,15 +82,14 @@ namespace _Game.Scripts.Character
         
         public void InitTargetIndicator()
         {
-            indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+            if (!indicator)
+            {
+                indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+//                Debug.Log("indicator");
+            }
             indicator.SetTarget(indicatorPoint);
         }
-
-        public void InitName()
-        {
-            name = nameData.GetRandomName();
-        }
-
+        
         public void InitProperties()
         {
             attackRangeRadius = 1f;

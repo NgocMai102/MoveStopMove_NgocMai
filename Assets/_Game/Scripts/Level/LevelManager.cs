@@ -4,6 +4,7 @@ using _Framework.Singleton;
 using _Framework.StateMachine;
 using _Game.Scripts.Character.Enemy;
 using _Game.Scripts.Character.Player;
+using _Game.UI.Scripts.Gameplay;
 using _Game.Utils;
 using _Pattern.StateMachine.EnemyState;
 using _UI.Scripts;
@@ -33,13 +34,16 @@ namespace _Game.Scripts.Manager.Level
         private bool isRevive;
 
         public int TotalCharacter => totalEnemy + enemies.Count + 1;
+        public int PlayerRank => TotalCharacter - 1;
         public int IndexLevel => indexLevel;
+        public Player Player => player;
 
         public void Start()
         {
             indexLevel = 0;
             OnLoadLevel(indexLevel);
             SetUpLevel();
+            SetTargetIndicatorAlpha(0);
         }
 
         public void OnLoadLevel(int level)
@@ -56,15 +60,14 @@ namespace _Game.Scripts.Manager.Level
         {
             player.OnInit();
             isRevive = false;
-
-            for (int i = 0; i < currentLevel.TotalEnemyVisible; i++)
+            for (int i = 1; i < currentLevel.TotalCharacterVisible; i++)
             {
                 SpawnEnemy(null);
             }
 
-            totalEnemy = currentLevel.TotalEnemyReal - currentLevel.TotalEnemyVisible - 1;
+            totalEnemy = currentLevel.TotalCharacterReal - currentLevel.TotalCharacterVisible;
 
-            SetTargetIndicatorAlpha(0);
+            
         }
 
         private void OnReset()
@@ -85,6 +88,7 @@ namespace _Game.Scripts.Manager.Level
             Enemy enemy = SimplePool.Spawn<Enemy>(PoolType.Enemy, RandomPoint(), Quaternion.identity);
             enemy.OnInit();
             enemy.ChangeState(state);
+            
             enemies.Add(enemy);
             enemy.SetScore(player.Score > 0 ? Random.Range(player.Score - 7, player.Score + 7) : 1);
         }
@@ -184,6 +188,7 @@ namespace _Game.Scripts.Manager.Level
 
         public void SetTargetIndicatorAlpha(float alpha)
         {
+            Debug.Log(SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator));
             // List<GameUnit> list = SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator);
             // for (int i = 0; i < list.Count; i++)
             // {

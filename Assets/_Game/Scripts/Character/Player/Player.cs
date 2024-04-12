@@ -46,6 +46,7 @@ namespace _Game.Scripts.Character.Player
             InitState();
 
             startMove = false;
+            name = PlayerProperties.NAME;
             
             TF.position = Vector3.zero;
             moveDirection = Vector3.zero;

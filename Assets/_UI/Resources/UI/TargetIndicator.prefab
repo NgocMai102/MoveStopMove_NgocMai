@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5909443733029696600}
   m_Layer: 5
-  m_Name: Indicator
+  m_Name: Direct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,6 +29,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2980206279013476772}
+  - {fileID: 8607040562537870953}
   m_Father: {fileID: 3208387700040817617}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,7 +185,7 @@ GameObject:
   - component: {fileID: 8251060069416583389}
   - component: {fileID: 4530284164467126919}
   m_Layer: 5
-  m_Name: Indicator
+  m_Name: Image - Direct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -416,7 +417,6 @@ RectTransform:
   m_Children:
   - {fileID: 152906284543025432}
   - {fileID: 5909443733029696600}
-  - {fileID: 8607040562537870953}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -459,8 +459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 2
   rect: {fileID: 3208387700040817617}
-  arrow: {fileID: 5909443733029696600}
-  imageTxt: {fileID: 8247263324702575509}
+  arrow: {fileID: 4530284164467126919}
+  imgIcon: {fileID: 8247263324702575509}
+  direct: {fileID: 5909443733029696600}
   nameTxt: {fileID: 8485522565707975185}
   scoreTxt: {fileID: 808374960373260678}
   canvasGroup: {fileID: 7622089634056953328}
@@ -495,12 +496,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5509622329987537014}
-  m_Father: {fileID: 3208387700040817617}
-  m_RootOrder: 2
+  m_Father: {fileID: 5909443733029696600}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -101}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4654160004829252986

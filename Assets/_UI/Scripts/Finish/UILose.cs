@@ -20,7 +20,7 @@ namespace _UI.Scripts.Lose
         {
             base.Open();
             GameManager.Instance.ChangeState(GameState.Lose);
-            SetRank(LevelManager.Instance.TotalCharacter);
+            SetRank(LevelManager.Instance.PlayerRank);
         }
 
         public void x3PointButton()

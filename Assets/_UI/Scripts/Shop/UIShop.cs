@@ -35,7 +35,7 @@ namespace _Game.UI.Scripts.Shop
                 buttons[index].SetActive(true);
             }
         }
-        
+
         public override void CloseDirectly()
         {
             base.CloseDirectly();

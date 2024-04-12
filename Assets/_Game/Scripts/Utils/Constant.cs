@@ -1,4 +1,6 @@
 
+using System;
+
 namespace _Game.Utils
 {
     public class LevelUtils
@@ -36,6 +38,11 @@ namespace _Game.Utils
         public const float BOOMERANG = 5f;
         public const float STRAIGHT = 9f;
         public const float ROTATION = 1000f;
+    }
+
+    public class PlayerProperties
+    {
+        public const String NAME = "You";
     }
     
     public enum WeaponType

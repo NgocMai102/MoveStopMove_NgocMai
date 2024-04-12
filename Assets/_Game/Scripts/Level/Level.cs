@@ -6,14 +6,14 @@ namespace _Game.Scripts.Manager.Level
     {
         [SerializeField] private Transform minPoint,maxPoint;
         //so luong hien tren man hinh
-        [SerializeField] private int totalEnemyVisible;
+        [SerializeField] private int totalCharacterVisible;
         //so luong that su
-        [SerializeField] private int totalEnemyReal;
+        [SerializeField] private int totalCharacterReal;
         
         public Transform MinPoint => minPoint;
         public Transform MaxPoint => maxPoint;
-        public int TotalEnemyVisible => totalEnemyVisible;    
-        public int TotalEnemyReal => totalEnemyReal;
+        public int TotalCharacterReal => totalCharacterReal;    
+        public int TotalCharacterVisible => totalCharacterVisible;
     }
 }
 

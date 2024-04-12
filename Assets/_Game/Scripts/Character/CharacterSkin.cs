@@ -114,6 +114,8 @@ namespace _Game.Scripts.Character
                 pants.materials = Array.Empty<Material>();
             }
         }
+
+        
         
     }
 }
