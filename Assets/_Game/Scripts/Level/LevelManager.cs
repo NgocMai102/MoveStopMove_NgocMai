@@ -66,8 +66,6 @@ namespace _Game.Scripts.Manager.Level
             }
 
             totalEnemy = currentLevel.TotalCharacterReal - currentLevel.TotalCharacterVisible;
-
-            
         }
 
         private void OnReset()
@@ -88,9 +86,9 @@ namespace _Game.Scripts.Manager.Level
             Enemy enemy = SimplePool.Spawn<Enemy>(PoolType.Enemy, RandomPoint(), Quaternion.identity);
             enemy.OnInit();
             enemy.ChangeState(state);
-            
+
             enemies.Add(enemy);
-            enemy.SetScore(player.Score > 0 ? Random.Range(player.Score - 7, player.Score + 7) : 1);
+            enemy.SetScore(player.Score > 0 ? Random.Range(player.Score - 1, player.Score + 5) : 1);
         }
         
         private void CollectAllCharacter()
@@ -128,6 +126,8 @@ namespace _Game.Scripts.Manager.Level
             {
                 totalEnemy--;
                 SpawnEnemy(Utilities.Chance(50, 100) ? new EIdleState() : new EPatrolState());
+
+               
             }
 
             if (enemies.Count == 0)
@@ -188,7 +188,7 @@ namespace _Game.Scripts.Manager.Level
 
         public void SetTargetIndicatorAlpha(float alpha)
         {
-            Debug.Log(SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator));
+//            Debug.Log(SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator));
             // List<GameUnit> list = SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator);
             // for (int i = 0; i < list.Count; i++)
             // {

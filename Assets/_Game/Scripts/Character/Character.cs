@@ -85,6 +85,7 @@ namespace _Game.Scripts.Character
             if (!indicator)
             {
                 indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+//                Debug.Log(SimplePool.GetAllUnitIsActive(PoolType.Enemy));
 //                Debug.Log("indicator");
             }
             indicator.SetTarget(indicatorPoint);
@@ -175,6 +176,7 @@ namespace _Game.Scripts.Character
         {
             this.score = score > 0 ? score : 0;
             SetSize(1 + this.score * 0.1f);
+            indicator.SetScore(score);
         }
 
         #endregion

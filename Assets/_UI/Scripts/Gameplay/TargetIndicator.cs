@@ -65,7 +65,7 @@ namespace _Game.UI.Scripts.Gameplay
 
     private void OnInit()
     {
-        SetScore(0);
+        //SetScore(0);
         SetColor(new Color(Random.value, Random.value, Random.value, 1));
         SetAlpha(GameManager.Instance.IsState(GameState.Gameplay) ? 1 : 0);
     }
