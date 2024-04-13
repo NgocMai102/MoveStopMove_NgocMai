@@ -74,7 +74,7 @@ namespace _Game.Scripts.Character
             attackRange.OnInit(this);
             characterSkin.OnInit(this);
             score = 0;
-            
+
             InitTargetIndicator();
             InitProperties();
             ResetModelRotation();
@@ -82,12 +82,10 @@ namespace _Game.Scripts.Character
         
         public void InitTargetIndicator()
         {
-            if (!indicator)
-            {
-                indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
-            }
+            indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
             indicator.SetTarget(indicatorPoint);
             indicator.SetScore(score);
+            indicator.SetName(name);
         }
         
         public void InitProperties()

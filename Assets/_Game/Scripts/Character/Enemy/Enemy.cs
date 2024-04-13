@@ -33,7 +33,6 @@ namespace _Game.Scripts.Character.Enemy
             HideCircleIndicator();
 
             name = nameData.GetRandomName();
-            indicator.SetName(name);
         }
 
         private void InitState()

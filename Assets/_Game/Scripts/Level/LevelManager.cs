@@ -34,7 +34,7 @@ namespace _Game.Scripts.Manager.Level
         private bool isRevive;
 
         public int TotalCharacter => totalEnemy + enemies.Count + 1;
-        public int PlayerRank => TotalCharacter - 1;
+        public int PlayerRank => TotalCharacter;
         public int IndexLevel => indexLevel;
         public Player Player => player;
 
@@ -60,25 +60,14 @@ namespace _Game.Scripts.Manager.Level
         {
             player.OnInit();
             isRevive = false;
-            for (int i = 1; i < currentLevel.TotalCharacterVisible; i++)
+            for (int i = 0; i < currentLevel.TotalCharacterVisible; i++)
             {
                 SpawnEnemy(null);
             }
-            SimplePool.GetAllUnitIsActive(PoolType.Enemy);
 
-            totalEnemy = currentLevel.TotalCharacterReal - currentLevel.TotalCharacterVisible;
+            totalEnemy = currentLevel.TotalCharacterReal - currentLevel.TotalCharacterVisible - 1;
         }
-
-        private void OnReset()
-        {
-            player.OnDespawn();
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                enemies[i].OnDespawn();
-            }
-            enemies.Clear();
-            SimplePool.CollectAll();
-        }
+        
 
         #region Character
 
@@ -155,9 +144,21 @@ namespace _Game.Scripts.Manager.Level
             SetUpLevel();
             UIManager.Instance.OpenUI<UIMainMenu>();
         }
+        
+        private void OnReset()
+        {
+            player.OnDespawn();
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].OnDespawn();
+            }
+            enemies.Clear();
+            SimplePool.CollectAll();
+        }
 
         public void OnPlay()
         {
+            SetTargetIndicatorAlpha(1);
             for(int i = 0; i < enemies.Count; i++)
             {
                 enemies[i].ChangeState(new EIdleState());
@@ -176,6 +177,7 @@ namespace _Game.Scripts.Manager.Level
             player.OnLose();
             UIManager.Instance.CloseAll();
             UIManager.Instance.OpenUI<UILose>();
+            SetTargetIndicatorAlpha(0);
         }
 
         private void Victory()
@@ -190,6 +192,7 @@ namespace _Game.Scripts.Manager.Level
             List<GameUnit> list = SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator);
             for (int i = 0; i < list.Count; i++)
             {
+                (list[i] as TargetIndicator).gameObject.SetActive(true);
                 (list[i] as TargetIndicator).SetAlpha(alpha);
             }
         }
