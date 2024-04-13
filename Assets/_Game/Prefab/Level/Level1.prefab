@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPoint: {fileID: 8432607513670118636}
   maxPoint: {fileID: 999630895509369069}
-  totalCharacterVisible: 1
-  totalCharacterReal: 2
+  totalCharacterVisible: 10
+  totalCharacterReal: 20
 --- !u!114 &890888280
 MonoBehaviour:
   m_ObjectHideFlags: 0

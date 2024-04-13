@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 8732774734555418569}
   rightHand: {fileID: 5976579289390814574}
-  leftHand: {fileID: 6927856118435189900}
+  leftHand: {fileID: 190424404827801574}
   pants: {fileID: 154957976637446298}
   headSkin: {fileID: 11400000, guid: 40ce09689e950744d80d9009d438cd02, type: 2}
   leftHandSkin: {fileID: 11400000, guid: 9a288893dce71174da006fb61a80cfdf, type: 2}

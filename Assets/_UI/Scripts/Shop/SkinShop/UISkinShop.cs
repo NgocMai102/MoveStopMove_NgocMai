@@ -148,7 +148,7 @@ namespace _UI.Scripts.Shop.SkinShop
             currentItem = item;
             currentItem.SetSelectUI(true);
             SetButtonState(item);
-           
+
             if (equipedTypes[(int) item.Type] == Convert.ToInt32(item.ID))
             {
                 SetButton((int) ButtonState.Equipped);

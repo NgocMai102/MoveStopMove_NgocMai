@@ -77,10 +77,8 @@ namespace _Game.Scripts.Character
 
         protected void ChangePants(PantsType pantType)
         {
-            if (pantType != PantsType.None)
-            {
-                pants.material = pantsSkin.GetSkin((int)pantType); 
-            }
+           
+            pants.material = pantsSkin.GetSkin((int)pantType);
         }
         
         protected void DespawnHat()
@@ -111,7 +109,8 @@ namespace _Game.Scripts.Character
         {
             if (currentPants)
             {
-                pants.materials = Array.Empty<Material>();
+                //pants.materials = Array.Empty<Material>();
+                pants.material = null;
             }
         }
 

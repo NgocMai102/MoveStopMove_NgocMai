@@ -72,7 +72,7 @@ namespace _Game.Utils
 
     public enum PantsType 
     {
-        None = 0,
+        Default = 0,
         Batman = 1,
         Chambi = 2,
         Comy = 3,
