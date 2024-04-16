@@ -110,7 +110,6 @@ namespace _Game.Scripts.Character
         
         public void Attack(Vector3 target)
         {
-            Debug.Log("Attack");
             currentWeapon.SpawnBullet(target, this);
             StartCoroutine(ResetAttack());
         }

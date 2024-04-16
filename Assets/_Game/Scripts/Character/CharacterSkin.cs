@@ -56,7 +56,7 @@ namespace _Game.Scripts.Character
             DespawnHat();
             DespawnPants(); 
             DespawnAccessory();
-            //DespawnWeapon();
+            DespawnWeapon();
         }
 
         protected void ChangeHat(HatType hatType)

@@ -47,12 +47,12 @@ namespace _Game.Scripts.Character.Player
         private void OnEnable()
         {
             onCloseSkinShop = _ => SetCurrentSkin();
-            this.RegisterListener(EventID.OnCloseShop, onCloseSkinShop);
+            //this.RegisterListener(EventID.OnCloseShop, onCloseSkinShop);
         }
 
         private void OnDisable()
         {
-            this.RemoveListener(EventID.OnCloseShop, onCloseSkinShop);
+            //this.RemoveListener(EventID.OnCloseShop, onCloseSkinShop);
         }
         
         private void Update()
