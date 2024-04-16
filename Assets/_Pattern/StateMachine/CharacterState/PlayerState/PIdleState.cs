@@ -4,6 +4,7 @@ using _Framework.StateMachine;
 // using Game.Character.Animation;
 using _Game.Scripts.Character.Player;
 using _Game.Utils;
+using _UI.Scripts.UI;
 using UnityEngine;
 
 namespace _Pattern.StateMachine.PlayerState
@@ -12,13 +13,16 @@ namespace _Pattern.StateMachine.PlayerState
     {
         public void OnEnter(Player player)
         {
-            player.StopMove();
             player.ChangeAnim(AnimType.IDLE);
-            
         }
 
         public void OnExecute(Player player)
         {
+            if (GameManager.Instance.IsState(GameState.Gameplay) == false)
+            {
+                return;
+            }
+            
             if (player.IsMoving)
             {
                 player.ChangeState(new PRunState());

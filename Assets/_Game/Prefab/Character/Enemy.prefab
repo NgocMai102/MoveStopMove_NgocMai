@@ -1699,8 +1699,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 1
-  model: {fileID: 4697085256010135018}
-  anim: {fileID: 2315911322025427314}
   attackRange: {fileID: 6785464449121059212}
   characterSkin: {fileID: 357439851380434054}
   moveSpeed: 5
@@ -1777,6 +1775,8 @@ MonoBehaviour:
   rightHand: {fileID: 3444810562600686856}
   leftHand: {fileID: 2099979084344665459}
   pants: {fileID: 6988994866211461570}
+  model: {fileID: 4697085256010135018}
+  anim: {fileID: 2315911322025427314}
   headSkin: {fileID: 11400000, guid: 40ce09689e950744d80d9009d438cd02, type: 2}
   leftHandSkin: {fileID: 11400000, guid: 9a288893dce71174da006fb61a80cfdf, type: 2}
   rightHandSkin: {fileID: 11400000, guid: 84a1964de79c9ea4badcd878c5b58eaf, type: 2}

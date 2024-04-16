@@ -1,4 +1,5 @@
 ﻿using _Framework.Singleton;
+using _Game.Scripts.Manager.Data;
 using UnityEngine;
 
 namespace _UI.Scripts.UI
@@ -43,6 +44,8 @@ namespace _UI.Scripts.UI
                 Screen.SetResolution(Mathf.RoundToInt(ratio * maxScreenHeight), maxScreenHeight, true);
             }
             
+            DataManager.Instance.LoadData();
+            
             //csv.OnInit();
             //userData?.OnInitData();
             
@@ -53,7 +56,7 @@ namespace _UI.Scripts.UI
         private void Start()
         {
             UIManager.Instance.OpenUI<UIMainMenu>();
-           
+            PlayerData playerData = DataManager.Instance.PlayerData;
         }
     }
 }

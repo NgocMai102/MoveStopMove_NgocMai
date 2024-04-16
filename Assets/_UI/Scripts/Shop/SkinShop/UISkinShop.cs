@@ -86,6 +86,7 @@ namespace _UI.Scripts.Shop.SkinShop
             currentItemType = currentBar.Type;
             
             ChangeItemType(currentItemType);
+            
         }
         
         public void ChangeItemType(ItemType type)
@@ -101,8 +102,8 @@ namespace _UI.Scripts.Shop.SkinShop
                 case(ItemType.Accessory):
                     InitShopItem(itemDataSO.Accessory, ItemType.Accessory);
                     break;
-                case(ItemType.Set):
-                    InitShopItem(itemDataSO.Sets, ItemType.Set);
+                case(ItemType.SetSkin):
+                    InitShopItem(itemDataSO.Sets, ItemType.SetSkin);
                     break;
             }
         }
@@ -178,7 +179,6 @@ namespace _UI.Scripts.Shop.SkinShop
             UpdateEquipedData();
             GetEquipedData();
             //TODO: Update coin text
-            
         }
         
         public void GetEquipedData()

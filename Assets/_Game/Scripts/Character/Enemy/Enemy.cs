@@ -33,6 +33,7 @@ namespace _Game.Scripts.Character.Enemy
             HideCircleIndicator();
 
             name = nameData.GetRandomName();
+            characterSkin.OnInit(this);
         }
 
         private void InitState()

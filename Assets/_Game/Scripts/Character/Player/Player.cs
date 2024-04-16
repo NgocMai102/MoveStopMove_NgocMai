@@ -1,6 +1,9 @@
+using System;
+using _Framework.Event.Scripts;
 using _Framework.StateMachine;
 using _Game.Camera;
 using _Game.Scripts.Manager;
+using _Game.Scripts.Manager.Data;
 using _Game.Scripts.Skin.Data;
 using _Game.Utils;
 using _Pattern.StateMachine.PlayerState;
@@ -15,20 +18,42 @@ namespace _Game.Scripts.Character.Player
         [Header("Player Properties")] 
         [SerializeField] private Rigidbody rb;
         [SerializeField] private SetSkinDataSO skinData;
-        
+
         private Vector3 moveDirection;
         private bool startMove;
-        private SetType currentSkinType;
-        private StateMachine<Player> currentState;
         
+        
+
+        private StateMachine<Player> currentState;
+        private Action<object> onCloseSkinShop;
+
+        public PlayerData PlayerData => DataManager.Instance.PlayerData;
         public bool IsMoving => moveDirection != Vector3.zero;
         public bool CanUpdate => GameManager.Instance.IsState(GameState.Gameplay);
+
+
+        private void Awake()
+        {
+            InitState();
+            currentState = new StateMachine<Player>();
+            currentState.SetOwner(this);
+        }
         
         private void Start()
         {
             OnInit();
         }
         
+        private void OnEnable()
+        {
+            onCloseSkinShop = _ => SetCurrentSkin();
+            this.RegisterListener(EventID.OnCloseShop, onCloseSkinShop);
+        }
+
+        private void OnDisable()
+        {
+            this.RemoveListener(EventID.OnCloseShop, onCloseSkinShop);
+        }
         
         private void Update()
         {
@@ -43,23 +68,28 @@ namespace _Game.Scripts.Character.Player
         public override void OnInit()
         {
             base.OnInit();
-            InitState();
-
-            startMove = false;
-            name = PlayerProperties.NAME;
+            SetName();
+            SetCurrentSkin();
             
+            startMove = false;
             TF.position = Vector3.zero;
             moveDirection = Vector3.zero;
+            currentState.ChangeState(new PIdleState());
         }
     
         private void InitState()
         {
-            if (currentState == null)
-            {
-                currentState = new StateMachine<Player>();
-                currentState.SetOwner(this);
-            }
-            currentState.ChangeState(new PIdleState());
+            // if (currentState == null)
+            // {
+            //     currentState = new StateMachine<Player>();
+            //     currentState.SetOwner(this);
+            // }
+            // currentState.ChangeState(new PIdleState());
+        }
+
+        private void SetName()
+        {
+            name = PlayerProperties.NAME;
         }
 
         #region MovementManager
@@ -130,7 +160,7 @@ namespace _Game.Scripts.Character.Player
 
         public void OnVictory()
         {
-            Dance();
+            characterSkin.ChangeAnim(AnimType.DANCE);
             score = 0;
         }
 
@@ -138,21 +168,18 @@ namespace _Game.Scripts.Character.Player
         {
             score = 0;
         }
-
-        public void Dance()
-        {
-            ChangeAnim(AnimType.DANCE);
-        }
+        
 
         #region Skin
         
-        private void SetFullSkin()
+        private void SetCurrentSkin()
         {
-            //int currentSetSkinId = PlayerData.GetItemEquipped(ItemType.SetSkin);
-            //SetSkin((SetType) currentSetSkinId);
+            int currentSetSkinId = PlayerData.GetIntData(KeyData.PlayerSetSkin);
+            SetSkin((SetType) currentSetSkinId);
+           
         }
 
-        private void SetSkin(SetType setType)
+        public void SetSkin(SetType setType)
         {
             if (characterSkin != null)
             {

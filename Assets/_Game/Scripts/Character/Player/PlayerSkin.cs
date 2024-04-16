@@ -9,10 +9,11 @@ namespace _Game.Scripts.Character.Player
 {
     public class PlayerSkin : CharacterSkin
     {
-
+        
         private PlayerData PlayerData => DataManager.Instance.PlayerData;
         private Action<object> onSelectItem;
         private Action<object> onCloseShop;
+        private Action<object> OnSelectShopBar;
 
         private void OnEnable()
         {
@@ -21,6 +22,10 @@ namespace _Game.Scripts.Character.Player
             
             onCloseShop = _ => WearClothes();
             this.RegisterListener(EventID.OnCloseShop, onCloseShop);
+
+            OnSelectShopBar = _ => WearClothes();
+            this.RegisterListener(EventID.OnSelectShopBar, OnSelectShopBar);
+
         }
 
         public override void WearClothes()
@@ -31,6 +36,8 @@ namespace _Game.Scripts.Character.Player
             ChangeAccessory((AccessoryType) PlayerData.GetIntData(KeyData.PlayerAccessory));
             ChangeWeapon((WeaponType) PlayerData.GetIntData(KeyData.PlayerWeapon));
         }
+        
+        
         
         private void TryCloth(ShopItem item) 
         {
@@ -48,9 +55,10 @@ namespace _Game.Scripts.Character.Player
                     DespawnAccessory();
                     ChangeAccessory((AccessoryType) item.ID);
                     break;
-                case ItemType.Set:
+                case ItemType.SetSkin:
                     TakeOffClothes();
-                    //ChangeSet((SetType) item.ID);
+                    Player player = (Player) owner;
+                    player.SetSkin((SetType) item.ID);
                     break;
                 case ItemType.Weapon:
                     DespawnWeapon();
@@ -58,6 +66,7 @@ namespace _Game.Scripts.Character.Player
                     break;
             }
         }
+        
 
     }
 }

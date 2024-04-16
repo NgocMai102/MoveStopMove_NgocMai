@@ -10,10 +10,13 @@ namespace _Game.Scripts.Character
     public abstract class CharacterSkin : MonoBehaviour
     {
         [Header("References")]
+        [SerializeField] private Animator anim;
         [SerializeField] private Transform head;
         [SerializeField] private Transform rightHand;
         [SerializeField] private Transform leftHand;
         [SerializeField] private Renderer pants;
+        
+        [SerializeField] private Transform model;
 
         [Header("SkinData")]
         [SerializeField] private SkinDataSO<Hat> headSkin;
@@ -28,15 +31,18 @@ namespace _Game.Scripts.Character
         protected Renderer currentPants;
 
         protected Character owner;
+        protected string currentAnimName;
 
         public Weapon.Weapon CurrentWeapon => currentWeapon;
         public Transform RightHand => rightHand;
+        public bool CanChangeClothes => owner.CurrentSetType == SetType.Normal;
 
         public virtual void OnInit(Character character)
         {
             TakeOffClothes();
             owner = character;
             currentWeapon = owner.CurrentWeapon;
+            
             WearClothes();
         }
 
@@ -50,12 +56,12 @@ namespace _Game.Scripts.Character
             DespawnHat();
             DespawnPants(); 
             DespawnAccessory();
-            DespawnWeapon();
+            //DespawnWeapon();
         }
 
         protected void ChangeHat(HatType hatType)
         {
-            if (hatType != HatType.None)
+            if (hatType != HatType.None && CanChangeClothes)
             {
                 currentHat = Instantiate(headSkin.GetSkin((int)hatType), head);
             }
@@ -77,10 +83,12 @@ namespace _Game.Scripts.Character
 
         protected void ChangePants(PantsType pantType)
         {
-           
-            pants.material = pantsSkin.GetSkin((int)pantType);
+            if (CanChangeClothes)
+            {
+                pants.material = pantsSkin.GetSkin((int)pantType);
+            }
         }
-        
+
         protected void DespawnHat()
         {
             if (currentHat)
@@ -107,14 +115,31 @@ namespace _Game.Scripts.Character
         
         protected void DespawnPants()
         {
-            if (currentPants)
+            if (currentPants && CanChangeClothes)
             {
-                //pants.materials = Array.Empty<Material>();
-                pants.material = null;
+                pants.materials = Array.Empty<Material>();
             }
         }
 
+        public void ChangeAnim(string animName)
+        {
+            if (currentAnimName == animName)
+            { 
+                return;
+            }
         
+            anim.ResetTrigger(animName);
+            currentAnimName = animName;
+            anim.SetTrigger(animName);
+        }
+        
+        public void RotateTo(Vector3 target)
+        {
+            Vector3 tmpPos = target - model.position;
+            tmpPos.y = 0;
+            owner.TF.forward = tmpPos.normalized;
+            
+        }
         
     }
 }

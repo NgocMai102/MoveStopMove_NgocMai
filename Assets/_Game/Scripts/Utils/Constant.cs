@@ -106,7 +106,7 @@ namespace _Game.Utils
         Hat = 0,
         Pants = 1,
         Accessory = 2,
-        Set = 3,
+        SetSkin = 3,
         Weapon = 4,
     }
 

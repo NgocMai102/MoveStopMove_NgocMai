@@ -742,7 +742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70640bd77e5224a42aeb5da978b9de0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoaded: 1
   playerData:
     isNew: 1
     isSound: 1
@@ -778,6 +777,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 53886631808583300, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
+      propertyPath: skinData
+      value: 
+      objectReference: {fileID: 11400000, guid: 63c1b744e0e3abd47aa73a370bece88b, type: 2}
+    - target: {fileID: 53886631808583300, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
+      propertyPath: characterSkin
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 53886631808583302, guid: 4088f0ac61189fe419c2459309f637c1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1082,7 +1089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips: []
-  testAudioClip: {fileID: 8300000, guid: 3b6425a632d4cfc4b9eb26a34e55071c, type: 3}
+  audioSources: []
 --- !u!1 &1390460686
 GameObject:
   m_ObjectHideFlags: 0

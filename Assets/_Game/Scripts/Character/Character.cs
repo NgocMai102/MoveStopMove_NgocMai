@@ -15,9 +15,8 @@ namespace _Game.Scripts.Character
 {
     public class Character : GameUnit
     {
-        public Transform model;
         [Header("Properties")]
-        [SerializeField] private Animator anim;
+        
         [SerializeField] private AttackRange attackRange;
         [SerializeField] protected CharacterSkin characterSkin;
 
@@ -28,7 +27,7 @@ namespace _Game.Scripts.Character
         [SerializeField] private Transform indicatorPoint;
 
         private SphereCollider sphereCollider;
-        private string currentAnimName;
+        
         private Action<Object> onCharacterDie;
         
         private List<Character> enemyInRange = new List<Character>();
@@ -42,17 +41,20 @@ namespace _Game.Scripts.Character
         
         protected bool isDead;
         protected float size;
+        protected SetType currentSkinType;
         
         #region Getter
         public Weapon.Weapon CurrentWeapon => currentWeapon;
+        public SetType CurrentSetType => currentSkinType;
         public Vector3 ThrowPoint => characterSkin.RightHand.position;
         
         public bool IsAttackable => isAttackable;
         public bool IsDead => isDead;
+        public String CharName => name;
 
         public bool FoundCharacter => enemyInRange.Count > 0;
         public float AttackRangeRadius => attackRangeRadius;
-
+        
         public String Name => name;
         public int Score => score;
         public float Size => size;
@@ -72,7 +74,7 @@ namespace _Game.Scripts.Character
         public virtual void OnInit()
         {
             attackRange.OnInit(this);
-            characterSkin.OnInit(this);
+            
             score = 0;
 
             InitTargetIndicator();
@@ -103,25 +105,12 @@ namespace _Game.Scripts.Character
         {
             currentWeapon = weapon;
         }
-        
-        #region Animation
-        public void ChangeAnim(string animName)
-        {
-            if (currentAnimName != animName)
-            {
-                anim.ResetTrigger(animName);
-                currentAnimName = animName;
-                if (currentAnimName != null)
-                    anim.ResetTrigger(currentAnimName);
-                anim.SetTrigger(currentAnimName);
-            }
-        }
-        #endregion
 
         #region Attack
         
         public void Attack(Vector3 target)
         {
+            Debug.Log("Attack");
             currentWeapon.SpawnBullet(target, this);
             StartCoroutine(ResetAttack());
         }
@@ -184,15 +173,7 @@ namespace _Game.Scripts.Character
             this.size = size;
             TF.localScale = size * Vector3.one;
         }
-        
-        public void RotateTo(Vector3 target)
-        {
-            Vector3 tmpPos = target - model.position;
-            tmpPos.y = 0;
-            TF.forward = tmpPos.normalized;
-            
-        }
-        
+
         public void ResetModelRotation()
         {
             TF.localRotation = Quaternion.Euler(0, 180, 0);
@@ -206,8 +187,7 @@ namespace _Game.Scripts.Character
 
         public virtual void OnDespawn()
         {
-           //SimplePool.Despawn(indicator);
-           indicator.SetAlpha(0);
+            indicator.SetAlpha(0);
         }
 
         public virtual void OnHit()
@@ -232,6 +212,10 @@ namespace _Game.Scripts.Character
         {
             this.RemoveListener(EventID.OnCharacterDead, onCharacterDie);
         }
+        
+        public void ChangeAnim(String name) => characterSkin.ChangeAnim(name);
+        
+        public void RotateTo(Vector3 target) => characterSkin.RotateTo(target);
         
     }
 }

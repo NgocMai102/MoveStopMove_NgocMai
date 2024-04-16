@@ -44,6 +44,7 @@ namespace _Game.Scripts.Manager.Level
             OnLoadLevel(indexLevel);
             SetUpLevel();
             SetTargetIndicatorAlpha(0);
+            
         }
 
         public void OnLoadLevel(int level)
