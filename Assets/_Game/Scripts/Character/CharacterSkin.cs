@@ -42,6 +42,7 @@ namespace _Game.Scripts.Character
             TakeOffClothes();
             owner = character;
             currentWeapon = owner.CurrentWeapon;
+            currentPants = pants;
             
             WearClothes();
         }
@@ -69,7 +70,7 @@ namespace _Game.Scripts.Character
         
         protected void ChangeAccessory(AccessoryType accessoryType)
         {
-            if (accessoryType != AccessoryType.None)
+            if (accessoryType != AccessoryType.None && CanChangeClothes)
             {
                 currentAccessory = Instantiate(leftHandSkin.GetSkin((int)accessoryType), leftHand);
             }
@@ -138,7 +139,6 @@ namespace _Game.Scripts.Character
             Vector3 tmpPos = target - model.position;
             tmpPos.y = 0;
             owner.TF.forward = tmpPos.normalized;
-            
         }
         
     }

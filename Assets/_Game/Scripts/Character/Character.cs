@@ -157,10 +157,10 @@ namespace _Game.Scripts.Character
             SetScore(score + amount);
         }
 
-        public void SetScore(int score)
+        public void SetScore(int value)
         {
-            this.score = score > 0 ? score : 0;
-            SetSize(1 + this.score * 0.1f);
+            score = value > 0 ? value : 0;
+            SetSize(1 + score * 0.1f);
             indicator.SetScore(score);
         }
 

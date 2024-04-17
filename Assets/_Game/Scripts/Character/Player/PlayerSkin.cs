@@ -36,9 +36,7 @@ namespace _Game.Scripts.Character.Player
             ChangeAccessory((AccessoryType) PlayerData.GetIntData(KeyData.PlayerAccessory));
             ChangeWeapon((WeaponType) PlayerData.GetIntData(KeyData.PlayerWeapon));
         }
-        
-        
-        
+
         private void TryCloth(ShopItem item) 
         {
             switch (item.Type)

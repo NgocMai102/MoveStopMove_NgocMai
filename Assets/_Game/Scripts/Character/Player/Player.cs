@@ -22,8 +22,6 @@ namespace _Game.Scripts.Character.Player
         private Vector3 moveDirection;
         private bool startMove;
         
-        
-
         private StateMachine<Player> currentState;
         private Action<object> onCloseSkinShop;
 
@@ -34,7 +32,6 @@ namespace _Game.Scripts.Character.Player
 
         private void Awake()
         {
-            InitState();
             currentState = new StateMachine<Player>();
             currentState.SetOwner(this);
         }
@@ -44,15 +41,15 @@ namespace _Game.Scripts.Character.Player
             OnInit();
         }
         
-        private void OnEnable()
+        private void RegisterEvent()
         {
             onCloseSkinShop = _ => SetCurrentSkin();
-            //this.RegisterListener(EventID.OnCloseShop, onCloseSkinShop);
+            this.RegisterListener(EventID.OnCloseShop, onCloseSkinShop);
         }
 
-        private void OnDisable()
+        private void RemoveEvent()
         {
-            //this.RemoveListener(EventID.OnCloseShop, onCloseSkinShop);
+            this.RemoveListener(EventID.OnCloseShop, onCloseSkinShop);
         }
         
         private void Update()
@@ -70,21 +67,12 @@ namespace _Game.Scripts.Character.Player
             base.OnInit();
             SetName();
             SetCurrentSkin();
+            RegisterEvent();
             
             startMove = false;
             TF.position = Vector3.zero;
             moveDirection = Vector3.zero;
             currentState.ChangeState(new PIdleState());
-        }
-    
-        private void InitState()
-        {
-            // if (currentState == null)
-            // {
-            //     currentState = new StateMachine<Player>();
-            //     currentState.SetOwner(this);
-            // }
-            // currentState.ChangeState(new PIdleState());
         }
 
         private void SetName()
@@ -162,11 +150,13 @@ namespace _Game.Scripts.Character.Player
         {
             characterSkin.ChangeAnim(AnimType.DANCE);
             score = 0;
+            this.RemoveEvent();
         }
 
         public void OnLose()
         {
             score = 0;
+            this.RemoveEvent();
         }
         
 

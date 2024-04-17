@@ -235,12 +235,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc19b0e03957d74993bec98c97c154c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 8150113476869870590}
   head: {fileID: 3583752272251935853}
   rightHand: {fileID: 4619830705176418269}
   leftHand: {fileID: 3703346326341367008}
   pants: {fileID: 8339840794754196699}
   model: {fileID: 8872118765083076473}
-  anim: {fileID: 8150113476869870590}
   headSkin: {fileID: 11400000, guid: 40ce09689e950744d80d9009d438cd02, type: 2}
   leftHandSkin: {fileID: 11400000, guid: 9a288893dce71174da006fb61a80cfdf, type: 2}
   rightHandSkin: {fileID: 11400000, guid: 84a1964de79c9ea4badcd878c5b58eaf, type: 2}
@@ -1736,7 +1736,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 659d0128f58a6ba4894bcd21977a127c, type: 2}
+  - {fileID: 2100000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

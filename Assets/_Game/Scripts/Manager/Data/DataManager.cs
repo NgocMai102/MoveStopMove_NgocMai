@@ -33,7 +33,6 @@ namespace _Game.Scripts.Manager.Data
             {
                 playerData = new PlayerData();
             }
-
             playerData.OnInit();
 
         }
