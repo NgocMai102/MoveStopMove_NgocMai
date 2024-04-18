@@ -31,6 +31,8 @@ namespace _Game.Scripts.Character.Player
         public override void WearClothes()
         {
             base.WearClothes();
+            Debug.Log("WearSkin");
+            
             ChangeHat((HatType) PlayerData.GetIntData(KeyData.PlayerHat));
             ChangePants((PantsType) PlayerData.GetIntData(KeyData.PlayerPants));
             ChangeAccessory((AccessoryType) PlayerData.GetIntData(KeyData.PlayerAccessory));

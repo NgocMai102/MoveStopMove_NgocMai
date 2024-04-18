@@ -89,6 +89,12 @@ namespace _UI.Scripts.Shop.SkinShop
             
         }
         
+        public void CloseDirectly()
+        {
+            base.CloseDirectly();
+            this.PostEvent(EventID.OnCloseSetSkin);
+        }
+        
         public void ChangeItemType(ItemType type)
         {
             switch (type)

@@ -189,8 +189,9 @@ namespace _Game.Scripts.Character
             indicator.SetAlpha(0);
         }
 
-        public virtual void OnHit()
+        public virtual void OnHit(String murder)
         {
+            this.murder = murder;
             isDead = true;
             this.PostEvent(EventID.OnCharacterDead, this);
         }

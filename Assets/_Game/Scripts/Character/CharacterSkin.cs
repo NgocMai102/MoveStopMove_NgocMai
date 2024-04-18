@@ -84,7 +84,7 @@ namespace _Game.Scripts.Character
 
         protected void ChangePants(PantsType pantType)
         {
-            if (CanChangeClothes)
+            if (CanChangeClothes && currentPants)
             {
                 pants.material = pantsSkin.GetSkin((int)pantType);
             }

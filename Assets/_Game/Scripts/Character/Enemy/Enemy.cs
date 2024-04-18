@@ -1,3 +1,4 @@
+using System;
 using _Framework.StateMachine;
 using _Pattern.StateMachine.EnemyState;
 using UnityEngine;
@@ -70,9 +71,9 @@ namespace _Game.Scripts.Character.Enemy
             currentState.ChangeState(state);
         }
 
-        public override void OnHit()
+        public override void OnHit(String murder)
         {
-            base.OnHit();
+            base.OnHit(murder);
             ChangeState(new EDeadState());
         }
 

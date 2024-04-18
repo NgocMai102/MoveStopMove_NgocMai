@@ -7,5 +7,6 @@
         OnSelectShopBar = 2,
         OnSelectItem = 3,
         OnCloseShop = 6,
+        OnCloseSetSkin = 7,
     }
 }

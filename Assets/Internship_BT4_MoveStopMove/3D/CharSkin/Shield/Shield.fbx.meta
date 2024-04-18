@@ -28,7 +28,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: shield_shield_lambert53
-    second: {fileID: -4597308625981230245, guid: c6559928fc2f37643800056bd6e71b23, type: 3}
+    second: {fileID: 8852321937590121897, guid: e6f363834ca6cbe4d8f7406f075bc138, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0

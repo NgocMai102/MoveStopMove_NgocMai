@@ -45,7 +45,7 @@ namespace _Game.Scripts.Weapon.Bullet
                 Character.Character character = Cache<Character.Character>.GetComponent(other);
                 if (character != owner)
                 {
-                    character.OnHit();
+                    character.OnHit(owner.CharName);
                     owner.AddScore();
                     OnDespawn();
                 }

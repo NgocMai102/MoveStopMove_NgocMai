@@ -21,6 +21,7 @@ namespace _Game.Scripts.Character.Player
 
         private Vector3 moveDirection;
         private bool startMove;
+        private int coin;
         
         private StateMachine<Player> currentState;
         private Action<object> onCloseSkinShop;
@@ -28,7 +29,8 @@ namespace _Game.Scripts.Character.Player
         public PlayerData PlayerData => DataManager.Instance.PlayerData;
         public bool IsMoving => moveDirection != Vector3.zero;
         public bool CanUpdate => GameManager.Instance.IsState(GameState.Gameplay);
-
+        public String MurderName => murder;
+        public int Score => score;
 
         private void Awake()
         {
@@ -40,16 +42,16 @@ namespace _Game.Scripts.Character.Player
         {
             OnInit();
         }
-        
+
         private void RegisterEvent()
         {
             onCloseSkinShop = _ => SetCurrentSkin();
-            this.RegisterListener(EventID.OnCloseShop, onCloseSkinShop);
+            this.RegisterListener(EventID.OnCloseSetSkin, onCloseSkinShop);
         }
 
         private void RemoveEvent()
         {
-            this.RemoveListener(EventID.OnCloseShop, onCloseSkinShop);
+            this.RemoveListener(EventID.OnCloseSetSkin, onCloseSkinShop);
         }
         
         private void Update()
@@ -125,9 +127,9 @@ namespace _Game.Scripts.Character.Player
             currentState.ChangeState(state);
         }
 
-        public override void OnHit()
+        public override void OnHit(String murder)
         {
-            base.OnHit();
+            base.OnHit(murder);
             ChangeState(new PDeadState());
         }
 
@@ -150,13 +152,12 @@ namespace _Game.Scripts.Character.Player
         {
             characterSkin.ChangeAnim(AnimType.DANCE);
             score = 0;
-            this.RemoveEvent();
         }
 
         public void OnLose()
         {
             score = 0;
-            this.RemoveEvent();
+            RemoveEvent();
         }
         
 
@@ -166,7 +167,7 @@ namespace _Game.Scripts.Character.Player
         {
             int currentSetSkinId = PlayerData.GetIntData(KeyData.PlayerSetSkin);
             SetSkin((SetType) currentSetSkinId);
-           
+            Debug.Log(currentWeapon);
         }
 
         public void SetSkin(SetType setType)
@@ -189,6 +190,8 @@ namespace _Game.Scripts.Character.Player
         
 
         #endregion
+
+       
     }
     
 }
