@@ -27,27 +27,21 @@ namespace _UI.Scripts.Lose
             base.Open();
             GameManager.Instance.ChangeState(GameState.Lose);
             SetRank(LevelManager.Instance.PlayerRank);
-            SetPoint(LevelManager.Instance.Player.Score);
             SetMurder();
+            SetPoint();
         }
 
         public void x3PointButton()
         {
+            LevelManager.Instance.Player.TripleCoin();
             LevelManager.Instance.OnHome();
-            SetPoint(point * 3);
+        }
+
+        public void SetPoint()
+        {
+            cointText.text = PlayerData.GetIntData(KeyData.Coin).ToString();
         }
         
-        public void SetCoin(int coin)
-        {
-            this.coin = coin;
-            cointText.text = coin.ToString();
-        }
-        
-        public void SetPoint(int value)
-        {
-            point = value;
-            pointText.text = value.ToString();
-        }
 
         public void SetMurder()
         {
@@ -62,7 +56,6 @@ namespace _UI.Scripts.Lose
         public void ContinueButton()
         {
             LevelManager.Instance.OnHome();
-            PlayerData.SetIntData(KeyData.Coin, point);
         }
     }
 }

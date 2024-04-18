@@ -43,13 +43,13 @@ namespace _Game.Scripts.Character.Player
             OnInit();
         }
 
-        private void RegisterEvent()
+        private void RegisterEventSetSkin()
         {
             onCloseSkinShop = _ => SetCurrentSkin();
             this.RegisterListener(EventID.OnCloseSetSkin, onCloseSkinShop);
         }
 
-        private void RemoveEvent()
+        private void RemoveEventSetSkin()
         {
             this.RemoveListener(EventID.OnCloseSetSkin, onCloseSkinShop);
         }
@@ -69,7 +69,8 @@ namespace _Game.Scripts.Character.Player
             base.OnInit();
             SetName();
             SetCurrentSkin();
-            RegisterEvent();
+            RegisterEventSetSkin();
+            CalculateCoin();
             
             startMove = false;
             TF.position = Vector3.zero;
@@ -157,7 +158,7 @@ namespace _Game.Scripts.Character.Player
         public void OnLose()
         {
             score = 0;
-            RemoveEvent();
+            RemoveEventSetSkin();
         }
         
 
@@ -191,6 +192,18 @@ namespace _Game.Scripts.Character.Player
 
         #endregion
 
+        private void CalculateCoin()
+        {
+            int coin = PlayerData.GetIntData(KeyData.Coin);
+            coin += score;
+            PlayerData.SetIntData(KeyData.Coin, coin);
+        }
+        
+        public void TripleCoin()
+        {
+            score *= 3;
+            CalculateCoin();
+        }
        
     }
     

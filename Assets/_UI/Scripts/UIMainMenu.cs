@@ -23,7 +23,7 @@ namespace _UI.Scripts
             GameManager.Instance.ChangeState(GameState.MainMenu);
             CameraFollow.Instance.ChangeState(CameraFollow.State.MainMenu);
 
-            //coin.text =  PlayerData.GetIntData(KeyData.Coin).ToString();
+            coin.text =  PlayerData.GetIntData(KeyData.Coin).ToString();
         }
         
         public void PlayButton()
