@@ -55,7 +55,6 @@ namespace _Game.Scripts.Character
         public bool FoundCharacter => enemyInRange.Count > 0;
         public float AttackRangeRadius => attackRangeRadius;
         
-        public String Name => name;
         public int Score => score;
         public float Size => size;
 
@@ -83,9 +82,11 @@ namespace _Game.Scripts.Character
             RegisterEvents();
         }
         
-        public void InitTargetIndicator()
+        public virtual void InitTargetIndicator()
         {
+           
             indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+            
             indicator.SetTarget(indicatorPoint);
             indicator.SetScore(score);
             indicator.SetName(name);
@@ -187,7 +188,8 @@ namespace _Game.Scripts.Character
 
         public virtual void OnDespawn()
         {
-            indicator.SetAlpha(0);
+           indicator.SetAlpha(0);
+           Debug.Log("disappear" + name);
         }
 
         public virtual void OnHit(String murder)

@@ -165,7 +165,6 @@ namespace _Game.Scripts.Character.Player
         {
             int currentSetSkinId = PlayerData.GetIntData(KeyData.PlayerSetSkin);
             SetSkin((SetType) currentSetSkinId);
-            Debug.Log(currentWeapon);
         }
 
         public void SetSkin(SetType setType)

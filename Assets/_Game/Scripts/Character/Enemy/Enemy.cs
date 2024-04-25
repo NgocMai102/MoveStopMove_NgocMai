@@ -32,9 +32,13 @@ namespace _Game.Scripts.Character.Enemy
             navmeshAgent.speed = moveSpeed;
             InitState();
             HideCircleIndicator();
-
-            name = nameData.GetRandomName();
             characterSkin.OnInit(this);
+        }
+
+        public override void InitTargetIndicator()
+        {
+            name = nameData.GetRandomName();
+            base.InitTargetIndicator();
         }
 
         private void InitState()

@@ -200,7 +200,7 @@ namespace _Game.Scripts.Manager.Level
             List<GameUnit> list = SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator);
             for (int i = 0; i < list.Count; i++)
             {
-                (list[i] as TargetIndicator).gameObject.SetActive(true);
+                //(list[i] as TargetIndicator).gameObject.SetActive(true);
                 (list[i] as TargetIndicator).SetAlpha(alpha);
             }
         }

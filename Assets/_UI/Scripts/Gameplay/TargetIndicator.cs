@@ -35,8 +35,6 @@ namespace _Game.UI.Scripts.Gameplay
 
     private bool IsInCamera => viewPoint.x > viewPointInCameraX.x && viewPoint.x < viewPointInCameraX.y && viewPoint.y > viewPointInCameraY.x && viewPoint.y < viewPointInCameraY.y;
 
-    public string Name => nameTxt.text;
-
     private void LateUpdate()
     {
         viewPoint = Camera.WorldToViewportPoint(target.position);

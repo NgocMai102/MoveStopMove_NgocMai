@@ -28,6 +28,7 @@ namespace _UI.Scripts.Gameplay
             ShowTutorial();
 
             LevelManager.Instance.SetTargetIndicatorAlpha(1);
+            Debug.Log("open");
             RegisterEvents();
         }
         
