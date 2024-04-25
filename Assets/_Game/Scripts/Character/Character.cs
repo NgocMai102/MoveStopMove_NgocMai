@@ -63,7 +63,7 @@ namespace _Game.Scripts.Character
 
         private void Awake()
         {
-            RegisterEvents();
+          
         }
 
         private void Start()
@@ -80,6 +80,7 @@ namespace _Game.Scripts.Character
             InitTargetIndicator();
             InitProperties();
             ResetModelRotation();
+            RegisterEvents();
         }
         
         public void InitTargetIndicator()

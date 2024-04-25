@@ -69,6 +69,12 @@ namespace _UI.Scripts.Gameplay
             aliveCharacter--;
             SetAliveText(aliveCharacter);
         }
+        
+        public void OnClickSettingButton()
+        {
+            UIManager.Instance.CloseAll();
+            UIManager.Instance.OpenUI<UISettings>();
+        }
     }
 }
 

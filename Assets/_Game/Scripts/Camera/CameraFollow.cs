@@ -42,7 +42,6 @@ namespace _Game.Camera
 
         private void LateUpdate()
         {
-            
             offset = Vector3.Lerp(offset, targetOffset, Time.deltaTime * smoothSpeed);
             tf.rotation = Quaternion.Lerp(tf.rotation, targetRotate, Time.deltaTime * smoothSpeed);
             tf.position = Vector3.Lerp(tf.position, target.position + targetOffset, Time.deltaTime * smoothSpeed);

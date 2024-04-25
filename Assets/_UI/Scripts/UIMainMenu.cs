@@ -39,10 +39,10 @@ namespace _UI.Scripts
 
         public void ShopButton()
         {
+            CameraFollow.Instance.ChangeState(CameraFollow.State.Shop);
+            
             UIManager.Instance.CloseAll();
             UIManager.Instance.OpenUI<UISkinShop>();
-            
-            CameraFollow.Instance.ChangeState(CameraFollow.State.Shop);
         }
 
         public void WeaponButton()

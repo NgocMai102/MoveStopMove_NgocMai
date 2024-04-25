@@ -45,13 +45,12 @@ namespace _Game.Scripts.Character.Player
 
         private void RegisterEventSetSkin()
         {
-            onCloseSkinShop = _ => SetCurrentSkin();
-            this.RegisterListener(EventID.OnCloseSetSkin, onCloseSkinShop);
+            
         }
 
         private void RemoveEventSetSkin()
         {
-            this.RemoveListener(EventID.OnCloseSetSkin, onCloseSkinShop);
+            
         }
         
         private void Update()
@@ -69,7 +68,6 @@ namespace _Game.Scripts.Character.Player
             base.OnInit();
             SetName();
             SetCurrentSkin();
-            RegisterEventSetSkin();
             CalculateCoin();
             
             startMove = false;
@@ -158,7 +156,6 @@ namespace _Game.Scripts.Character.Player
         public void OnLose()
         {
             score = 0;
-            RemoveEventSetSkin();
         }
         
 

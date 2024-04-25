@@ -76,7 +76,7 @@ namespace _Game.Scripts.Character
             }
         }
         
-        protected void ChangeWeapon(WeaponType weaponType)
+        protected virtual void ChangeWeapon(WeaponType weaponType)
         {
             currentWeapon = Instantiate(rightHandSkin.GetSkin((int)weaponType), rightHand);
             owner.SetWeapon(currentWeapon);

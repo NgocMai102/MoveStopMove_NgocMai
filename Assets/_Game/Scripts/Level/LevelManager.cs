@@ -166,6 +166,13 @@ namespace _Game.Scripts.Manager.Level
             }
         }
 
+        public void OnRestart()
+        {
+            OnReset();
+            SetUpLevel();
+            OnPlay();
+        }
+
         public void OnRevive()
         {
             player.TF.position = RandomPoint();

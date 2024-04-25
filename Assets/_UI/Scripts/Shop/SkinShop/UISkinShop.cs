@@ -86,6 +86,7 @@ namespace _UI.Scripts.Shop.SkinShop
             currentItemType = currentBar.Type;
             
             ChangeItemType(currentItemType);
+            this.PostEvent(EventID.OnSelectShopBar);
             
         }
         
