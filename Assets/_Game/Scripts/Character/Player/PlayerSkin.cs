@@ -68,7 +68,7 @@ namespace _Game.Scripts.Character.Player
         private void ChangeWeapon(WeaponType weaponType)
         {
             base.ChangeWeapon(weaponType);
-            Debug.Log("ChangeWeapons");
+//            Debug.Log("ChangeWeapons");
         }
     }
 }

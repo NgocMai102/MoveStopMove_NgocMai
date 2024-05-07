@@ -73,7 +73,6 @@ namespace _Game.Scripts.Character
         public virtual void OnInit()
         {
             attackRange.OnInit(this);
-            
             score = 0;
 
             InitTargetIndicator();
@@ -84,8 +83,14 @@ namespace _Game.Scripts.Character
         
         public virtual void InitTargetIndicator()
         {
-           
-            indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+            if (!indicator)
+            {
+                indicator = SimplePool.Spawn<TargetIndicator>(PoolType.TargetIndicator);
+            }
+            else
+            {
+                indicator.gameObject.SetActive(true);
+            }
             
             indicator.SetTarget(indicatorPoint);
             indicator.SetScore(score);
@@ -189,7 +194,6 @@ namespace _Game.Scripts.Character
         public virtual void OnDespawn()
         {
            indicator.SetAlpha(0);
-           Debug.Log("disappear" + name);
         }
 
         public virtual void OnHit(String murder)

@@ -44,7 +44,6 @@ namespace _Game.Scripts.Manager.Level
             OnLoadLevel(indexLevel);
             SetUpLevel();
             SetTargetIndicatorAlpha(0);
-            
         }
 
         public void OnLoadLevel(int level)
@@ -65,7 +64,6 @@ namespace _Game.Scripts.Manager.Level
             {
                 SpawnEnemy(null);
             }
-
             totalEnemy = currentLevel.TotalCharacterReal - currentLevel.TotalCharacterVisible - 1;
         }
         
@@ -159,11 +157,11 @@ namespace _Game.Scripts.Manager.Level
 
         public void OnPlay()
         {
-            SetTargetIndicatorAlpha(1);
             for(int i = 0; i < enemies.Count; i++)
             {
                 enemies[i].ChangeState(new EIdleState());
             }
+            SetTargetIndicatorAlpha(1);
         }
 
         public void OnRestart()
@@ -198,9 +196,9 @@ namespace _Game.Scripts.Manager.Level
         public void SetTargetIndicatorAlpha(float alpha)
         {
             List<GameUnit> list = SimplePool.GetAllUnitIsActive(PoolType.TargetIndicator);
+            Debug.Log(list.Count);
             for (int i = 0; i < list.Count; i++)
             {
-                //(list[i] as TargetIndicator).gameObject.SetActive(true);
                 (list[i] as TargetIndicator).SetAlpha(alpha);
             }
         }

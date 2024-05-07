@@ -65,10 +65,10 @@ namespace _Game.Scripts.Character.Player
 
         public override void OnInit()
         {
-            base.OnInit();
             SetName();
             SetCurrentSkin();
             CalculateCoin();
+            base.OnInit();
             
             startMove = false;
             TF.position = Vector3.zero;
